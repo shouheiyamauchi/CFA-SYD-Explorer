@@ -8,6 +8,8 @@ end
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.2'
+# Bootstrap for rails
+gem 'bootstrap-sass', '~> 3.3.6'
 # User Devise for user login
 gem 'devise'
 # Use postgresql as the database for Active Record

@@ -1,0 +1,36 @@
+<p id="notice"><%= notice %></p>
+
+<% if @user.errors.any? %>
+  <% @user.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+  <% end %>
+<% end %>
+
+<%= form_tag signup_create_user_path do %>
+  <%= hidden_field_tag :role, "parent" %>
+  <label for="title">Email</label>
+  <%= text_field_tag :email %>
+  <label for="title">Password</label>
+  <%= text_field_tag :password %>
+  <label for="title">Confirm Password</label>
+  <%= text_field_tag :password_confirmation %>
+  <label for="title">First Name</label>
+  <%= text_field_tag :first_name %>
+  <label for="title">Last Name</label>
+  <%= text_field_tag :last_name %>
+  <label for="title">D.O.B.</label>
+  <%= text_field_tag :dob %>
+  <label for="title">Sex</label>
+  <%= text_field_tag :sex %>
+  <label for="title">Address Line 1</label>
+  <%= text_field_tag :address_line1 %>
+  <label for="title">Address Line 2</label>
+  <%= text_field_tag :address_line2 %>
+  <label for="title">Suburb</label>
+  <%= text_field_tag :address_suburb %>
+  <label for="title">State</label>
+  <%= text_field_tag :address_state %>
+  <label for="title">Post Code</label>
+  <%= text_field_tag :address_pcode %>
+ <%= submit_tag "Submit" %>
+<% end %>

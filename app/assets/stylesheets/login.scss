@@ -1,0 +1,63 @@
+.flexbox-container {
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+
+  align-items: center;
+
+  height: 100vh;
+}
+
+.login-frame {
+  font-family: 'Oxygen', sans-serif;
+  width: 100%;
+  color: white;
+  text-align: center;
+  h2 {
+    font-weight: 400;
+  }
+  h4 {
+    font-weight: 300;
+  }
+}
+
+.login-box {
+ padding: 30px;
+ width: 100%;
+
+ .upper {
+   text-align: left;
+   color: #FF7C79;
+   background-color: white;
+   border-radius: 5px 5px 0px 0px;
+   padding: 10px 20px;
+ }
+
+ .lower {
+   color: white;
+   background-color: #7AD6FD;
+   border-radius: 0px 0px 5px 5px;
+   padding: 10px 20px;
+ }
+
+ .form-control {
+   height: 45px;
+   border-width: 0px;
+ }
+
+ .btn {
+   background-color: #FFD67F;
+   width: 50%;
+   &:hover {
+     color: grey;
+   }
+ }
+}
+
+body {
+  background-color: #FFD67F;
+}
