@@ -8,6 +8,8 @@ end
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.2'
+# User Devise for user login
+gem 'devise'
 # Use postgresql as the database for Active Record
 gem 'pg', '~> 0.18'
 # Use Puma as the app server
@@ -38,6 +40,15 @@ gem 'jbuilder', '~> 2.5'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
+  # Install rspec for testing
+  gem 'rspec-rails', '~> 3.5'
+  gem 'rails-controller-testing'
+  # Install pry
+  gem 'pry'
+  # Faker to create random values
+  gem 'faker'
+  # Create object instances for testing
+  gem "factory_girl_rails", "~> 4.0"
 end
 
 group :development do
