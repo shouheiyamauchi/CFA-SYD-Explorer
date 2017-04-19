@@ -14,3 +14,141 @@
  // "bootstrap-sprockets" must be imported before "bootstrap" and "bootstrap/variables"
  @import "bootstrap-sprockets";
  @import "bootstrap";
+ @import 'bootstrap-datetimepicker';
+
+ @font-face {
+  font-family: 'Schoolbell';
+  font-weight: normal;
+  font-style: normal;
+  src: font-url('Schoolbell.eot');
+  src: font-url('Schoolbell.eot?#iefix') format('embedded-opentype'),
+       font-url('Schoolbell.woff') format('woff'),
+       font-url('Schoolbell.ttf') format('truetype'),
+       font-url('Schoolbell.svg') format('svg');
+}
+@font-face {
+ font-family: 'Eraser';
+ font-weight: normal;
+ font-style: normal;
+ src: font-url('Eraser.eot');
+ src: font-url('Eraser.eot?#iefix') format('embedded-opentype'),
+      font-url('Eraser.woff') format('woff'),
+      font-url('Eraser.ttf') format('truetype'),
+      font-url('Eraser.svg') format('svg');
+}
+
+ .flexbox-container {
+   display: -ms-flexbox;
+   display: -webkit-flex;
+   display: flex;
+
+   -ms-flex-align: center;
+   -webkit-align-items: center;
+   -webkit-box-align: center;
+
+   align-items: center;
+
+   height: 100vh;
+ }
+
+ .box-frame {
+   font-family: 'Pangolin', cursive;
+   width: 100%;
+   color: white;
+   text-align: center;
+   .title {
+     font-family: 'Eraser'
+   }
+ }
+
+ .box {
+  padding: 30px;
+  width: 100%;
+
+  .upper {
+    color: white;
+    background-color: #FFA6A4;
+    border-radius: 5px 5px 0px 0px;
+    padding: 10px 20px;
+  }
+
+  .lower {
+    color: white;
+    background-color: #7AD6FD;
+    border-radius: 0px 0px 5px 5px;
+    padding: 10px 20px;
+    .dates {
+      color: black;
+    }
+
+    // color of the other month's dates on datepicker
+    .bootstrap-datetimepicker-widget table td.old, .bootstrap-datetimepicker-widget table td.new {
+      color: grey;
+    }
+  }
+
+  .form-control {
+    height: 45px;
+    border-width: 0px;
+  }
+
+  .btn {
+    background-color: #FFD67F;
+    width: 50%;
+    &:hover {
+      color: grey;
+    }
+  }
+ }
+
+ .switch-field {
+    overflow: hidden;
+}
+.switch-field input {
+    position: absolute !important;
+    clip: rect(0, 0, 0, 0);
+    height: 1px;
+    width: 1px;
+    border: 0;
+    overflow: hidden;
+}
+
+.switch-field label {
+  float: left;
+}
+
+.switch-field label {
+  display: inline-block;
+  width: 50%;
+  background-color: white;
+  color: rgba(0, 0, 0, 0.6);
+  font-weight: normal;
+  text-align: center;
+  text-shadow: none;
+  padding: 12px 0px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  -webkit-transition: all 0.1s ease-in-out;
+  -moz-transition:    all 0.1s ease-in-out;
+  -ms-transition:     all 0.1s ease-in-out;
+  -o-transition:      all 0.1s ease-in-out;
+  transition:         all 0.1s ease-in-out;
+}
+
+.switch-field label:hover {
+    cursor: pointer;
+}
+
+.switch-field input:checked + label {
+  color: white;
+  background-color: #FF7C79;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
+.switch-field label:first-of-type {
+  border-radius: 4px 0 0 4px;
+}
+
+.switch-field label:last-of-type {
+  border-radius: 0 4px 4px 0;
+}

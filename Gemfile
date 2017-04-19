@@ -10,6 +10,9 @@ end
 gem 'rails', '~> 5.0.2'
 # Bootstrap for rails
 gem 'bootstrap-sass', '~> 3.3.6'
+# Date picker
+gem 'momentjs-rails', '>= 2.9.0'
+gem 'bootstrap3-datetimepicker-rails', '~> 4.17.47'
 # User Devise for user login
 gem 'devise'
 # Use postgresql as the database for Active Record
