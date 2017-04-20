@@ -10,6 +10,7 @@
   </head>
 
   <body>
+    <%= render "partials/header" if @enable_header %>
     <div class="container">
       <%= yield %>
     </div>
