@@ -127,6 +127,9 @@ body {
   .title {
     font-family: 'Eraser'
   }
+  img {
+    height: 80px;
+  }
 }
 
 .box {
@@ -137,6 +140,10 @@ body {
     color: white;
     background-color: #FFA6A4;
     border-radius: 5px 5px 0px 0px;
+    border-width: 1px 1px 1px 1px;
+    border-style: solid;
+    border-color: #DA8F8D;
+    border-bottom-color: #A9A9A9;
     padding: 10px 20px;
   }
 
@@ -144,6 +151,9 @@ body {
     color: white;
     background-color: #7AD6FD;
     border-radius: 0px 0px 5px 5px;
+    border-width: 0px 1px 1px 1px;
+    border-style: solid;
+    border-color: #6CBEE0;
     padding: 10px 20px;
 
     ul {

@@ -3,10 +3,9 @@
   </div>
   <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
     <div class="box-frame">
-      <h1>Sign up as <% if @role == "organiser" || @role == "admin" %>an<% else %>a<% end%> <%= @role %></h1>
       <div class="box">
         <div class="upper">
-          <h3>Please fill out the following registration form:</h3>
+          <h3>Please fill out the following registration form to sign up as <% if @role == "organiser" || @role == "admin" %>an<% else %>a<% end%> <%= @role %>:</h3>
           <p>*Required fields</p>
         </div>
         <div class="lower">

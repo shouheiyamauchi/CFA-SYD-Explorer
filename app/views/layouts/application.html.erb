@@ -12,6 +12,7 @@
 
   <body>
     <%= render "partials/header" if @enable_header %>
+    <%= render "partials/navbar" if @enable_navbar %>
     <div class="container">
       <%= yield %>
     </div>

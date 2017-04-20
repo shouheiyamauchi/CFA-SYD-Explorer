@@ -1,4 +1,6 @@
 class SignupController < ApplicationController
+  before_filter :enable_header
+  before_filter :enable_navbar, only: [:child]
   before_action :parent_logged_in, only: [:child]
   before_action :logged_in, only: [:parent, :organiser]
   skip_before_action :authenticate_user!, only: [:parent, :organiser, :child, :create_user]

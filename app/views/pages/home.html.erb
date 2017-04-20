@@ -28,7 +28,7 @@
   <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
     <div class="panel panel-info">
       <div class="panel-heading">
-        <h3 class="panel-title"><i class="material-icons">map</i> Map</h3>
+        <h3 class="panel-title"><i class="material-icons">map</i> Explorer map</h3>
       </div>
       <div class="panel-body">
         <div id="map"></div>
@@ -104,6 +104,7 @@
   function initMap() {
     map = new google.maps.Map(document.getElementById('map'), {
       zoom: 10,
+      zoomControl: true,
       disableDefaultUI: true,
       center: new google.maps.LatLng(-33.85, 151),
       mapTypeId: 'roadmap',
@@ -222,6 +223,18 @@
       },
       info: {
         icon: '<%= image_url("markers/information.png") %>'
+      },
+      kiosk: {
+        icon: '<%= image_url("markers/kiosk.png") %>'
+      },
+      lake: {
+        icon: '<%= image_url("markers/lake.png") %>'
+      },
+      laterne: {
+        icon: '<%= image_url("markers/laterne.png") %>'
+      },
+      levelcrossing: {
+        icon: '<%= image_url("markers/levelcrossing.png") %>'
       }
     };
 
@@ -230,34 +243,34 @@
         position: new google.maps.LatLng(-33.81721, 151.22630),
         type: 'info'
       }, {
-        position: new google.maps.LatLng(-33.92539, 151.22820),
+        position: new google.maps.LatLng(-34.02539, 151.22820),
+        type: 'laterne'
+      }, {
+        position: new google.maps.LatLng(-33.93747, 150.89089),
+        type: 'lake'
+      }, {
+        position: new google.maps.LatLng(-33.88910, 150.87089),
         type: 'info'
       }, {
-        position: new google.maps.LatLng(-33.93747, 151.22912),
-        type: 'info'
+        position: new google.maps.LatLng(-33.91725, 150.86089),
+        type: 'kiosk'
       }, {
-        position: new google.maps.LatLng(-33.88910, 151.22907),
-        type: 'info'
-      }, {
-        position: new google.maps.LatLng(-33.91725, 151.23011),
-        type: 'info'
-      }, {
-        position: new google.maps.LatLng(-33.91872, 151.23089),
-        type: 'info'
+        position: new google.maps.LatLng(-33.81872, 150.86089),
+        type: 'laterne'
       }, {
         position: new google.maps.LatLng(-33.91784, 151.23094),
+        type: 'levelcrossing'
+      }, {
+        position: new google.maps.LatLng(-33.71682, 151.24149),
+        type: 'levelcrossing'
+      }, {
+        position: new google.maps.LatLng(-34.01790, 151.10463),
         type: 'info'
       }, {
-        position: new google.maps.LatLng(-33.91682, 151.23149),
-        type: 'info'
+        position: new google.maps.LatLng(-33.91666, 151.00468),
+        type: 'parking'
       }, {
-        position: new google.maps.LatLng(-33.91790, 151.23463),
-        type: 'info'
-      }, {
-        position: new google.maps.LatLng(-33.91666, 151.23468),
-        type: 'info'
-      }, {
-        position: new google.maps.LatLng(-33.916988, 151.233640),
+        position: new google.maps.LatLng(-33.816988, 150.933640),
         type: 'info'
       }, {
         position: new google.maps.LatLng(-33.91662347903106, 151.22879464019775),
