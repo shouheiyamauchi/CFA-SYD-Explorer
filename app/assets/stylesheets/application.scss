@@ -20,21 +20,13 @@
   font-family: 'Schoolbell';
   font-weight: normal;
   font-style: normal;
-  src: font-url('Schoolbell.eot');
-  src: font-url('Schoolbell.eot?#iefix') format('embedded-opentype'),
-       font-url('Schoolbell.woff') format('woff'),
-       font-url('Schoolbell.ttf') format('truetype'),
-       font-url('Schoolbell.svg') format('svg');
+  src: font-url('Schoolbell.ttf') format('truetype');
 }
 @font-face {
  font-family: 'Eraser';
  font-weight: normal;
  font-style: normal;
- src: font-url('Eraser.eot');
- src: font-url('Eraser.eot?#iefix') format('embedded-opentype'),
-      font-url('Eraser.woff') format('woff'),
-      font-url('Eraser.ttf') format('truetype'),
-      font-url('Eraser.svg') format('svg');
+ src: font-url('Eraser.ttf') format('truetype');
 }
 
  .flexbox-container {
@@ -77,6 +69,12 @@
     background-color: #7AD6FD;
     border-radius: 0px 0px 5px 5px;
     padding: 10px 20px;
+
+    ul {
+      text-align: left;
+      list-style-type: none;
+    }
+
     .dates {
       color: black;
     }
@@ -125,8 +123,8 @@
   font-weight: normal;
   text-align: center;
   text-shadow: none;
-  padding: 12px 0px;
-  border: 1px solid rgba(0, 0, 0, 0.2);
+  padding: 13px 0px;
+  border: 0px;
   -webkit-transition: all 0.1s ease-in-out;
   -moz-transition:    all 0.1s ease-in-out;
   -ms-transition:     all 0.1s ease-in-out;
