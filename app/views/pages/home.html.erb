@@ -1,0 +1,28 @@
+<h1>Pages#home</h1>
+<p>Find me in app/views/pages/home.html.erb</p>
+
+<% flash.each do |key, value| %>
+  <% if key == "danger" || key == "success" %>
+    <div class="alert alert-<%= key %>">
+      <% if key == "danger" %>
+        <ul><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+        <span class="sr-only">Message:</span>
+        <%= value %></ul>
+      <% elsif key == "success" %>
+        <ul><span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span>
+        <span class="sr-only">Message:</span>
+        <%= value %></ul>
+      <% end %>
+    </div>
+  <% end %>
+<% end %>
+
+<% if user_signed_in? %>
+  <li>
+  <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
+  </li>
+<% else %>
+  <li>
+  <%= link_to('Login', new_user_session_path)  %>
+  </li>
+<% end %>

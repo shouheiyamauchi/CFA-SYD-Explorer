@@ -1,0 +1,210 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ */
+ // "bootstrap-sprockets" must be imported before "bootstrap" and "bootstrap/variables"
+ @import "bootstrap-sprockets";
+ @import "bootstrap";
+ @import 'bootstrap-datetimepicker';
+
+@font-face {
+ font-family: 'Eraser';
+ font-weight: normal;
+ font-style: normal;
+ src: font-url('Eraser.ttf') format('truetype');
+}
+  body {
+    font-family: 'Pangolin', cursive;
+    background-color: #FFD67F;
+  }
+
+ .flexbox-container {
+   display: -ms-flexbox;
+   display: -webkit-flex;
+   display: flex;
+
+   -ms-flex-align: center;
+   -webkit-align-items: center;
+   -webkit-box-align: center;
+
+   align-items: center;
+
+   height: 100vh;
+ }
+
+ .header {
+   color: white;
+   height: 100%;
+   background-color: #FFA6A4;
+   width: 100%;
+   .title {
+     font-family: 'Eraser';
+     font-size: 25px;
+
+     padding-left: 5px;
+   }
+ }
+
+ .navigation {
+   background-color: white;
+   height: 80px;
+   width: 100%;
+   border-width: 0px 0px 1px 0px;
+   border-color: #C0C0C0;
+   border-style: solid;
+   overflow: hidden;
+   position: relative;
+   .menu-box {
+     float: left;
+     width: 50px;
+     height: 80px;
+
+     display: -ms-flexbox;
+     display: -webkit-flex;
+     display: flex;
+
+     -ms-flex-align: center;
+     -webkit-align-items: center;
+     -webkit-box-align: center;
+
+     align-items: center;
+   }
+   .vert-line{
+     float: left;
+     width: 1px;
+     height: 80px;
+     background-color: #C0C0C0;
+   }
+ }
+
+ .navbar-form {
+   .form-control {
+     height: 23px;
+
+   }
+   .btn {
+     height: 23px;
+     padding-top: 3px;
+     padding-bottom: 0px;
+   }
+
+   .glyphicon {
+     font-size: 15px;
+   }
+ }
+
+ .box-frame {
+   width: 100%;
+   color: white;
+   text-align: center;
+   .title {
+     font-family: 'Eraser'
+   }
+ }
+
+ .box {
+  padding: 30px;
+  width: 100%;
+
+  .upper {
+    color: white;
+    background-color: #FFA6A4;
+    border-radius: 5px 5px 0px 0px;
+    padding: 10px 20px;
+  }
+
+  .lower {
+    color: white;
+    background-color: #7AD6FD;
+    border-radius: 0px 0px 5px 5px;
+    padding: 10px 20px;
+
+    ul {
+      text-align: left;
+      list-style-type: none;
+    }
+
+    .dates {
+      color: black;
+    }
+
+    // color of the other month's dates on datepicker
+    .bootstrap-datetimepicker-widget table td.old, .bootstrap-datetimepicker-widget table td.new {
+      color: grey;
+    }
+  }
+
+  .form-control {
+    height: 45px;
+    border-width: 0px;
+  }
+
+  .btn {
+    background-color: #FFD67F;
+    width: 50%;
+    &:hover {
+      color: grey;
+    }
+  }
+ }
+
+ .switch-field {
+    overflow: hidden;
+}
+.switch-field input {
+    position: absolute !important;
+    clip: rect(0, 0, 0, 0);
+    height: 1px;
+    width: 1px;
+    border: 0;
+    overflow: hidden;
+}
+
+.switch-field label {
+  float: left;
+}
+
+.switch-field label {
+  display: inline-block;
+  width: 50%;
+  background-color: white;
+  color: rgba(0, 0, 0, 0.6);
+  font-weight: normal;
+  text-align: center;
+  text-shadow: none;
+  padding: 13px 0px;
+  border: 0px;
+  -webkit-transition: all 0.1s ease-in-out;
+  -moz-transition:    all 0.1s ease-in-out;
+  -ms-transition:     all 0.1s ease-in-out;
+  -o-transition:      all 0.1s ease-in-out;
+  transition:         all 0.1s ease-in-out;
+}
+
+.switch-field label:hover {
+    cursor: pointer;
+}
+
+.switch-field input:checked + label {
+  color: white;
+  background-color: #FF7C79;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
+.switch-field label:first-of-type {
+  border-radius: 4px 0 0 4px;
+}
+
+.switch-field label:last-of-type {
+  border-radius: 0 4px 4px 0;
+}
