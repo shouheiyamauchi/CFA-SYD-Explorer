@@ -12,9 +12,9 @@
  *
  */
  // "bootstrap-sprockets" must be imported before "bootstrap" and "bootstrap/variables"
- @import "bootstrap-sprockets";
- @import "bootstrap";
- @import 'bootstrap-datetimepicker';
+@import "bootstrap-sprockets";
+@import "bootstrap";
+@import 'bootstrap-datetimepicker';
 
 @font-face {
  font-family: 'Eraser';
@@ -22,96 +22,114 @@
  font-style: normal;
  src: font-url('Eraser.ttf') format('truetype');
 }
-  body {
-    font-family: 'Pangolin', cursive;
-    background-color: #FFD67F;
+
+// background color
+body {
+  font-family: 'Pangolin', cursive;
+  background-color: #FFD67F;
+}
+
+// header and navbar styling
+.header {
+ color: white;
+ height: 100%;
+ background-color: #FFA6A4;
+ width: 100%;
+ border-width: 0px 0px 1px 0px;
+ border-style: solid;
+ border-color: #DA8F8D;
+ .title {
+   font-family: 'Eraser';
+   font-size: 25px;
+   padding-left: 5px;
+
+ }
+ img {
+   height: 32px;
+   padding-bottom: 10px;
+ }
+}
+
+.navigation {
+ background-color: white;
+ height: 60px;
+ width: 100%;
+ border-width: 0px 0px 1px 0px;
+ border-color: #C0C0C0;
+ border-style: solid;
+ overflow: hidden;
+ position: relative;
+ a {
+   color: #363636;
+   &:hover {
+     color: #C0C0C0;
+     text-decoration: none;
+   }
+ }
+ .menu-box {
+   padding-top: 10px;
+   float: left;
+   width: 80px;
+   height: 60px;
+   &:hover {
+     color: #C0C0C0;
+   }
+   .material-icons {
+     font-size: 20px;
+   }
+ }
+ .vert-line{
+   float: left;
+   width: 1px;
+   height: 80px;
+   background-color: #C0C0C0;
+ }
+}
+
+.navbar-form {
+  .form-control {
+    height: 23px;
+
+  }
+  .btn {
+    height: 23px;
+    padding-top: 3px;
+    padding-bottom: 0px;
   }
 
- .flexbox-container {
-   display: -ms-flexbox;
-   display: -webkit-flex;
-   display: flex;
+  .glyphicon {
+    font-size: 15px;
+  }
+}
+.header-gap {
+  height: 30px;
+}
 
-   -ms-flex-align: center;
-   -webkit-align-items: center;
-   -webkit-box-align: center;
+// login and signup pages
+.flexbox-container {
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
 
-   align-items: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
 
-   height: 100vh;
- }
+  align-items: center;
 
- .header {
-   color: white;
-   height: 100%;
-   background-color: #FFA6A4;
-   width: 100%;
-   .title {
-     font-family: 'Eraser';
-     font-size: 25px;
+  height: 100vh;
+}
 
-     padding-left: 5px;
-   }
- }
+.box-frame {
+  width: 100%;
+  color: white;
+  text-align: center;
+  .title {
+    font-family: 'Eraser'
+  }
+}
 
- .navigation {
-   background-color: white;
-   height: 80px;
-   width: 100%;
-   border-width: 0px 0px 1px 0px;
-   border-color: #C0C0C0;
-   border-style: solid;
-   overflow: hidden;
-   position: relative;
-   .menu-box {
-     float: left;
-     width: 50px;
-     height: 80px;
-
-     display: -ms-flexbox;
-     display: -webkit-flex;
-     display: flex;
-
-     -ms-flex-align: center;
-     -webkit-align-items: center;
-     -webkit-box-align: center;
-
-     align-items: center;
-   }
-   .vert-line{
-     float: left;
-     width: 1px;
-     height: 80px;
-     background-color: #C0C0C0;
-   }
- }
-
- .navbar-form {
-   .form-control {
-     height: 23px;
-
-   }
-   .btn {
-     height: 23px;
-     padding-top: 3px;
-     padding-bottom: 0px;
-   }
-
-   .glyphicon {
-     font-size: 15px;
-   }
- }
-
- .box-frame {
-   width: 100%;
-   color: white;
-   text-align: center;
-   .title {
-     font-family: 'Eraser'
-   }
- }
-
- .box {
+.box {
   padding: 30px;
   width: 100%;
 
@@ -155,18 +173,18 @@
       color: grey;
     }
   }
- }
+}
 
- .switch-field {
-    overflow: hidden;
+.switch-field {
+  overflow: hidden;
 }
 .switch-field input {
-    position: absolute !important;
-    clip: rect(0, 0, 0, 0);
-    height: 1px;
-    width: 1px;
-    border: 0;
-    overflow: hidden;
+  position: absolute !important;
+  clip: rect(0, 0, 0, 0);
+  height: 1px;
+  width: 1px;
+  border: 0;
+  overflow: hidden;
 }
 
 .switch-field label {
@@ -207,4 +225,18 @@
 
 .switch-field label:last-of-type {
   border-radius: 0 4px 4px 0;
+}
+
+// dashboard contents
+.panel {
+  border-width: 0px;
+  border-radius: 5px;
+  .material-icons {
+    font-size: 13px;
+  }
+  .panel-heading {
+    color: white;
+    background-color: #7AD6FD;
+    border-radius: 5px 5px 0px 0px;
+  }
 }
