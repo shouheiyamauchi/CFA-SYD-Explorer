@@ -15,6 +15,7 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 @import 'bootstrap-datetimepicker';
+@import 'tipped.css';
 
 @font-face {
  font-family: 'Eraser';
@@ -60,7 +61,7 @@ body {
  overflow: hidden;
  position: relative;
  a {
-   color: #363636;
+   color: #5F5E5F;
    &:hover {
      color: #C0C0C0;
      text-decoration: none;
@@ -241,6 +242,10 @@ body {
 .panel {
   border-width: 0px;
   border-radius: 5px;
+  color: #5F5E5F;
+  th {
+    color: #424242;
+  }
   .material-icons {
     font-size: 13px;
   }

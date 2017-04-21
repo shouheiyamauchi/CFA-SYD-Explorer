@@ -1,5 +1,5 @@
 class PagesController < ApplicationController
-  before_filter :enable_header, :enable_navbar
+  before_action :enable_header, :enable_navbar
 
   def home
   end
