@@ -2,9 +2,9 @@
 #map {
   height: 300px;
   border-width: 1px;
-  border-color: #A9A9A9;
+  border-color: #CACACA;
   border-style: solid;
-  border-radius: 3px;
+  border-radius: 5px;
 }
 </style>
 <div class="header-gap">
@@ -38,45 +38,51 @@
   <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
     <div class="panel panel-info">
       <div class="panel-heading">
-        <h3 class="panel-title"><i class="material-icons">insert_invitation</i> Events awaiting approval</h3>
+        <h3 class="panel-title"><i class="material-icons">insert_invitation</i> Events</h3>
       </div>
       <div class="panel-body">
         <table class="table table-hover text-center">
           <tr>
             <th class="text-center">Date</th>
+            <th></th>
             <th class="text-center">Event</th>
             <th class="text-center">Child</th>
             <th class="text-center">Manage</th>
           </tr>
           <tr>
             <td>16/01/2017</td>
+            <td class="text-right"><%= image_tag("markers/lake.png", class: "icons") %></td>
             <td>Luna Park Day</td>
             <td>Tom</td>
-            <td><i class="material-icons simple-tooltip" title="View">event_note</i> <i class="material-icons simple-tooltip" title="Accept">event_available</i> <i class="material-icons simple-tooltip" title="Reject">event_busy</i></td>
+            <td><i class="material-icons simple-tooltip yellow" title="View">event_note</i> <i class="material-icons simple-tooltip blue" title="Accept">event_available</i> <i class="material-icons simple-tooltip red" title="Reject">event_busy</i></td>
           </tr>
           <tr>
             <td>10/01/2017</td>
+            <td class="text-right"><%= image_tag("markers/laterne.png", class: "icons") %></td>
             <td>Fishing at Manly</td>
             <td>Tom</td>
-            <td><i class="material-icons simple-tooltip" title="View">event_note</i> <i class="material-icons simple-tooltip" title="Accept">event_available</i> <i class="material-icons simple-tooltip" title="Reject">event_busy</i></td>
+            <td><i class="material-icons simple-tooltip yellow" title="View">event_note</i> <i class="material-icons simple-tooltip blue" title="Accept">event_available</i> <i class="material-icons simple-tooltip red" title="Reject">event_busy</i></td>
           </tr>
           <tr>
             <td>10/01/2017</td>
+            <td class="text-right"><%= image_tag("markers/kiosk.png", class: "icons") %></td>
             <td>Fishing at Manly</td>
             <td>Tim</td>
-            <td><i class="material-icons simple-tooltip" title="View">event_note</i> <i class="material-icons simple-tooltip" title="Accept">event_available</i> <i class="material-icons simple-tooltip" title="Reject">event_busy</i></td>
+            <td><i class="material-icons simple-tooltip yellow" title="View">event_note</i> <i class="material-icons simple-tooltip blue" title="Accept">event_available</i> <i class="material-icons simple-tooltip red" title="Reject">event_busy</i></td>
           </tr>
           <tr>
             <td>10/05/2017</td>
+            <td class="text-right"><%= image_tag("markers/library.png", class: "icons") %></td>
             <td>Lunch with the Stars</td>
             <td>Tom</td>
-            <td><i class="material-icons simple-tooltip" title="View">event_note</i> <i class="material-icons simple-tooltip" title="Accept">event_available</i> <i class="material-icons simple-tooltip" title="Reject">event_busy</i></td>
+            <td><i class="material-icons simple-tooltip yellow" title="View">event_note</i> <i class="material-icons simple-tooltip blue" title="Accept">event_available</i> <i class="material-icons simple-tooltip red" title="Reject">event_busy</i></td>
           </tr>
           <tr>
             <td>23/08/2017</td>
+            <td class="text-right"><%= image_tag("markers/information.png", class: "icons") %></td>
             <td>Aquarium Day</td>
             <td>Lucy</td>
-            <td><i class="material-icons simple-tooltip" title="View">event_note</i> <i class="material-icons simple-tooltip" title="Accept">event_available</i> <i class="material-icons simple-tooltip" title="Reject">event_busy</i></td>
+            <td><i class="material-icons simple-tooltip yellow" title="View">event_note</i> <i class="material-icons simple-tooltip blue" title="Accept">event_available</i> <i class="material-icons simple-tooltip red" title="Reject">event_busy</i></td>
           </tr>
         </table>
       </div>
@@ -85,10 +91,10 @@
   <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
     <div class="panel panel-info">
       <div class="panel-heading">
-        <h3 class="panel-title"><i class="material-icons">insert_invitation</i> Events coming up</h3>
+        <h3 class="panel-title"><i class="material-icons">insert_invitation</i> Calendar</h3>
       </div>
       <div class="panel-body">
-        Panel content
+        <%= render 'partials/calendar' %>
       </div>
     </div>
   </div>
@@ -117,12 +123,12 @@
           <tr>
             <td><%= image_tag("sample/char1.png", class: "character") %></td>
             <td>Name: Tom<br>Points: 65<br>Attended: 10</td>
-            <td><br><i class="material-icons simple-tooltip" title="View">apps</i> <i class="material-icons simple-tooltip" title="Edit details">description</i> <i class="material-icons simple-tooltip" title="Remove account">delete_forever</i></td>
+            <td><br><i class="material-icons simple-tooltip yellow" title="View">apps</i> <i class="material-icons simple-tooltip blue" title="Edit details">description</i> <i class="material-icons simple-tooltip red" title="Remove account">delete_forever</i></td>
           </tr>
           <tr>
             <td class="text-center"><%= image_tag("sample/char2.png", class: "character") %></td>
             <td>Name: Tim<br>Points: 25<br>Attended: 3</td>
-            <td><br><i class="material-icons simple-tooltip" title="View">apps</i> <i class="material-icons simple-tooltip" title="Edit details">description</i> <i class="material-icons simple-tooltip" title="Remove account">delete_forever</i></td>
+            <td><br><i class="material-icons simple-tooltip yellow" title="View">apps</i> <i class="material-icons simple-tooltip blue" title="Edit details">description</i> <i class="material-icons simple-tooltip red" title="Remove account">delete_forever</i></td>
           </tr>
         </table>
       </div>
@@ -150,8 +156,7 @@
   </div>
 </div>
 
-
-
+<!-- Google maps data -->
 <script>
   var map;
   function initMap() {
@@ -366,6 +371,7 @@
 src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAoFhlvLSsPC0XZvGiPq05VJE2wCRXI3-A&callback=initMap">
 </script>
 
+<!-- line graph data -->
 <script>
 var ctx = document.getElementById("myChart2");
 var myChart2 = new Chart(ctx, {
@@ -430,3 +436,27 @@ var myChart2 = new Chart(ctx, {
     }
 });
 </script>
+
+<!-- Slick carousel -->
+<script type="text/javascript">
+    $(document).on('ready', function() {
+      $(".regular").slick({
+        dots: true,
+        infinite: true,
+        slidesToShow: 3,
+        slidesToScroll: 3
+      });
+      $(".center").slick({
+        dots: true,
+        infinite: true,
+        centerMode: true,
+        slidesToShow: 3,
+        slidesToScroll: 3
+      });
+      $(".variable").slick({
+        dots: true,
+        infinite: true,
+        variableWidth: true
+      });
+    });
+  </script>

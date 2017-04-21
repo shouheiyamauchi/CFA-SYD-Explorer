@@ -16,6 +16,7 @@
 @import "bootstrap";
 @import 'bootstrap-datetimepicker';
 @import 'tipped.css';
+@import 'slick';
 
 @font-face {
  font-family: 'Eraser';
@@ -63,9 +64,10 @@ body {
  a {
    color: #5F5E5F;
    &:hover {
-     color: #C0C0C0;
+     color: white;
      text-decoration: none;
    }
+
  }
  .menu-box {
    padding-top: 10px;
@@ -73,7 +75,7 @@ body {
    width: 80px;
    height: 60px;
    &:hover {
-     color: #C0C0C0;
+     background-color: #919191;
    }
    .material-icons {
      font-size: 20px;
@@ -243,19 +245,73 @@ body {
   border-width: 0px;
   border-radius: 5px;
   color: #5F5E5F;
+  .icons {
+    height: 25px;
+  }
   th {
+    background-color: #F5F5F5;
     color: #424242;
   }
   .material-icons {
-    font-size: 13px;
+    font-size: 18px;
+  }
+  .blue {
+    color: #7AD6FD;
+    padding: 2px;
+    &:hover {
+      color: white;
+      background-color: #7AD6FD;
+      border-radius: 3px;
+
+    }
+  }
+  .yellow {
+    color: #EFC677;
+    padding: 2px;
+    &:hover {
+      color: white;
+      background-color: #EFC677;
+      border-radius: 3px;
+    }
+  }
+  .red {
+    color: #FFA6A4;
+    padding: 2px;
+    &:hover {
+      color: white;
+      background-color: #FFA6A4;
+      border-radius: 3px;
+    }
   }
   .panel-heading {
+    border-width: 1px 1px 0px 1px;
+    border-style: solid;
+    border-color: #6BBCDE;
     color: white;
     background-color: #7AD6FD;
     border-radius: 5px 5px 0px 0px;
   }
+
+  .panel-body {
+    border-width: 0px 1px 1px 1px;
+    border-style: solid;
+    border-color: #CACACA;
+    border-radius: 0px 0px 5px 5px;
+  }
+
+  .panel-title {
+    .material-icons {
+      color: #0D99FC;
+    }
+  }
   .character {
     height: 50px;
+  }
+}
+
+.panel-title {
+  .material-icons {
+    font-size: 13px;
   }
 }
 

@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   root 'pages#home'
+  get 'pages/test'
 
   get 'signup/parent'
   get 'signup/organiser'
