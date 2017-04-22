@@ -11,12 +11,18 @@
  * It is generally better to create a new file per style scope.
  *
  */
+
+ /*
+  *= require jquery-ui
+  */
+
  // "bootstrap-sprockets" must be imported before "bootstrap" and "bootstrap/variables"
 @import "bootstrap-sprockets";
 @import "bootstrap";
 @import 'bootstrap-datetimepicker';
 @import 'tipped.css';
 @import 'slick';
+@import 'jquery.mCustomScrollbar';
 
 @font-face {
  font-family: 'Eraser';
@@ -103,9 +109,6 @@ body {
   .glyphicon {
     font-size: 15px;
   }
-}
-.header-gap {
-  height: 30px;
 }
 
 // login and signup pages
@@ -241,6 +244,10 @@ body {
 }
 
 // dashboard contents
+.header-gap {
+  height: 30px;
+}
+
 .panel {
   border-width: 0px;
   border-radius: 5px;
@@ -312,6 +319,29 @@ body {
 .panel-title {
   .material-icons {
     font-size: 13px;
+  }
+}
+
+//Test page
+.grid-stack-item-content {
+  .title {
+    border-width: 1px 1px 0px 1px;
+    border-style: solid;
+    border-color: #6BBCDE;
+    color: white;
+    background-color: #7AD6FD;
+    border-radius: 5px 5px 0px 0px;
+    padding: 10px 15px;
+  }
+  .content {
+    border-width: 0px 1px 1px 1px;
+    border-style: solid;
+    border-color: #CACACA;
+    border-radius: 0px 0px 5px 5px;
+    padding: 10px 15px;
+    background-color: white;
+    overflow-y: auto;
+    height: 100%;
   }
 }
 

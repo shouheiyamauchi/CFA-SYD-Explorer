@@ -8,6 +8,12 @@ end
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.2'
+# Scroll bar themes
+gem 'scrollbar-rails'
+# Bring in logdash for grid stack
+gem 'lodash-rails'
+# Bring in jQuery UI for grid stack
+gem 'jquery-ui-rails'
 # Slick carousel
 gem "jquery-slick-rails"
 # Chart.js

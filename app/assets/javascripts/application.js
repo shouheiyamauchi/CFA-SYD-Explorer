@@ -19,3 +19,6 @@
 //= require bootstrap-datetimepicker
 //= require Chart
 //= require jquery.slick
+//= require lodash
+//= require jquery-ui
+//= require jquery.mCustomScrollbar
