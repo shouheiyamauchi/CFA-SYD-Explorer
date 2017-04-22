@@ -1,0 +1,89 @@
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.5.0/lodash.min.js"></script>
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/gridstack.js/0.2.6/gridstack.min.css" />
+<script type="text/javascript" src='//cdnjs.cloudflare.com/ajax/libs/gridstack.js/0.2.6/gridstack.min.js'></script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Serialization demo</title>
+
+    <style type="text/css">
+        .grid-stack {
+            background: lightgoldenrodyellow;
+        }
+
+        .grid-stack-item-content {
+            color: #2c3e50;
+            text-align: center;
+            background-color: #18bc9c;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid">
+        <h1>Serialization demo</h1>
+
+        <div>
+            <a class="btn btn-default" id="save-grid" href="#">Save Grid</a>
+        </div>
+
+        <br/>
+
+        <div class="grid-stack">
+          <div class="grid-stack-item" data-gs-x="0" data-gs-y="0" data-gs-width="4" data-gs-height="2" data-custom-id="1"><div class="grid-stack-item-content">1</div></div>
+          <div class="grid-stack-item" data-gs-x="4" data-gs-y="0" data-gs-width="4" data-gs-height="4" data-custom-id="2"><div class="grid-stack-item-content">2</div></div>
+          <div class="grid-stack-item" data-gs-x="8" data-gs-y="0" data-gs-width="2" data-gs-height="2" data-gs-min-width="2" data-gs-no-resize="yes" data-custom-id="3"><div class="grid-stack-item-content"> <span class="fa fa-hand-o-up"></span> Drag me! </div></div>
+          <div class="grid-stack-item" data-gs-x="10" data-gs-y="0" data-gs-width="2" data-gs-height="2" data-custom-id="4"><div class="grid-stack-item-content">4</div></div>
+          <div class="grid-stack-item" data-gs-x="0" data-gs-y="2" data-gs-width="2" data-gs-height="2" data-custom-id="5"><div class="grid-stack-item-content">5</div></div>
+          <div class="grid-stack-item" data-gs-x="2" data-gs-y="2" data-gs-width="2" data-gs-height="4" data-custom-id="6"><div class="grid-stack-item-content">6</div></div>
+          <div class="grid-stack-item" data-gs-x="8" data-gs-y="2" data-gs-width="4" data-gs-height="2" data-custom-id="7"><div class="grid-stack-item-content">7</div></div>
+          <div class="grid-stack-item" data-gs-x="0" data-gs-y="4" data-gs-width="2" data-gs-height="2" data-custom-id="8"><div class="grid-stack-item-content">8</div></div>
+          <div class="grid-stack-item" data-gs-x="4" data-gs-y="4" data-gs-width="4" data-gs-height="2" data-custom-id="9"><div class="grid-stack-item-content">9</div></div>
+          <div class="grid-stack-item" data-gs-x="8" data-gs-y="4" data-gs-width="2" data-gs-height="2" data-custom-id="10"><div class="grid-stack-item-content">10</div></div>
+          <div class="grid-stack-item" data-gs-x="10" data-gs-y="4" data-gs-width="2" data-gs-height="2" data-custom-id="11"><div class="grid-stack-item-content">11</div></div>
+        </div>
+
+        <hr/>
+
+        <textarea id="saved-data" name="dob" cols="100" rows="20" readonly="readonly"></textarea>
+    </div>
+
+
+    <script type="text/javascript">
+        $(function () {
+            var options = {
+            };
+            $('.grid-stack').gridstack(options);
+
+            new function () {
+
+                this.saveGrid = function () {
+                  var res = _.map($('.grid-stack .grid-stack-item:visible'), function (el) {
+                      el = $(el);
+                      var node = el.data('_gridstack_node');
+                      return {
+                          id: el.attr('data-custom-id'),
+                          x: node.x,
+                          y: node.y,
+                          width: node.width,
+                          height: node.height
+                      };
+                    }, this);
+                    $('#saved-data').val(JSON.stringify(res, null, '    '));
+                    return false;
+                }.bind(this);
+
+                $('#save-grid').click(this.saveGrid);
+            };
+        });
+    </script>
+</body>
+</html>

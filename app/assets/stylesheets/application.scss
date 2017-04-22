@@ -309,6 +309,7 @@ body {
   .panel-title {
     .material-icons {
       color: #0D99FC;
+      font-size: 13px;
     }
   }
   .character {
@@ -318,13 +319,15 @@ body {
 
 .panel-title {
   .material-icons {
-    font-size: 13px;
+
   }
 }
 
 //Test page
 .grid-stack-item-content {
+
   .title {
+    font-size: 16px;
     border-width: 1px 1px 0px 1px;
     border-style: solid;
     border-color: #6BBCDE;
@@ -332,6 +335,10 @@ body {
     background-color: #7AD6FD;
     border-radius: 5px 5px 0px 0px;
     padding: 10px 15px;
+    .material-icons {
+      color: #0D99FC;
+      font-size: 13px;
+    }
   }
   .content {
     border-width: 0px 1px 1px 1px;
@@ -342,8 +349,49 @@ body {
     background-color: white;
     overflow-y: auto;
     height: 100%;
+    color: #5F5E5F;
+    .icons {
+      height: 25px;
+    }
+    th {
+      background-color: #F5F5F5;
+      color: #424242;
+    }
+    .material-icons {
+      font-size: 18px;
+    }
+    .blue {
+      color: #7AD6FD;
+      padding: 2px;
+      &:hover {
+        color: white;
+        background-color: #7AD6FD;
+        border-radius: 3px;
+
+      }
+    }
+    .yellow {
+      color: #EFC677;
+      padding: 2px;
+      &:hover {
+        color: white;
+        background-color: #EFC677;
+        border-radius: 3px;
+      }
+    }
+    .red {
+      color: #FFA6A4;
+      padding: 2px;
+      &:hover {
+        color: white;
+        background-color: #FFA6A4;
+        border-radius: 3px;
+      }
+    }
   }
 }
+
+
 
 // Google maps
 a[href^="http://maps.google.com/maps"]{display:none !important}

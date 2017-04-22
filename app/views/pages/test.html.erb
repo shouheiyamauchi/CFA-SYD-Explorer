@@ -1,6 +1,6 @@
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/gridstack.js/0.2.6/gridstack.min.css" />
 <script type="text/javascript" src='//cdnjs.cloudflare.com/ajax/libs/gridstack.js/0.2.6/gridstack.min.js'></script>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.5.0/lodash.min.js"></script>
 <style media="screen">
 #map {
   height: 340px;
@@ -10,74 +10,160 @@
   border-radius: 5px;
 }
 </style>
-
 <style media="screen">
 .header-gap {
   height: 30px;
 }
 .grid-stack>.grid-stack-item>.grid-stack-item-content{
   overflow-y: hidden;
-  padding-bottom: 41px;
+  padding-bottom: 43px;
 }
-
 </style>
 <div class="header-gap">
 </div>
+<% flash.each do |key, value| %>
+  <% if key == "danger" || key == "success" %>
+    <div class="alert alert-<%= key %>">
+      <% if key == "danger" %>
+        <ul><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+        <span class="sr-only">Message:</span>
+        <%= value %></ul>
+      <% elsif key == "success" %>
+        <ul><span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span>
+        <span class="sr-only">Message:</span>
+        <%= value %></ul>
+      <% end %>
+    </div>
+  <% end %>
+<% end %>
 <div class="grid-stack">
   <div class="grid-stack-item"
       data-gs-x="0" data-gs-y="0"
-      data-gs-width="6" data-gs-height="21">
+      data-gs-width="6" data-gs-height="21" data-gs-no-resize="yes">
+
     <div class="grid-stack-item-content">
       <div class="title">
-        Fixed content here, can be of varying height using jQuery $.animate()
+        <i class="material-icons">map</i> Explorer map<span style="float: right;"><i class="material-icons">zoom_out_map</i></span>
       </div>
       <div class="content">
         <div id="map"></div>
       </div>
     </div>
+
   </div>
   <div class="grid-stack-item"
-      data-gs-x="6" data-gs-y="21"
-      data-gs-width="6" data-gs-height="20">
+      data-gs-x="0" data-gs-y="21"
+      data-gs-width="6" data-gs-height="21">
     <div class="grid-stack-item-content">
       <div class="title">
-        Fixed content here, can be of varying height using jQuery $.animate()
+        <i class="material-icons">insert_invitation</i> Events
       </div>
       <div class="content">
-        Scrolling content<br><br>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        <table class="table table-hover text-center">
+          <tr>
+            <th class="text-center">Date</th>
+            <th></th>
+            <th class="text-center">Event</th>
+            <th class="text-center">Child</th>
+            <th class="text-center">Manage</th>
+          </tr>
+          <tr>
+            <td>16/01/2017</td>
+            <td class="text-right"><%= image_tag("markers/lake.png", class: "icons") %></td>
+            <td>Luna Park Day</td>
+            <td>Tom</td>
+            <td><i class="material-icons simple-tooltip yellow" title="View">event_note</i> <i class="material-icons simple-tooltip blue" title="Accept">event_available</i> <i class="material-icons simple-tooltip red" title="Reject">event_busy</i></td>
+          </tr>
+          <tr>
+            <td>10/01/2017</td>
+            <td class="text-right"><%= image_tag("markers/laterne.png", class: "icons") %></td>
+            <td>Fishing at Manly</td>
+            <td>Tom</td>
+            <td><i class="material-icons simple-tooltip yellow" title="View">event_note</i> <i class="material-icons simple-tooltip blue" title="Accept">event_available</i> <i class="material-icons simple-tooltip red" title="Reject">event_busy</i></td>
+          </tr>
+          <tr>
+            <td>10/01/2017</td>
+            <td class="text-right"><%= image_tag("markers/kiosk.png", class: "icons") %></td>
+            <td>Fishing at Manly</td>
+            <td>Tim</td>
+            <td><i class="material-icons simple-tooltip yellow" title="View">event_note</i> <i class="material-icons simple-tooltip blue" title="Accept">event_available</i> <i class="material-icons simple-tooltip red" title="Reject">event_busy</i></td>
+          </tr>
+          <tr>
+            <td>10/05/2017</td>
+            <td class="text-right"><%= image_tag("markers/library.png", class: "icons") %></td>
+            <td>Lunch with the Stars</td>
+            <td>Tom</td>
+            <td><i class="material-icons simple-tooltip yellow" title="View">event_note</i> <i class="material-icons simple-tooltip blue" title="Accept">event_available</i> <i class="material-icons simple-tooltip red" title="Reject">event_busy</i></td>
+          </tr>
+          <tr>
+            <td>23/08/2017</td>
+            <td class="text-right"><%= image_tag("markers/information.png", class: "icons") %></td>
+            <td>Aquarium Day</td>
+            <td>Lucy</td>
+            <td><i class="material-icons simple-tooltip yellow" title="View">event_note</i> <i class="material-icons simple-tooltip blue" title="Accept">event_available</i> <i class="material-icons simple-tooltip red" title="Reject">event_busy</i></td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
 
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+  <div class="grid-stack-item"
+      data-gs-x="0" data-gs-y="44"
+      data-gs-width="6" data-gs-height="21">
+    <div class="grid-stack-item-content">
+      <div class="title">
+        <i class="material-icons">insert_invitation</i> Calendar
+      </div>
+      <div class="content">
+        <%= render 'partials/calendar' %>
+      </div>
+    </div>
+  </div>
+  <div class="grid-stack-item"
+      data-gs-x="0" data-gs-y="0"
+      data-gs-width="6" data-gs-height="21">
+    <div class="grid-stack-item-content">
+      <div class="title">
+        <i class="material-icons">insert_invitation</i> Events attendance history
+      </div>
+      <div class="content">
+        <canvas id="myChart2" width="400" height="150"></canvas>
+      </div>
+    </div>
+  </div>
+  <div class="grid-stack-item"
+      data-gs-x="6" data-gs-y="0"
+      data-gs-width="6" data-gs-height="21">
+    <div class="grid-stack-item-content">
+      <div class="title">
+        <i class="material-icons">face</i> Children
+      </div>
+      <div class="content">
+        <table class="table table-hover text-center">
+          <tr>
+            <th class="text-center">Character</th>
+            <th class="text-center">Details</th>
+            <th class="text-center">Manage</th>
+          </tr>
+          <tr>
+            <td><%= image_tag("sample/char1.png", class: "character") %></td>
+            <td>Name: Tom<br>Points: 65<br>Attended: 10</td>
+            <td><br><i class="material-icons simple-tooltip yellow" title="View">apps</i> <i class="material-icons simple-tooltip blue" title="Edit details">description</i> <i class="material-icons simple-tooltip red" title="Remove account">delete_forever</i></td>
+          </tr>
+          <tr>
+            <td class="text-center"><%= image_tag("sample/char2.png", class: "character") %></td>
+            <td>Name: Tim<br>Points: 25<br>Attended: 3</td>
+            <td><br><i class="material-icons simple-tooltip yellow" title="View">apps</i> <i class="material-icons simple-tooltip blue" title="Edit details">description</i> <i class="material-icons simple-tooltip red" title="Remove account">delete_forever</i></td>
+          </tr>
+        </table>
       </div>
     </div>
   </div>
 </div>
 <div class="header-gap">
-
 </div>
 
+<!-- Grid stack -->
 <script type="text/javascript">
 $(function () {
     var options = {
@@ -301,6 +387,72 @@ $(function () {
 </script>
 <script async defer
 src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAoFhlvLSsPC0XZvGiPq05VJE2wCRXI3-A&callback=initMap">
+</script>
+
+<!-- line graph data -->
+<script>
+var ctx = document.getElementById("myChart2");
+var myChart2 = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: ["Jan '17", "Feb '17", "Mar '17", "Apr '17", "May '17", "Jun '17", "Jul '17"],
+  datasets: [
+      {
+          label: "Tom",
+          fill: false,
+          lineTension: 0.1,
+          backgroundColor: "rgba(75,192,192,0.4)",
+          borderColor: "rgba(75,192,192,1)",
+          borderCapStyle: 'butt',
+          borderDash: [],
+          borderDashOffset: 0.0,
+          borderJoinStyle: 'miter',
+          pointBorderColor: "rgba(75,192,192,1)",
+          pointBackgroundColor: "#fff",
+          pointBorderWidth: 1,
+          pointHoverRadius: 5,
+          pointHoverBackgroundColor: "rgba(75,192,192,1)",
+          pointHoverBorderColor: "rgba(220,220,220,1)",
+          pointHoverBorderWidth: 2,
+          pointRadius: 1,
+          pointHitRadius: 10,
+          data: [5, 3, 2, 6, 0, 3, 1],
+          spanGaps: false,
+      },
+      {
+          label: "Tim",
+          fill: false,
+          lineTension: 0.1,
+          backgroundColor: "rgba(255,99,132,0.4)",
+          borderColor: "rgba(255,99,132,1)",
+          borderCapStyle: 'butt',
+          borderDash: [],
+          borderDashOffset: 0.0,
+          borderJoinStyle: 'miter',
+          pointBorderColor: "rgba(255,99,132,1)",
+          pointBackgroundColor: "#fff",
+          pointBorderWidth: 1,
+          pointHoverRadius: 5,
+          pointHoverBackgroundColor: "rgba(255,99,132,1)",
+          pointHoverBorderColor: "rgba(220,220,220,1)",
+          pointHoverBorderWidth: 2,
+          pointRadius: 1,
+          pointHitRadius: 10,
+          data: [1, 0, 2, 1, 0, 0, 1],
+          spanGaps: false,
+      }
+  ]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero:true
+                }
+            }]
+        }
+    }
+});
 </script>
 
 <!-- Custom scrollbar -->
