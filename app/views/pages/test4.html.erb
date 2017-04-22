@@ -36,142 +36,61 @@
     </div>
   <% end %>
 <% end %>
-<div class="grid-stack">
-  <div class="grid-stack-item"
-      data-gs-x="0" data-gs-y="0"
-      data-gs-width="6" data-gs-height="21" data-gs-no-resize="yes">
 
-    <div class="grid-stack-item-content">
-      <div class="title">
-        <i class="material-icons">map</i> Explorer map<span style="float: right;"><i class="material-icons">zoom_out_map</i></span>
-      </div>
-      <div class="content">
-        <div id="map"></div>
-      </div>
-    </div>
-
-  </div>
-  <div class="grid-stack-item"
-      data-gs-x="0" data-gs-y="21"
-      data-gs-width="6" data-gs-height="21">
-    <div class="grid-stack-item-content">
-      <div class="title">
-        <i class="material-icons">insert_invitation</i> Events
-      </div>
-      <div class="content">
-        <table class="table table-hover text-center">
-          <tr>
-            <th class="text-center">Date</th>
-            <th></th>
-            <th class="text-center">Event</th>
-            <th class="text-center">Child</th>
-            <th class="text-center">Manage</th>
-          </tr>
-          <tr>
-            <td>16/01/2017</td>
-            <td class="text-right"><%= image_tag("markers/lake.png", class: "icons") %></td>
-            <td>Luna Park Day</td>
-            <td>Tom</td>
-            <td><i class="material-icons simple-tooltip yellow" title="View">event_note</i> <i class="material-icons simple-tooltip blue" title="Accept">event_available</i> <i class="material-icons simple-tooltip red" title="Reject">event_busy</i></td>
-          </tr>
-          <tr>
-            <td>10/01/2017</td>
-            <td class="text-right"><%= image_tag("markers/laterne.png", class: "icons") %></td>
-            <td>Fishing at Manly</td>
-            <td>Tom</td>
-            <td><i class="material-icons simple-tooltip yellow" title="View">event_note</i> <i class="material-icons simple-tooltip blue" title="Accept">event_available</i> <i class="material-icons simple-tooltip red" title="Reject">event_busy</i></td>
-          </tr>
-          <tr>
-            <td>10/01/2017</td>
-            <td class="text-right"><%= image_tag("markers/kiosk.png", class: "icons") %></td>
-            <td>Fishing at Manly</td>
-            <td>Tim</td>
-            <td><i class="material-icons simple-tooltip yellow" title="View">event_note</i> <i class="material-icons simple-tooltip blue" title="Accept">event_available</i> <i class="material-icons simple-tooltip red" title="Reject">event_busy</i></td>
-          </tr>
-          <tr>
-            <td>10/05/2017</td>
-            <td class="text-right"><%= image_tag("markers/library.png", class: "icons") %></td>
-            <td>Lunch with the Stars</td>
-            <td>Tom</td>
-            <td><i class="material-icons simple-tooltip yellow" title="View">event_note</i> <i class="material-icons simple-tooltip blue" title="Accept">event_available</i> <i class="material-icons simple-tooltip red" title="Reject">event_busy</i></td>
-          </tr>
-          <tr>
-            <td>23/08/2017</td>
-            <td class="text-right"><%= image_tag("markers/information.png", class: "icons") %></td>
-            <td>Aquarium Day</td>
-            <td>Lucy</td>
-            <td><i class="material-icons simple-tooltip yellow" title="View">event_note</i> <i class="material-icons simple-tooltip blue" title="Accept">event_available</i> <i class="material-icons simple-tooltip red" title="Reject">event_busy</i></td>
-          </tr>
-        </table>
-      </div>
-    </div>
-  </div>
-
-  <div class="grid-stack-item"
-      data-gs-x="0" data-gs-y="44"
-      data-gs-width="6" data-gs-height="21">
-    <div class="grid-stack-item-content">
-      <div class="title">
-        <i class="material-icons">insert_invitation</i> Calendar
-      </div>
-      <div class="content">
-        <%= render 'partials/calendar' %>
-      </div>
-    </div>
-  </div>
-  <div class="grid-stack-item"
-      data-gs-x="0" data-gs-y="0"
-      data-gs-width="6" data-gs-height="21">
-    <div class="grid-stack-item-content">
-      <div class="title">
-        <i class="material-icons">insert_invitation</i> Event attendance history
-      </div>
-      <div class="content">
-        <canvas id="myChart2" width="400" height="150"></canvas>
-      </div>
-    </div>
-  </div>
-  <div class="grid-stack-item"
-      data-gs-x="6" data-gs-y="0"
-      data-gs-width="6" data-gs-height="21">
-    <div class="grid-stack-item-content">
-      <div class="title">
-        <i class="material-icons">face</i> Children
-      </div>
-      <div class="content">
-        <table class="table table-hover text-center">
-          <tr>
-            <th class="text-center">Character</th>
-            <th class="text-center">Details</th>
-            <th class="text-center">Manage</th>
-          </tr>
-          <tr>
-            <td><%= image_tag("sample/char1.png", class: "character") %></td>
-            <td>Name: Tom<br>Points: 65<br>Attended: 10</td>
-            <td><br><i class="material-icons simple-tooltip yellow" title="View">apps</i> <i class="material-icons simple-tooltip blue" title="Edit details">description</i> <i class="material-icons simple-tooltip red" title="Remove account">delete_forever</i></td>
-          </tr>
-          <tr>
-            <td class="text-center"><%= image_tag("sample/char2.png", class: "character") %></td>
-            <td>Name: Tim<br>Points: 25<br>Attended: 3</td>
-            <td><br><i class="material-icons simple-tooltip yellow" title="View">apps</i> <i class="material-icons simple-tooltip blue" title="Edit details">description</i> <i class="material-icons simple-tooltip red" title="Remove account">delete_forever</i></td>
-          </tr>
-        </table>
-      </div>
-    </div>
-  </div>
+<div>
+    <a class="btn btn-default" id="save-grid" href="#">Save Grid</a>
 </div>
+
+<div class="grid-stack">
+  <% @dashboard_items.each_with_index do |page, index| %>
+    <% @index = index %>
+    <%= render page %>
+  <% end%>
+</div>
+
+<%= form_tag pages_save_grid_path, :id => 'save_grid_form' do %>
+  <textarea id="saved-data" name="dashboard_grid" style="display:none;"></textarea>
+<% end %>
+
 <div class="header-gap">
 </div>
 
 <!-- Grid stack -->
 <script type="text/javascript">
-$(function () {
-    var options = {
-        cellHeight: 1,
-        verticalMargin: 20
-    };
-    $('.grid-stack').gridstack(options);
-});
+    $(function () {
+        var options = {
+          cellHeight: 1,
+          verticalMargin: 20
+        };
+        $('.grid-stack').gridstack(options);
+
+        new function () {
+
+            this.saveGrid = function () {
+              var res = _.map($('.grid-stack .grid-stack-item:visible'), function (el) {
+                  el = $(el);
+                  var node = el.data('_gridstack_node');
+                  return {
+                      id: el.attr('data-custom-id'),
+                      x: node.x,
+                      y: node.y,
+                      width: node.width,
+                      height: node.height
+                  };
+                }, this);
+                $('#saved-data').val(JSON.stringify(res, null, '    '));
+                return false;
+            }.bind(this);
+
+            this.submitForm = function() {
+              document.getElementById("save_grid_form").submit();
+              return false;
+            }
+
+            $('#save-grid').click(this.saveGrid);
+            $('#save-grid').click(this.submitForm);
+        };
+    });
 </script>
 
 <!-- Google maps data -->

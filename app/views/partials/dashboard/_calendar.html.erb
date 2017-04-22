@@ -1,0 +1,12 @@
+<div class="grid-stack-item"
+    data-gs-x=<%= @dashboard_grid[@index]["x"] %> data-gs-y=<%= @dashboard_grid[@index]["y"] %>
+    data-gs-width=<%= @dashboard_grid[@index]["width"] %> data-gs-height=<%= @dashboard_grid[@index]["height"] %> data-custom-id="calendar">
+  <div class="grid-stack-item-content">
+    <div class="title">
+      <i class="material-icons">insert_invitation</i> Calendar
+    </div>
+    <div class="content">
+      <%= render 'partials/calendar' %>
+    </div>
+  </div>
+</div>

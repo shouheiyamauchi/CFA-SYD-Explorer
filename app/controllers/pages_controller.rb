@@ -8,8 +8,13 @@ class PagesController < ApplicationController
     @dashboard_grid = JSON.parse current_user.dashboard_grid
   end
 
+  def test4
+    @dashboard_items = ["partials/dashboard/map", "partials/dashboard/events", "partials/dashboard/calendar", "partials/dashboard/event_attendance_history", "partials/dashboard/children"]
+    @dashboard_grid = JSON.parse current_user.dashboard_grid
+  end
+
   def save_grid
     current_user.update_attribute :dashboard_grid, params[:dashboard_grid]
-    redirect_to pages_test3_path
+    redirect_to pages_test4_path
   end
 end
