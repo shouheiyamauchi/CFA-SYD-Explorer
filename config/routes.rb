@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
+  get 'parent_pages/events'
+  get 'parent_pages/children'
+  get 'parent_pages/point_store'
+
   root 'pages#home'
+  get 'pages/home'
   post 'pages/save_grid'
 
   get 'signup/parent'

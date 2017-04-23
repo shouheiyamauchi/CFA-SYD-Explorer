@@ -1,0 +1,105 @@
+
+<% flash.each do |key, value| %>
+  <% if key == "danger" || key == "success" %>
+    <div class="alert alert-<%= key %>">
+      <% if key == "danger" %>
+        <ul><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+        <span class="sr-only">Message:</span>
+        <%= value %></ul>
+      <% elsif key == "success" %>
+        <ul><span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span>
+        <span class="sr-only">Message:</span>
+        <%= value %></ul>
+      <% end %>
+    </div>
+  <% end %>
+<% end %>
+
+<div class="row">
+  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    <div class="panel panel-info">
+      <div class="panel-heading">
+        <h3 class="panel-title"><i class="material-icons">face</i> Children</h3>
+      </div>
+      <div class="panel-body">
+        <table class="table table-hover text-center">
+          <tr>
+            <th class="text-center">Character</th>
+            <th class="text-center">Details</th>
+            <th class="text-center">Manage</th>
+          </tr>
+          <tr>
+            <td><%= image_tag("sample/char1.png", class: "character") %></td>
+            <td>Name: Tom<br>Points: 65<br>Attended: 10</td>
+            <td><br><i class="material-icons simple-tooltip yellow" title="View">apps</i> <i class="material-icons simple-tooltip blue" title="Edit details">description</i> <i class="material-icons simple-tooltip red" title="Remove account">delete_forever</i></td>
+          </tr>
+          <tr>
+            <td class="text-center"><%= image_tag("sample/char2.png", class: "character") %></td>
+            <td>Name: Tim<br>Points: 25<br>Attended: 3</td>
+            <td><br><i class="material-icons simple-tooltip yellow" title="View">apps</i> <i class="material-icons simple-tooltip blue" title="Edit details">description</i> <i class="material-icons simple-tooltip red" title="Remove account">delete_forever</i></td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    <div class="panel panel-info">
+      <div class="panel-heading">
+        <h3 class="panel-title"><i class="material-icons">insert_invitation</i> Events awaiting approval</h3>
+      </div>
+      <div class="panel-body">
+        Panel content
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+    <div class="panel panel-info">
+      <div class="panel-heading">
+        <h3 class="panel-title"><i class="material-icons">insert_invitation</i> Events coming up</h3>
+      </div>
+      <div class="panel-body">
+        Panel content
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+    <div class="panel panel-info">
+      <div class="panel-heading">
+        <h3 class="panel-title"><i class="material-icons">insert_invitation</i> Events attendance history</h3>
+      </div>
+      <div class="panel-body">
+        Panel content
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+    <div class="panel panel-info">
+      <div class="panel-heading">
+        <h3 class="panel-title"><i class="material-icons">face</i> Children</h3>
+      </div>
+      <div class="panel-body">
+        Panel content
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+    <div class="panel panel-info">
+      <div class="panel-heading">
+        <h3 class="panel-title"><i class="material-icons">card_giftcard</i> Prizes</h3>
+      </div>
+      <div class="panel-body">
+        Panel content
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+    <div class="panel panel-info">
+      <div class="panel-heading">
+        <h3 class="panel-title"><i class="material-icons">exit_to_app</i> Panel title</h3>
+      </div>
+      <div class="panel-body">
+        Panel content
+      </div>
+    </div>
+  </div>
+</div>

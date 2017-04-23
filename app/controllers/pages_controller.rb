@@ -9,6 +9,7 @@ class PagesController < ApplicationController
 
   def save_grid
     current_user.update_attribute :dashboard_grid, params[:dashboard_grid]
+    flash[:success] = 'Your dashboard grid has been saved!'
     redirect_to root_path
   end
 end

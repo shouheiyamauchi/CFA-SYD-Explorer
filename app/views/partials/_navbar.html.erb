@@ -1,26 +1,25 @@
+<!-- <a href="/users/sign_out" data-method="delete" rel="nofollow">Sign out link</a> -->
+
+
+
 <% @logged_in_role = current_user.role %>
-<% @menu_buttons = { "dashboard" => ["/", "Dashboard", "dashboard"], "events" => ["/", "Events", "insert_invitation"],
-                    "children" => ["/", "Children", "face"], "point_store" => ["/", "Point Store", "card_giftcard"],
-                    "save_grid" => ["/", "Save Grid", "view_module"], "logout" => ["/", "Log Out", "insert_invitation"]} %>
-<% @parent_items = ["dashboard", "events", "children", "point_store", "save_grid", "logout"] %>
+<% @menu_buttons = { "dashboard" => ["", "dashboard", "Dashboard"], "events" => ["events", "insert_invitation", "Events"],
+                    "children" => ["children", "face", "Children"], "point_store" => ["point_store", "card_giftcard", "Point Store"]} %>
+<% @menu_items = { "parent" => ["dashboard", "events", "children", "point_store"]} %>
 
 <div class="row">
   <div class="col-lg-12 col-md-12 col-sm-12 hidden-xs">
     <div class="navigation">
       <div class="container">
         <div class="btn-group" role="group" aria-label="...">
-          <button href="/" type="button" class="btn btn-default"><i class="material-icons">dashboard</i><br>
-          Dashboard</button>
-          <button type="button" class="btn btn-default"><i class="material-icons">insert_invitation</i><br>
-          Events</button>
-          <button type="button" class="btn btn-default"><i class="material-icons">face</i><br>
-          Children</button>
-          <button type="button" class="btn btn-default"><i class="material-icons">card_giftcard</i><br>
-          Point Store</button>
-          <button type="button" class="btn btn-default"><i class="material-icons">view_module</i><br>
-          Save Grid</button>
-          <button type="button" class="btn btn-default"><i class="material-icons">exit_to_app</i><br>
-          Logout</button>
+          <% @menu_items[@logged_in_role].each do |button|%>
+            <a href="<% if button == "dashboard" %><%= "/" %><% else %><%= "/" + @logged_in_role + "_pages/" + @menu_buttons[button][0] %><% end %>" type="button" class="btn btn-default"><i class="material-icons"><%= @menu_buttons[button][1] %></i><br>
+            <%= @menu_buttons[button][2] %></a>
+          <% end %>
+          <% if @page == "home" %>
+          <a class="btn btn-default" id="save-grid" type="button" href="#"><i class="material-icons">view_module</i><br>
+          Save Grid</a>
+          <% end %>
         </div>
       </div>
     </div>
@@ -41,6 +40,15 @@
 
 <div class="collapse" id="collapseExample">
   <div class="menu-dropdown">
-    Test
+    <% @menu_items[@logged_in_role].each do |button|%>
+      <a href="<% if button == "dashboard" %><%= "/" %><% else %><%= "/" + @logged_in_role + "_pages/" + @menu_buttons[button][0] %><% end %>">
+        <div class="item">
+          <i class="material-icons"><%= @menu_buttons[button][1] %></i> <%= @menu_buttons[button][2] %>
+        </div>
+      </a>
+    <% end %>
   </div>
+</div>
+
+<div class="gap">
 </div>

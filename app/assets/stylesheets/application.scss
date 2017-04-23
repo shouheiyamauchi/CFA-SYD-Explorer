@@ -35,6 +35,8 @@
 body {
   font-family: 'Pangolin', cursive;
   background-color: #FFD67F;
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
 .gap {
@@ -90,7 +92,6 @@ body {
      color: white;
      text-decoration: none;
    }
-
  }
 }
 
@@ -123,6 +124,31 @@ body {
     height: 42px;
     border-radius: 0px;
     border-width: 0px;
+  }
+}
+
+.menu-dropdown {
+  background-color: white;
+  width: 100%;
+  border-style: solid;
+  border-color: #C0C0C0;
+  border-width: 0px 0px 1px 0px;
+  .item {
+    .material-icons {
+      font-size: 13px;
+    }
+    padding: 10px 20px;
+    width: 100%;
+    &:hover {
+      background-color: #C0C0C0;
+    }
+  }
+  a {
+    color: #5F5E5F;
+    &:hover {
+      color: white;
+      text-decoration: none;
+    }
   }
 }
 
