@@ -1,9 +1,5 @@
 Rails.application.routes.draw do
   root 'pages#home'
-  get 'pages/test'
-  get 'pages/test2'
-  get 'pages/test3'
-  get 'pages/test4'
   post 'pages/save_grid'
 
   get 'signup/parent'

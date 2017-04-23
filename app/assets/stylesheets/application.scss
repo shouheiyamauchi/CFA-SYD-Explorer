@@ -37,7 +37,11 @@ body {
   background-color: #FFD67F;
 }
 
-// header and navbar styling
+.gap {
+  height: 30px;
+}
+
+// header styling
 .header {
  color: white;
  height: 100%;
@@ -58,15 +62,28 @@ body {
  }
 }
 
+.navbar-form {
+  .form-control {
+    height: 23px;
+  }
+  .btn {
+    height: 23px;
+    padding-top: 3px;
+    padding-bottom: 0px;
+  }
+  .glyphicon {
+    font-size: 15px;
+  }
+}
+
+// navbar styling
 .navigation {
  background-color: white;
- height: 60px;
+ height: 63px;
  width: 100%;
  border-width: 0px 0px 1px 0px;
  border-color: #C0C0C0;
  border-style: solid;
- overflow: hidden;
- position: relative;
  a {
    color: #5F5E5F;
    &:hover {
@@ -75,39 +92,37 @@ body {
    }
 
  }
- .menu-box {
-   padding-top: 10px;
-   float: left;
-   width: 80px;
-   height: 60px;
-   &:hover {
-     background-color: #919191;
-   }
-   .material-icons {
-     font-size: 20px;
-   }
- }
- .vert-line{
-   float: left;
-   width: 1px;
-   height: 80px;
-   background-color: #C0C0C0;
- }
 }
 
-.navbar-form {
-  .form-control {
-    height: 23px;
 
-  }
+
+.navigation {
   .btn {
-    height: 23px;
-    padding-top: 3px;
-    padding-bottom: 0px;
+    width: 80px;
+    border-top: 0px;
+    padding: 6px 0px;
   }
+  .btn-group > .btn:first-child:not(:last-child):not(.dropdown-toggle) {
+    border-radius: 0px;
+  }
+  .btn-group > .btn:last-child:not(:first-child), .btn-group > .dropdown-toggle:not(:first-child) {
+    border-radius: 0px;
+  }
+}
 
-  .glyphicon {
-    font-size: 15px;
+.mini-navigation {
+  background-color: white;
+  height: 43px;
+  width: 100%;
+  border-width: 0px 0px 1px 0px;
+  border-color: #C0C0C0;
+  border-style: solid;
+  overflow: hidden;
+  position: relative;
+  .btn-group > .btn:first-child {
+    height: 42px;
+    border-radius: 0px;
+    border-width: 0px;
   }
 }
 
@@ -243,11 +258,7 @@ body {
   border-radius: 0 4px 4px 0;
 }
 
-// dashboard contents
-.header-gap {
-  height: 30px;
-}
-
+// Panel contents
 .panel {
   border-width: 0px;
   border-radius: 5px;
@@ -323,7 +334,7 @@ body {
   }
 }
 
-//Test page
+//Dashboard grid stack
 .grid-stack-item-content {
 
   .title {
@@ -394,6 +405,14 @@ body {
 
 
 // Google maps
+#map {
+  height: 340px;
+  border-width: 1px;
+  border-color: #CACACA;
+  border-style: solid;
+  border-radius: 5px;
+}
+
 a[href^="http://maps.google.com/maps"]{display:none !important}
 a[href^="https://maps.google.com/maps"]{display:none !important}
 

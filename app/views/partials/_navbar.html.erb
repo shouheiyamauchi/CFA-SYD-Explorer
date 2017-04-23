@@ -1,36 +1,46 @@
-<div class="navigation">
-  <div class="container">
-    <a href="/">
-      <div class="menu-box text-center">
-        <i class="material-icons">dashboard</i><br>
-        Dashboard
+<% @logged_in_role = current_user.role %>
+<% @menu_buttons = { "dashboard" => ["/", "Dashboard", "dashboard"], "events" => ["/", "Events", "insert_invitation"],
+                    "children" => ["/", "Children", "face"], "point_store" => ["/", "Point Store", "card_giftcard"],
+                    "save_grid" => ["/", "Save Grid", "view_module"], "logout" => ["/", "Log Out", "insert_invitation"]} %>
+<% @parent_items = ["dashboard", "events", "children", "point_store", "save_grid", "logout"] %>
+
+<div class="row">
+  <div class="col-lg-12 col-md-12 col-sm-12 hidden-xs">
+    <div class="navigation">
+      <div class="container">
+        <div class="btn-group" role="group" aria-label="...">
+          <button href="/" type="button" class="btn btn-default"><i class="material-icons">dashboard</i><br>
+          Dashboard</button>
+          <button type="button" class="btn btn-default"><i class="material-icons">insert_invitation</i><br>
+          Events</button>
+          <button type="button" class="btn btn-default"><i class="material-icons">face</i><br>
+          Children</button>
+          <button type="button" class="btn btn-default"><i class="material-icons">card_giftcard</i><br>
+          Point Store</button>
+          <button type="button" class="btn btn-default"><i class="material-icons">view_module</i><br>
+          Save Grid</button>
+          <button type="button" class="btn btn-default"><i class="material-icons">exit_to_app</i><br>
+          Logout</button>
+        </div>
       </div>
-    </a>
-    <div class="vert-line">
     </div>
-    <div class="menu-box text-center">
-      <i class="material-icons">insert_invitation</i><br>
-      Events
-    </div>
-    <div class="vert-line">
-    </div>
-    <div class="menu-box text-center">
-      <i class="material-icons">face</i><br>
-      Children
-    </div>
-    <div class="vert-line">
-    </div>
-    <div class="menu-box text-center">
-      <i class="material-icons">card_giftcard</i><br>
-      Prizes
-    </div>
-    <div class="vert-line">
-    </div>
-    <a href="/users/sign_out" data-method="delete" rel="nofollow">
-      <div class="menu-box text-center">
-        <i class="material-icons">exit_to_app</i><br>
-        Logout
+  </div>
+</div>
+
+<div class="row">
+  <div class="hidden-lg hidden-md hidden-sm col-xs-12">
+    <div class="mini-navigation">
+      <div class="container text-right">
+        <div class="btn-group" role="group" aria-label="...">
+          <button type="button" class="btn btn-default" data-toggle="collapse"  data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample"><i class="material-icons">view_headline</i></button>
+        </div>
       </div>
-    </a>
+    </div>
+  </div>
+</div>
+
+<div class="collapse" id="collapseExample">
+  <div class="menu-dropdown">
+    Test
   </div>
 </div>

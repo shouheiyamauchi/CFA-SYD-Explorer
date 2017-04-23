@@ -1,25 +1,14 @@
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/gridstack.js/0.2.6/gridstack.min.css" />
 <script type="text/javascript" src='//cdnjs.cloudflare.com/ajax/libs/gridstack.js/0.2.6/gridstack.min.js'></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.5.0/lodash.min.js"></script>
+
 <style media="screen">
-#map {
-  height: 340px;
-  border-width: 1px;
-  border-color: #CACACA;
-  border-style: solid;
-  border-radius: 5px;
-}
-</style>
-<style media="screen">
-.header-gap {
-  height: 30px;
-}
 .grid-stack>.grid-stack-item>.grid-stack-item-content{
   overflow-y: hidden;
   padding-bottom: 43px;
 }
 </style>
-<div class="header-gap">
+<div class="gap">
 </div>
 <% flash.each do |key, value| %>
   <% if key == "danger" || key == "success" %>
@@ -37,7 +26,7 @@
   <% end %>
 <% end %>
 <div class="row">
-  <div class="col-lg-12 col-md-12 hidden-12 hidden-xs">
+  <div class="col-lg-12 col-md-12 col-sm-12 hidden-xs">
       <a class="btn btn-default" id="save-grid" href="#">Save Grid</a>
   </div>
 </div>
@@ -54,7 +43,7 @@
   <textarea id="saved-data" name="dashboard_grid" style="display:none;"></textarea>
 <% end %>
 
-<div class="header-gap">
+<div class="gap">
 </div>
 
 <!-- Grid stack -->

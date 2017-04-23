@@ -2,15 +2,7 @@ class PagesController < ApplicationController
   before_action :enable_header, :enable_navbar
 
   def home
-    @dashboard_items = ["partials/dashboard/map", "partials/dashboard/events", "partials/dashboard/calendar", "partials/dashboard/event_attendance_history", "partials/dashboard/children"]
-    @dashboard_grid = JSON.parse current_user.dashboard_grid
-  end
-
-  def test3
-    @dashboard_grid = JSON.parse current_user.dashboard_grid
-  end
-
-  def test4
+    @page = "home"
     @dashboard_items = ["partials/dashboard/map", "partials/dashboard/events", "partials/dashboard/calendar", "partials/dashboard/event_attendance_history", "partials/dashboard/children"]
     @dashboard_grid = JSON.parse current_user.dashboard_grid
   end
