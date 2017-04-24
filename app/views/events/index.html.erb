@@ -34,7 +34,6 @@
 </div>
 <% end %>
 
-
 <!-- Events awaiting to be approved by administrator -->
 <% if current_user.role == "administrator" %>
   <div class="row">
@@ -75,6 +74,65 @@
                       <% end %>
                       <%= form_tag events_reject_path do %>
                         <%= hidden_field_tag :event_id, event.id %>
+                          <%= button_tag(type: "submit", class: "btn") do %>
+                              <i class="material-icons simple-tooltip red" title="Reject">event_busy</i>
+                          <% end %>
+                      <% end %></td>
+                  </tr>
+                <% end %>
+              <% else %>
+                  <td colspan="7" class="text-center">No pending events to display</td>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
+
+<!-- Events awaiting to be approved by parent -->
+<% if current_user.role == "parent" %>
+  <div class="row">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+      <div class="panel panel-info">
+        <div class="panel-heading">
+          <h3 class="panel-title"><i class="material-icons">warning</i> Events awaiting approval</h3>
+        </div>
+        <div class="panel-body admin-form">
+          <table class="table table-hover" width="100%">
+            <thead>
+              <tr>
+                <th class="col-md-1">Date</th>
+                <th class="col-md-1"></th>
+                <th class="col-md-3">Event</th>
+                <th class="col-md-1">Cost</th>
+                <th class="col-md-3">Location</th>
+                <th class="col-md-1">Category</th>
+                <th class="col-md-1">Child</th>
+                <th class="col-md-1">Manage</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% if @attendance_ids.length > 0 %>
+                <% @attendance_ids.each do |attendance_id| %>
+                  <tr>
+                    <td><p><%= Event.find(Attendance.find(attendance_id).event_id).event_date.strftime("%d/%m/%Y") %></p></td>
+                    <td><p>*ICON</p></td>
+                    <td><p><%= Event.find(Attendance.find(attendance_id).event_id).event_name %></p></td>
+                    <td><p><%= Event.find(Attendance.find(attendance_id).event_id).event_cost %></p></td>
+                    <td><p><%= Event.find(Attendance.find(attendance_id).event_id).event_location %></p></td>
+                    <td><p><%= Event.find(Attendance.find(attendance_id).event_id).event_category %></p></td>
+                    <td><p><%= User.find(Attendance.find(attendance_id).user_id).first_name %></p></td>
+                    <td><button class="btn"><a href="/events/<%= (Attendance.find(attendance_id)).event_id %>"><i class="material-icons simple-tooltip yellow" title="View">event_note</i></a></button>
+                      <%= form_tag parent_pages_approve_path do %>
+                        <%= hidden_field_tag :attendance_id, attendance_id %>
+                          <%= button_tag(type: "submit", class: "btn") do %>
+                              <i class="material-icons simple-tooltip blue" title="Accept">event_available</i>
+                          <% end %>
+                      <% end %>
+                      <%= form_tag parent_pages_reject_path do %>
+                        <%= hidden_field_tag :attendance_id, attendance_id %>
                           <%= button_tag(type: "submit", class: "btn") do %>
                               <i class="material-icons simple-tooltip red" title="Reject">event_busy</i>
                           <% end %>

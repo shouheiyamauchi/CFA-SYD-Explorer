@@ -12,6 +12,18 @@ class ParentPagesController < ApplicationController
   def point_store
   end
 
+  def approve
+    Attendance.find(params[:attendance_id]).update_attribute :attendance_status, "approved"
+    flash[:success] = 'The event has been approved.'
+    redirect_to events_path
+  end
+
+  def reject
+    Attendance.find(params[:attendance_id]).update_attribute :attendance_status, "rejected"
+    flash[:danger] = 'The event has been rejected.'
+    redirect_to events_path
+  end
+
   private
   def set_children
     @children = User.where(:parent_id => current_user.id)

@@ -8,6 +8,16 @@ class EventsController < ApplicationController
   # GET /events
   # GET /events.json
   def index
+    @attendance_ids = Array.new
+    if current_user.role == "parent"
+      @children = User.where(parent_id:current_user.id)
+      @children.each do |child|
+        child.attendances.pending.each do |attendance|
+          @attendance_ids << attendance.id
+        end
+      end
+    end
+
     @organiser_events = Event.owner(current_user)
   end
 
@@ -81,7 +91,7 @@ class EventsController < ApplicationController
 
   def reject
     Event.find(params[:event_id]).update_attribute :event_approved, "rejected"
-    flash[:success] = 'The event has been approved.'
+    flash[:danger] = 'The event has been rejected.'
     redirect_to events_path
   end
 

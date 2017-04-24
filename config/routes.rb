@@ -12,6 +12,9 @@ Rails.application.routes.draw do
   post 'events/approve'
   post 'events/reject'
 
+  post 'parent_pages/approve'
+  post 'parent_pages/reject'
+
   root 'pages#home'
   post 'pages/save_grid'
 
