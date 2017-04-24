@@ -82,21 +82,23 @@
                         <th class="text-center">Event</th>
                         <th class="text-center">Manage</th>
                       </tr>
-                      <tr>
-                        <% if child.attendances.pending.count > 0 %>
-                          <% child.attendances.pending.each do |pending| %>
+                      <% if child.attendances.pending.count > 0 %>
+                        <% child.attendances.pending.each do |pending| %>
+                          <tr>
                             <td><%= Event.find(pending.event_id).event_date %></td>
                             <td>*Icon*</td>
                             <td><%= Event.find(pending.event_id).event_name %></td>
                             <td><a href="/events/<%= Event.find(pending.event_id).id %>"><i class="material-icons simple-tooltip yellow" title="View">event_note</i></a> <i class="material-icons simple-tooltip blue" title="Accept">event_available</i> <i class="material-icons simple-tooltip red" title="Reject">event_busy</i></td>
-                          <% end %>
-                        <% else %>
+                          </tr>
+                        <% end %>
+                      <% else %>
+                        <tr>
                           <td></td>
                           <td></td>
                           <td>No events pending approval</td>
                           <td></td>
-                        <% end %>
-                      </tr>
+                        </tr>
+                      <% end %>
                     </table>
                   </div>
                   <div id="<%= child.id %>-future" class="tab-pane fade">
