@@ -74,9 +74,15 @@ class EventsController < ApplicationController
   end
 
   def approve
-    current_user.update_attribute :dashboard_grid, params[:dashboard_grid]
+    Event.find(params[:event_id]).update_attribute :event_approved, "true"
     flash[:success] = 'The event has been approved.'
-    redirect_to event_path
+    redirect_to events_path
+  end
+
+  def reject
+    Event.find(params[:event_id]).update_attribute :event_approved, "rejected"
+    flash[:success] = 'The event has been approved.'
+    redirect_to events_path
   end
 
   private
@@ -90,17 +96,17 @@ class EventsController < ApplicationController
       if current_user.role == "parent" || current_user.role == "child" || current_user.role == "organiser"
         @events = Event.approved
       else
-        @events = Event.all
+        @events = Event.everything
       end
     end
 
     # Disable children and parents from seeing a pending event
     def limit_event_show
-      if current_user.role == "admin"
+      if current_user.role == "administrator"
       elsif @event.user_id == current_user.id
       elsif @event.event_approved == "false"
         flash[:danger] = 'You cannot view an unapproved event.'
-        redirect_to root_path
+        redirect_to events_path
       end
     end
 

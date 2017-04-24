@@ -515,6 +515,21 @@ a[href^="https://maps.google.com/maps"]{display:none !important}
    }
  }
 
+// Make invisible buttons for admin-form
+ .admin-form {
+   .btn {
+     background: transparent; border: none; padding: 0;
+   }
+   form {
+        display:inline;
+        margin:0px;
+        padding:0px;
+   }
+   p {
+      margin-top: 3px;
+   }
+ }
+
 // Filter table styling
 table#example.dataTable {
  tbody tr {

@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   get 'parent_pages/point_store'
 
   post 'events/approve'
+  post 'events/reject'
 
   root 'pages#home'
   post 'pages/save_grid'

@@ -2,7 +2,21 @@
 <script type="text/javascript" src='https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js'></script>
 <link rel="stylesheet" href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css" />
 
-<p id="notice"><%= notice %></p>
+<% flash.each do |key, value| %>
+  <% if key == "danger" || key == "success" %>
+    <div class="alert alert-<%= key %>">
+      <% if key == "danger" %>
+        <ul><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+        <span class="sr-only">Message:</span>
+        <%= value %></ul>
+      <% elsif key == "success" %>
+        <ul><span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span>
+        <span class="sr-only">Message:</span>
+        <%= value %></ul>
+      <% end %>
+    </div>
+  <% end %>
+<% end %>
 
 <!-- Event creation link for organisers and administrators -->
 <% if current_user.role == "organiser" || current_user.role == "administrator" %>
@@ -20,15 +34,21 @@
 </div>
 <% end %>
 
-<!-- Events awaiting approved -->
+
+<!-- Events awaiting to be approved by administrator -->
 <% if current_user.role == "administrator" %>
+
+<%= form_tag pages_save_grid_path, :id => 'save_grid_form' do %>
+  <textarea id="saved-data" name="dashboard_grid" style="display:none;"></textarea>
+<% end %>
+
   <div class="row">
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
       <div class="panel panel-info">
         <div class="panel-heading">
           <h3 class="panel-title"><i class="material-icons">warning</i> Events awaiting approval</h3>
         </div>
-        <div class="panel-body">
+        <div class="panel-body admin-form">
           <table class="table table-hover" width="100%">
             <thead>
               <tr>
@@ -45,13 +65,25 @@
               <% if @events.pending.future.count > 0 %>
                 <% @events.pending.future.each do |event| %>
                   <tr>
-                    <td><%= event.event_date.strftime("%d/%m/%Y") %></td>
-                    <td>*ICON</td>
-                    <td><%= event.event_name %></td>
-                    <td><%= event.event_cost %></td>
-                    <td><%= event.event_location %></td>
-                    <td><%= event.event_category %></td>
-                    <td><a href="/events/<%= event.id %>"><i class="material-icons simple-tooltip yellow" title="View">event_note</i></a> <i class="material-icons simple-tooltip blue" title="Accept">event_available</i> <i class="material-icons simple-tooltip red" title="Reject">event_busy</i></td>
+                    <td><p><%= event.event_date.strftime("%d/%m/%Y") %></p></td>
+                    <td><p>*ICON</p></td>
+                    <td><p><%= event.event_name %></p></td>
+                    <td><p><%= event.event_cost %></p></td>
+                    <td><p><%= event.event_location %></p></td>
+                    <td><p><%= event.event_category %></p></td>
+                    <td><button class="btn"><a href="/events/<%= event.id %>"><i class="material-icons simple-tooltip yellow" title="View">event_note</i></a></button>
+                      <%= form_tag events_approve_path do %>
+                        <%= hidden_field_tag :event_id, event.id %>
+                          <%= button_tag(type: "submit", class: "btn") do %>
+                              <i class="material-icons simple-tooltip blue" title="Accept">event_available</i>
+                          <% end %>
+                      <% end %>
+                      <%= form_tag events_reject_path do %>
+                        <%= hidden_field_tag :event_id, event.id %>
+                          <%= button_tag(type: "submit", class: "btn") do %>
+                              <i class="material-icons simple-tooltip red" title="Reject">event_busy</i>
+                          <% end %>
+                      <% end %></td>
                   </tr>
                 <% end %>
               <% else %>
@@ -59,6 +91,124 @@
               <% end %>
             </tbody>
           </table>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
+
+<!-- Event viewer for child -->
+<% if current_user.role == "child" %>
+  <div class="row">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+      <div class="panel panel-info">
+        <div class="panel-heading">
+          <h3 class="panel-title"><i class="material-icons">insert_invitation</i> My events</h3>
+        </div>
+        <div class="panel-body">
+          <ul class="nav nav-tabs">
+              <li class="active"><a data-toggle="tab" href="#own-pending">Pending approval</a></li>
+              <li><a data-toggle="tab" href="#own-future">Approved events</a></li>
+              <li><a data-toggle="tab" href="#own-past">Past events</a></li>
+          </ul>
+          <div class="tab-content">
+            <div id="own-pending" class="tab-pane fade in active">
+              <table class="table table-hover" width="100%">
+                <thead>
+                  <tr>
+                    <th class="col-md-1">Date</th>
+                    <th class="col-md-1"></th>
+                    <th class="col-md-3">Event</th>
+                    <th class="col-md-1">Cost</th>
+                    <th class="col-md-3">Location</th>
+                    <th class="col-md-2">Category</th>
+                    <th class="col-md-1">View</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% if @events.pending.future.count > 0 %>
+                    <% @events.pending.future.each do |event| %>
+                      <tr>
+                        <td><%= event.event_date.strftime("%d/%m/%Y") %></td>
+                        <td>*ICON</td>
+                        <td><%= event.event_name %></td>
+                        <td><%= event.event_cost %></td>
+                        <td><%= event.event_location %></td>
+                        <td><%= event.event_category %></td>
+                        <td><a href="/events/<%= event.id %>"><i class="material-icons simple-tooltip yellow" title="View">event_note</i></a></td>
+                      </tr>
+                    <% end %>
+                  <% else %>
+                      <td colspan="7" class="text-center">No pending events to display</td>
+                  <% end %>
+                </tbody>
+              </table>
+            </div>
+            <div id="own-future" class="tab-pane fade">
+              <table class="table table-hover" width="100%">
+                <thead>
+                  <tr>
+                    <th class="col-md-1">Date</th>
+                    <th class="col-md-1"></th>
+                    <th class="col-md-3">Event</th>
+                    <th class="col-md-1">Cost</th>
+                    <th class="col-md-3">Location</th>
+                    <th class="col-md-2">Category</th>
+                    <th class="col-md-1">View</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% if @events.approved.future.count > 0 %>
+                    <% @events.approved.future.each do |event| %>
+                      <tr>
+                        <td><%= event.event_date.strftime("%d/%m/%Y") %></td>
+                        <td>*ICON</td>
+                        <td><%= event.event_name %></td>
+                        <td><%= event.event_cost %></td>
+                        <td><%= event.event_location %></td>
+                        <td><%= event.event_category %></td>
+                        <td><a href="/events/<%= event.id %>"><i class="material-icons simple-tooltip yellow" title="View">event_note</i></a></td>
+                      </tr>
+                    <% end %>
+                  <% else %>
+                      <td colspan="7" class="text-center">No approved events to display</td>
+                  <% end %>
+                </tbody>
+              </table>
+            </div>
+            <div id="own-past" class="tab-pane fade">
+              <table class="table table-hover" width="100%">
+                <thead>
+                  <tr>
+                    <th class="col-md-1">Date</th>
+                    <th class="col-md-1"></th>
+                    <th class="col-md-3">Event</th>
+                    <th class="col-md-1">Cost</th>
+                    <th class="col-md-3">Location</th>
+                    <th class="col-md-2">Category</th>
+                    <th class="col-md-1">View</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% if @events.approved.past.count > 0 %>
+                    <% @events.approved.past.each do |event| %>
+                      <tr>
+                        <td><%= event.event_date.strftime("%d/%m/%Y") %></td>
+                        <td>*ICON</td>
+                        <td><%= event.event_name %></td>
+                        <td><%= event.event_cost %></td>
+                        <td><%= event.event_location %></td>
+                        <td><%= event.event_category %></td>
+                        <td><a href="/events/<%= event.id %>"><i class="material-icons simple-tooltip yellow" title="View">event_note</i></a></td>
+                      </tr>
+                    <% end %>
+                  <% else %>
+                      <td colspan="7" class="text-center">No past events to display</td>
+                  <% end %>
+                </tbody>
+              </table>
+            </div>
+          </div>
         </div>
       </div>
     </div>

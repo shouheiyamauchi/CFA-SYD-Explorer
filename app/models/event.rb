@@ -2,6 +2,7 @@ class Event < ApplicationRecord
   has_many :attendances
   belongs_to :user
 
+  scope :everything, -> { where(event_approved: ["true", "false", "rejected"]) }
   scope :approved, -> { where(event_approved: "true") }
   scope :pending, -> { where(event_approved: "false") }
   scope :rejected, -> { where(event_approved: "rejected") }
