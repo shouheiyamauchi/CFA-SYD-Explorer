@@ -19,29 +19,147 @@
   <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
     <div class="panel panel-info">
       <div class="panel-heading">
-        <h3 class="panel-title"><i class="material-icons">face</i> Children</h3>
+        <h3 class="panel-title"><i class="material-icons">plus_one</i> Sign up a new child</h3>
       </div>
       <div class="panel-body">
-        <table class="table table-hover text-center">
-          <tr>
-            <th class="text-center">Character</th>
-            <th class="text-center">Details</th>
-            <th class="text-center">Manage</th>
-          </tr>
-          <tr>
-            <td><%= image_tag("sample/char1.png", class: "character") %></td>
-            <td>Name: Tom<br>Points: 65<br>Attended: 10</td>
-            <td><br><i class="material-icons simple-tooltip yellow" title="View">apps</i> <i class="material-icons simple-tooltip blue" title="Edit details">description</i> <i class="material-icons simple-tooltip red" title="Remove account">delete_forever</i></td>
-          </tr>
-          <tr>
-            <td class="text-center"><%= image_tag("sample/char2.png", class: "character") %></td>
-            <td>Name: Tim<br>Points: 25<br>Attended: 3</td>
-            <td><br><i class="material-icons simple-tooltip yellow" title="View">apps</i> <i class="material-icons simple-tooltip blue" title="Edit details">description</i> <i class="material-icons simple-tooltip red" title="Remove account">delete_forever</i></td>
-          </tr>
-        </table>
+        Click <a href="/signup/child">here</a> to sign up a new child
       </div>
     </div>
   </div>
+
+  <% @children.order(:id).each do |child| %>
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+      <div class="panel panel-info">
+        <div class="panel-heading">
+          <h3 class="panel-title"><i class="material-icons">face</i> <%= child.first_name %> <%= child.last_name %></h3>
+        </div>
+        <div class="panel-body">
+          <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+              <table class="table table-hover text-center">
+                <tr>
+                  <th class="text-center">Character</th>
+                  <th class="text-center">Details</th>
+                  <th class="text-center">Manage</th>
+                </tr>
+                <tr>
+                  <td><%= image_tag("sample/char1.png", class: "character") %>
+                    <br><br>
+
+                    <div class="progress">
+                      <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%;"><span><span class="blue">HP: 152/152</span></span>
+                      </div>
+                    </div>
+
+                    <div class="progress">
+                      <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 60%;"><span><span class="yellow">EXP: 60/100</span></span>
+                      </div>
+                    </div><i class="material-icons simple-tooltip yellow" title="View">apps</i> <i class="material-icons simple-tooltip blue" title="Edit details">description</i> <i class="material-icons simple-tooltip red" title="Remove account">delete_forever</i></td>
+                  <td>ID: <%= child.id %><br>Email: <%= child.email %><br>Auto approval: <%= child.autoapprove %><br>Total attendances: <%= child.attendances.count %><br>Pending attendances: <%= child.attendances.pending.count %><br>Approved attendances: <%= child.attendances.approved.count %>
+                    <br>Rejected attendances: <%= child.attendances.rejected.count %><br>Past attendances: <%= child.attendances.attended.count %>
+                    <br>Unattended: <%= child.attendances.unattended.count %></td>
+                  <td></td>
+                </tr>
+              </table>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+
+
+
+
+              <div class="bs-example">
+                <ul class="nav nav-tabs">
+                    <li class="active"><a data-toggle="tab" href="#<%= child.id %>-pending">Pending approval</a></li>
+                    <li><a data-toggle="tab" href="#<%= child.id %>-future">Future events</a></li>
+                    <li><a data-toggle="tab" href="#<%= child.id %>-past">Past events</a></li>
+                </ul>
+                <div class="tab-content">
+                  <div id="<%= child.id %>-pending" class="tab-pane fade in active">
+                    <table class="table table-hover text-center">
+                      <tr>
+                        <th class="text-center">Date</th>
+                        <th class="text-center"></th>
+                        <th class="text-center">Event</th>
+                        <th class="text-center">Manage</th>
+                      </tr>
+                      <tr>
+                        <% if child.attendances.pending.count > 0 %>
+                          <% child.attendances.pending.each do |pending| %>
+                            <td><%= Event.find(pending.event_id).event_date %></td>
+                            <td>*Icon*</td>
+                            <td><%= Event.find(pending.event_id).event_name %></td>
+                            <td><a href="/events/<%= Event.find(pending.event_id).id %>"><i class="material-icons simple-tooltip yellow" title="View">event_note</i></a> <i class="material-icons simple-tooltip blue" title="Accept">event_available</i> <i class="material-icons simple-tooltip red" title="Reject">event_busy</i></td>
+                          <% end %>
+                        <% else %>
+                          <td></td>
+                          <td></td>
+                          <td>No events pending approval</td>
+                          <td></td>
+                        <% end %>
+                      </tr>
+                    </table>
+                  </div>
+                  <div id="<%= child.id %>-future" class="tab-pane fade">
+                    <table class="table table-hover text-center">
+                      <tr>
+                        <th class="text-center">Date</th>
+                        <th class="text-center"></th>
+                        <th class="text-center">Event</th>
+                        <th class="text-center">Manage</th>
+                      </tr>
+                      <tr>
+                        <% if child.attendances.approved.count > 0 %>
+                          <% child.attendances.approved.each do |approved| %>
+                            <td><%= Event.find(approved.event_id).event_date %></td>
+                            <td>*Icon*</td>
+                            <td><%= Event.find(approved.event_id).event_name %></td>
+                            <td><a href="/events/<%= Event.find(approved.event_id).id %>"><i class="material-icons simple-tooltip yellow" title="View">event_note</i></a></td>
+                          <% end %>
+                        <% else %>
+                          <td></td>
+                          <td></td>
+                          <td>No future events to display</td>
+                          <td></td>
+                        <% end %>
+                      </tr>
+                    </table>
+                  </div>
+                  <div id="<%= child.id %>-past" class="tab-pane fade">
+                    <table class="table table-hover text-center">
+                      <tr>
+                        <th class="text-center">Date</th>
+                        <th class="text-center"></th>
+                        <th class="text-center">Event</th>
+                        <th class="text-center">Manage</th>
+                      </tr>
+                      <tr>
+                        <% if child.attendances.attended.count > 0 %>
+                          <% child.attendances.attended.each do |attended| %>
+                            <td><%= Event.find(attended.event_id).event_date %></td>
+                            <td>*Icon*</td>
+                            <td><%= Event.find(attended.event_id).event_name %></td>
+                            <td><a href="/events/<%= Event.find(attended.event_id).id %>"><i class="material-icons simple-tooltip yellow" title="View">event_note</i></a></td>
+                          <% end %>
+                        <% else %>
+                          <td></td>
+                          <td></td>
+                          <td>No past events to display</td>
+                          <td></td>
+                        <% end %>
+                      </tr>
+                    </table>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  <% end %>
+
   <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
     <div class="panel panel-info">
       <div class="panel-heading">
@@ -98,7 +216,7 @@
         <h3 class="panel-title"><i class="material-icons">exit_to_app</i> Panel title</h3>
       </div>
       <div class="panel-body">
-        Panel content
+        Panel body
       </div>
     </div>
   </div>

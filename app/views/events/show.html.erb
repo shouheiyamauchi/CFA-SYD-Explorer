@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Event name:</strong>
+  <%= @event.event_name %>
+</p>
+
+<p>
+  <strong>Event description:</strong>
+  <%= @event.event_description %>
+</p>
+
+<p>
+  <strong>Event location:</strong>
+  <%= @event.event_location %>
+</p>
+
+<p>
+  <strong>Event cost:</strong>
+  <%= @event.event_cost %>
+</p>
+
+<p>
+  <strong>Event date:</strong>
+  <%= @event.event_date %>
+</p>
+
+<%= link_to 'Edit', edit_event_path(@event) %> |
+<%= link_to 'Back', events_path %>
+
+<% if @event.attendances.where(user_id: current_user.id).count == 0 && current_user.role == "child" %>
+<%= render 'attendances/form', attendance: @attendance %>
+<% end %>
+
+<h3>Attendances</h3>
+        <% if @attendances.count == 0 && current_user.role == "child" %>
+          Be the first one to attend the event!
+        <% end %>
+        <% @attendances.each do |attendance|%>
+        Name: <%= attendance.user.first_name %> <%= attendance.user.last_name %><br>
+        Email: <%= attendance.user.email %><br><br>
+        <% end %>
+      </div>
+    </div>

@@ -5,14 +5,19 @@
         <%= image_tag("icon.png", class: "title") %> <span class="title">SYD Explorer</span>
       </div>
       <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 text-right">
-        <form class="navbar-form" role="search">
-          <div class="input-group">
-              <input type="text" class="form-control" placeholder="Search events" name="q">
-              <div class="input-group-btn">
-                  <button class="btn btn-default" type="submit"><span class="glyphicon glyphicon-search"></span></button>
-              </div>
-          </div>
-        </form>
+        <% if user_signed_in? %>
+        Logged in as: <%= current_user.email %><br>
+        <a href="/users/sign_out" data-method="delete" rel="nofollow">Sign out link</a>
+
+          <form class="navbar-form" role="search">
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="Search events" name="q">
+                <div class="input-group-btn">
+                    <button class="btn btn-default" type="submit"><span class="glyphicon glyphicon-search"></span></button>
+                </div>
+            </div>
+          </form>
+        <% end %>
       </div>
     </div>
   </div>

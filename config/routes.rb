@@ -1,10 +1,17 @@
 Rails.application.routes.draw do
+  resources :events do
+    member do
+      resources :attendances
+    end
+  end
+
   get 'parent_pages/events'
   get 'parent_pages/children'
   get 'parent_pages/point_store'
 
+  post 'events/approve'
+
   root 'pages#home'
-  get 'pages/home'
   post 'pages/save_grid'
 
   get 'signup/parent'

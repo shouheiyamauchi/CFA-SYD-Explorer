@@ -22,11 +22,6 @@
             <%= form_tag signup_create_user_path do %>
               <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <%= hidden_field_tag :role, @role %>
-                <%# Add a parent_id to account when creating a child account %>
-                <% if @role == "child" %>
-                  <%= hidden_field_tag :parent_id, @parent_id %>
-                <% end %>
-                <%= hidden_field_tag :role, @role %>
                 <h4>Login details:</h4>
                 <div class="field">
                   <%= text_field_tag :email, "", class: 'form-control', :placeholder => "* Email:" %>
@@ -35,12 +30,12 @@
                 <div class="row">
                   <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                     <div class="field">
-                      <%= text_field_tag :password, "", class: 'form-control', :placeholder => "* Password:" %>
+                      <%= password_field_tag :password, "", class: 'form-control', :placeholder => "* Password:" %>
                     </div>
                   </div>
                   <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                     <div class="field">
-                      <%= text_field_tag :password_confirmation, "", class: 'form-control', :placeholder => "* Confirm password:" %>
+                      <%= password_field_tag :password_confirmation, "", class: 'form-control', :placeholder => "* Confirm password:" %>
                     </div>
                   </div>
                 </div>
@@ -81,32 +76,45 @@
                 <br>
               </div>
               <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                <h4>Address:</h4>
-                <div class="field">
-                  <%= text_field_tag :address_line1, "", class: 'form-control', :placeholder => "* Address line 1:" %>
-                </div>
-                <br>
-                <div class="field">
-                  <%= text_field_tag :address_line2, "", class: 'form-control', :placeholder => "Address line 2:" %>
-                </div>
-                <br>
-                <div class="field">
-                  <%= text_field_tag :address_suburb, "", class: 'form-control', :placeholder => "* Suburb:" %>
-                </div>
-                <br>
-                <div class="row">
-                  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                    <div class="field">
-                      <%= select_tag(:address_state, options_for_select([['* Select state:', nil], ['ACT', 'ACT'], ['NSW', 'NSW'], ['NT', 'NT'], ['QLD', 'QLD'], ['SA', 'SA'], ['TAS', 'TAS'], ['VIC', 'VIC'], ['WA', 'WA']]), {class: 'form-control'}) %>
+                <% if @role == "child" %>
+                  <h4>Require approval:</h4>
+                  <div class="field">
+                    <div class="switch-field">
+                      <input type="radio" id="switch_left2" name="autoapprove" value="false" checked/>
+                      <label for="switch_left2">Yes</label>
+                      <input type="radio" id="switch_right2" name="autoapprove" value="true" />
+                      <label for="switch_right2">No</label>
                     </div>
                   </div>
-                  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                    <div class="field">
-                      <%= text_field_tag :address_pcode, "", class: 'form-control', :placeholder => "* Postcode:" %>
+                  *Does your child require your permission to attend an event?
+                <% else %>
+                  <h4>Address:</h4>
+                  <div class="field">
+                    <%= text_field_tag :address_line1, "", class: 'form-control', :placeholder => "* Address line 1:" %>
+                  </div>
+                  <br>
+                  <div class="field">
+                    <%= text_field_tag :address_line2, "", class: 'form-control', :placeholder => "Address line 2:" %>
+                  </div>
+                  <br>
+                  <div class="field">
+                    <%= text_field_tag :address_suburb, "", class: 'form-control', :placeholder => "* Suburb:" %>
+                  </div>
+                  <br>
+                  <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                      <div class="field">
+                        <%= select_tag(:address_state, options_for_select([['* Select state:', nil], ['ACT', 'ACT'], ['NSW', 'NSW'], ['NT', 'NT'], ['QLD', 'QLD'], ['SA', 'SA'], ['TAS', 'TAS'], ['VIC', 'VIC'], ['WA', 'WA']]), {class: 'form-control'}) %>
+                      </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                      <div class="field">
+                        <%= text_field_tag :address_pcode, "", class: 'form-control', :placeholder => "* Postcode:" %>
+                      </div>
                     </div>
                   </div>
-                </div>
-                <br>
+                  <br>
+                <% end %>
               </div>
               <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="actions">

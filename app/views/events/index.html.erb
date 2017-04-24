@@ -1,0 +1,263 @@
+<!-- Load dependencies for table -->
+<script type="text/javascript" src='https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js'></script>
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css" />
+
+<p id="notice"><%= notice %></p>
+
+<!-- Event creation link for organisers and administrators -->
+<% if current_user.role == "organiser" || current_user.role == "administrator" %>
+<div class="row">
+  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    <div class="panel panel-info">
+      <div class="panel-heading">
+        <h3 class="panel-title"><i class="material-icons">plus_one</i> Create a new event</h3>
+      </div>
+      <div class="panel-body">
+        Click <%= link_to 'here', new_event_path %> to create a new event
+      </div>
+    </div>
+  </div>
+</div>
+<% end %>
+
+<!-- Events awaiting approved -->
+<% if current_user.role == "administrator" %>
+  <div class="row">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+      <div class="panel panel-info">
+        <div class="panel-heading">
+          <h3 class="panel-title"><i class="material-icons">warning</i> Events awaiting approval</h3>
+        </div>
+        <div class="panel-body">
+          <table class="table table-hover" width="100%">
+            <thead>
+              <tr>
+                <th class="col-md-1">Date</th>
+                <th class="col-md-1"></th>
+                <th class="col-md-3">Event</th>
+                <th class="col-md-1">Cost</th>
+                <th class="col-md-3">Location</th>
+                <th class="col-md-2">Category</th>
+                <th class="col-md-1">Manage</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% if @events.pending.future.count > 0 %>
+                <% @events.pending.future.each do |event| %>
+                  <tr>
+                    <td><%= event.event_date.strftime("%d/%m/%Y") %></td>
+                    <td>*ICON</td>
+                    <td><%= event.event_name %></td>
+                    <td><%= event.event_cost %></td>
+                    <td><%= event.event_location %></td>
+                    <td><%= event.event_category %></td>
+                    <td><a href="/events/<%= event.id %>"><i class="material-icons simple-tooltip yellow" title="View">event_note</i></a> <i class="material-icons simple-tooltip blue" title="Accept">event_available</i> <i class="material-icons simple-tooltip red" title="Reject">event_busy</i></td>
+                  </tr>
+                <% end %>
+              <% else %>
+                  <td colspan="7" class="text-center">No pending events to display</td>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
+
+<!-- Events created by organiser -->
+<% if current_user.role == "organiser" %>
+  <div class="row">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+      <div class="panel panel-info">
+        <div class="panel-heading">
+          <h3 class="panel-title"><i class="material-icons">insert_invitation</i> Created events</h3>
+        </div>
+        <div class="panel-body">
+          <ul class="nav nav-tabs">
+              <li class="active"><a data-toggle="tab" href="#own-pending">Pending approval</a></li>
+              <li><a data-toggle="tab" href="#own-future">Approved events</a></li>
+              <li><a data-toggle="tab" href="#own-past">Past events</a></li>
+          </ul>
+          <div class="tab-content">
+            <div id="own-pending" class="tab-pane fade in active">
+              <table class="table table-hover" width="100%">
+                <thead>
+                  <tr>
+                    <th class="col-md-1">Date</th>
+                    <th class="col-md-1"></th>
+                    <th class="col-md-3">Event</th>
+                    <th class="col-md-1">Cost</th>
+                    <th class="col-md-3">Location</th>
+                    <th class="col-md-2">Category</th>
+                    <th class="col-md-1">View</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% if @organiser_events.pending.future.count > 0 %>
+                    <% @organiser_events.pending.future.each do |event| %>
+                      <tr>
+                        <td><%= event.event_date.strftime("%d/%m/%Y") %></td>
+                        <td>*ICON</td>
+                        <td><%= event.event_name %></td>
+                        <td><%= event.event_cost %></td>
+                        <td><%= event.event_location %></td>
+                        <td><%= event.event_category %></td>
+                        <td><a href="/events/<%= event.id %>"><i class="material-icons simple-tooltip yellow" title="View">event_note</i></a></td>
+                      </tr>
+                    <% end %>
+                  <% else %>
+                      <td colspan="7" class="text-center">No pending events to display</td>
+                  <% end %>
+                </tbody>
+              </table>
+            </div>
+            <div id="own-future" class="tab-pane fade">
+              <table class="table table-hover" width="100%">
+                <thead>
+                  <tr>
+                    <th class="col-md-1">Date</th>
+                    <th class="col-md-1"></th>
+                    <th class="col-md-3">Event</th>
+                    <th class="col-md-1">Cost</th>
+                    <th class="col-md-3">Location</th>
+                    <th class="col-md-2">Category</th>
+                    <th class="col-md-1">View</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% if @organiser_events.approved.future.count > 0 %>
+                    <% @organiser_events.approved.future.each do |event| %>
+                      <tr>
+                        <td><%= event.event_date.strftime("%d/%m/%Y") %></td>
+                        <td>*ICON</td>
+                        <td><%= event.event_name %></td>
+                        <td><%= event.event_cost %></td>
+                        <td><%= event.event_location %></td>
+                        <td><%= event.event_category %></td>
+                        <td><a href="/events/<%= event.id %>"><i class="material-icons simple-tooltip yellow" title="View">event_note</i></a></td>
+                      </tr>
+                    <% end %>
+                  <% else %>
+                      <td colspan="7" class="text-center">No approved events to display</td>
+                  <% end %>
+                </tbody>
+              </table>
+            </div>
+            <div id="own-past" class="tab-pane fade">
+              <table class="table table-hover" width="100%">
+                <thead>
+                  <tr>
+                    <th class="col-md-1">Date</th>
+                    <th class="col-md-1"></th>
+                    <th class="col-md-3">Event</th>
+                    <th class="col-md-1">Cost</th>
+                    <th class="col-md-3">Location</th>
+                    <th class="col-md-2">Category</th>
+                    <th class="col-md-1">View</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% if @organiser_events.approved.past.count > 0 %>
+                    <% @organiser_events.approved.past.each do |event| %>
+                      <tr>
+                        <td><%= event.event_date.strftime("%d/%m/%Y") %></td>
+                        <td>*ICON</td>
+                        <td><%= event.event_name %></td>
+                        <td><%= event.event_cost %></td>
+                        <td><%= event.event_location %></td>
+                        <td><%= event.event_category %></td>
+                        <td><a href="/events/<%= event.id %>"><i class="material-icons simple-tooltip yellow" title="View">event_note</i></a></td>
+                      </tr>
+                    <% end %>
+                  <% else %>
+                      <td colspan="7" class="text-center">No past events to display</td>
+                  <% end %>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
+
+<!-- View all future events -->
+<div class="row">
+  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    <div class="panel panel-info">
+      <div class="panel-heading">
+        <h3 class="panel-title"><i class="material-icons">insert_invitation</i> Events</h3>
+      </div>
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 search">
+            <table id="example" cellspacing="0" width="100%">
+              <thead>
+                <tr>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                <% @events.future.each do |event| %>
+                  <tr>
+                    <td>
+                      <div class="row">
+                        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                          <div class="events-thumbnail">
+                          </div>
+                        </div>
+                        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 events-content">
+                          <div class="row">
+                            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                              <h3>*ICON <% if event.event_name.length > 40 %><%= event.event_name[0..40] %>...<% else %><%= event.event_name %><% end %></h3>
+                              <hr>
+                              <p><% if event.event_description.length > 250 %><%= event.event_description[0..250] %>...<% else %><%= event.event_description %><% end %></p>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 details">
+                              <% if current_user.role == "administrator" %>
+                                <br>Status:
+                                <% if event.event_approved == "true" %>
+                                  <span style="color: #7AD6FD">approved</span>
+                                <% elsif event.event_approved == "false" %>
+                                  <span style="color: #EFC677">pending</span>
+                                <% elsif event.event_approved == "rejected" %>
+                                  <span style="color: #FFA6A4">rejected</span>
+                                <% else %>
+                                  N/A
+                                <% end %>
+                              <% else %>
+                                <br><br><br>
+                              <% end %>
+                              <div class="details">
+                                <i class="material-icons simple-tooltip" data-tipped-options="position: 'left'" title="Date">date_range</i> <%= event.event_date.strftime("%d/%m/%Y") %><br>
+                                <i class="material-icons simple-tooltip" data-tipped-options="position: 'left'" title="Cost">attach_money</i> <%= event.event_cost %><br>
+                                <i class="material-icons simple-tooltip" data-tipped-options="position: 'left'" title="Location">location_on</i> <%= event.event_location %><br>
+                                <i class="material-icons simple-tooltip" data-tipped-options="position: 'left'" title="Category">list</i> <%= event.event_category %><br>
+                                <br><a class="btn" href="/events/<%= event.id %>">View Event</a>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Load datatable javascript -->
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('#example').DataTable( {
+      "ordering": false,
+    });
+  } );
+</script>

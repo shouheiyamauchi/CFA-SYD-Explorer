@@ -226,12 +226,14 @@ body {
   .btn {
     background-color: #FFD67F;
     width: 50%;
+    border: solid 1px #D9B86C;
     &:hover {
       color: grey;
     }
   }
 }
 
+// Switch field
 .switch-field {
   overflow: hidden;
 }
@@ -447,4 +449,106 @@ a[href^="https://maps.google.com/maps"]{display:none !important}
 }
 .gmnoprint div {
     background:none !important;
+}
+
+
+// Progress bars with centered text
+.progress {
+    position: relative;
+}
+
+.progress span {
+  position: absolute;
+  display: block;
+  width: 100%;
+  .blue {
+    color: #A4DCED;
+  }
+  .yellow {
+    color: #FFD37F;
+  }
+ }
+
+ // Events display page
+ .events-thumbnail {
+   height: 200px;
+   border-radius: 5px;
+   border-width: 1px;
+   border-color: #C0C0C0;
+   border-style: solid;
+   background-image: image-url("blank.png");
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+ }
+
+ .events-content {
+   p {
+     word-wrap: break-word;
+   }
+   height: 200px;
+   color: #929292;
+   .material-icons {
+     color: #424242;
+     font-size: 11px;
+     padding: 2px;
+     &:hover {
+       color: white;
+       background-color: #424242;
+       border-radius: 3px;
+
+     }
+   }
+   h3 {
+     color: #424242;
+   }
+   a {
+     color: white;
+   }
+   .btn {
+     background-color: #FFA6A4;
+     border: solid 1px #E0908F;
+     width: 50%;
+     &:hover {
+       color: grey;
+     }
+   }
+ }
+
+// Filter table styling
+table#example.dataTable {
+ tbody tr {
+   background-color: transparent;
+ }
+ thead th {
+   border-width: 0px;
+   background-color: transparent;
+ }
+}
+table#example.dataTable.no-footer {
+ border-width: 0px;
+}
+
+table#example {
+ table-layout: fixed;
+ border-collapse:collapse;
+}
+
+.search {
+  label {
+    color: #5E5E5F;
+  }
+
+  input {
+    border-radius: 5px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #929292;
+    padding: 3px 7px;
+    height: 20px;
+    width: 130px;
+  }
+}
+table#example_info.dataTables_info {
+  color: #5E5E5F;
 }

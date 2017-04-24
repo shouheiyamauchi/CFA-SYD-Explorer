@@ -34,14 +34,18 @@ class SignupController < ApplicationController
                         :dob => params[:dob], :sex => params[:sex],
                         :address_line1 => params[:address_line1], :address_line2 => params[:address_line2],
                         :address_suburb => params[:address_suburb], :address_state => params[:address_state],
-                        :address_pcode => params[:address_pcode], :parent_id => params[:parent_id],
+                        :address_pcode => params[:address_pcode], :autoapprove => params[:autoapprove],
                         :organisation => params[:organisation], :role => @role
+    if @role == "child"
+      @user.parent_id = current_user.id
+    end
+
     if @user.save
       if @role == 'parent' || @role == 'organiser'
         flash[:success] = 'Thank you for signing up! Please log in using your e-mail and password.'
         redirect_to new_user_session_path
       elsif @role == 'child'
-        flash[:success] = 'Thank you for signing up! You can now log in using your e-mail and password.'
+        flash[:success] = 'Thank you for signing up! Your child can now log in using their e-mail and password.'
         redirect_to root_path
       elsif @role == 'admin'
         redirect_to root_path
