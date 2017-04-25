@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+
+  post 'pages/attend_event'
+
   resources :events do
     member do
       resources :attendances
@@ -11,6 +14,8 @@ Rails.application.routes.draw do
 
   post 'events/approve'
   post 'events/reject'
+
+
 
   post 'parent_pages/approve'
   post 'parent_pages/reject'

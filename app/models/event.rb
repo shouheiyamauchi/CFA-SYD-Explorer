@@ -8,5 +8,6 @@ class Event < ApplicationRecord
   scope :rejected, -> { where(event_approved: "rejected") }
   scope :future, -> { where("event_date >= ?", Date.today ) }
   scope :past, -> { where("event_date < ?", Date.today ) }
+  scope :today, -> { where("event_date = ?", Date.today ) }
   scope :owner, lambda { |user| where("user_id = ?", user.id)}
 end

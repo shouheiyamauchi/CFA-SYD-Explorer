@@ -69,6 +69,21 @@ class AttendancesController < ApplicationController
     end
   end
 
+  def attend_event
+    @user_location = [params[:latitude], params[:longitude]]
+    @event_location = [Event.find(params[:event_id]).latitude, Event.find(params[:event_id]).longitude]
+    @distance = Geocoder::Calculations.distance_between(@user_location, @event_location, :units => :km)
+
+    if @distance < 5
+      Attendance.find(params[:attendance_id]).update_attribute :attendance_status, "attended"
+      flash[:success] = 'You have successfully checked in. Enjoy the event!'
+      redirect_to root_path
+    else
+      flash[:danger] = 'You cannot check in as you are not at the event location.'
+      redirect_to root_path
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_attendance
