@@ -3,6 +3,7 @@ class PagesController < ApplicationController
   before_action :set_calendar
   before_action :set_dashboard
   before_action :set_locations
+  before_action :set_events
 
   def home
     @page = "home"
@@ -20,6 +21,8 @@ class PagesController < ApplicationController
     @distance = Geocoder::Calculations.distance_between(@user_location, @event_location, :units => :km)
 
     if @distance < 5
+      @current_point = current_user.points
+      current_user.update_attribute :points, (@current_point + 50)
       Attendance.find(params[:attendance_id]).update_attribute :attendance_status, "attended"
       flash[:success] = 'You have successfully checked in. Enjoy the event!'
       redirect_to root_path
@@ -38,7 +41,7 @@ class PagesController < ApplicationController
     if current_user.role == "parent"
       @dashboard_items = ["partials/dashboard/map", "partials/dashboard/events", "partials/dashboard/calendar", "partials/dashboard/event_attendance_history", "partials/dashboard/children"]
     elsif current_user.role == "child"
-      @dashboard_items = ["partials/dashboard/map", "partials/dashboard/events", "partials/dashboard/calendar", "partials/dashboard/event_attendance_history", "partials/dashboard/today"]
+      @dashboard_items = ["partials/dashboard/map", "partials/dashboard/events", "partials/dashboard/calendar", "partials/dashboard/event_attendance_history", "partials/dashboard/today", "partials/dashboard/mycharacter"]
     elsif current_user.role == "administrator"
       @dashboard_items = ["partials/dashboard/map", "partials/dashboard/events", "partials/dashboard/calendar"]
     elsif current_user.role == "organiser"
@@ -117,5 +120,9 @@ class PagesController < ApplicationController
         @locations << [Event.find(attendance.event_id).latitude, Event.find(attendance.event_id).longitude, Event.find(attendance.event_id).event_icon]
       end
     end
+  end
+
+  def set_events
+    @events = Event.all.to_a
   end
 end

@@ -506,10 +506,6 @@ a[href^="https://maps.google.com/maps"]{display:none !important}
    border-width: 1px;
    border-color: #C0C0C0;
    border-style: solid;
-   background-image: image-url("blank.png");
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
  }
 
  .events-content {
@@ -517,6 +513,38 @@ a[href^="https://maps.google.com/maps"]{display:none !important}
      word-wrap: break-word;
    }
    height: 200px;
+   color: #929292;
+   .material-icons {
+     color: #424242;
+     font-size: 11px;
+     padding: 2px;
+     &:hover {
+       color: white;
+       background-color: #424242;
+       border-radius: 3px;
+
+     }
+   }
+   h3 {
+     color: #424242;
+   }
+   a {
+     color: white;
+   }
+   .btn {
+     background-color: #FFA6A4;
+     border: solid 1px #E0908F;
+     width: 50%;
+     &:hover {
+       color: grey;
+     }
+   }
+ }
+
+ .events-page {
+   p {
+     word-wrap: break-word;
+   }
    color: #929292;
    .material-icons {
      color: #424242;

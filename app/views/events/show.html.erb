@@ -1,55 +1,76 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Event name:</strong>
-  <%= image_tag "markers/#{@event.event_icon}" %> <%= @event.event_name %>
-</p>
 
-<img src="<%= @event.thumbnail.url %>" alt="">
-
-<p>
-  <strong>Event description:</strong>
-  <%= @event.event_description %>
-</p>
-
-<p>
-  <strong>Event location:</strong>
-  <%= @event.event_location %>
-</p>
-
-<p>
-  <strong>Event cost:</strong>
-  <% if @event.event_cost == 0 %>
-    Free
-  <% else %>
-    <%= @event.event_cost %>
-  <% end %>
-</p>
-
-<p>
-  <strong>Event date:</strong>
-  <%= @event.event_date %>
-</p>
-
-<p>
-  <strong>Event category:</strong>
-  <%= @event.event_category %>
-</p>
-
-<%= link_to 'Edit', edit_event_path(@event) %> |
-<%= link_to 'Back', events_path %>
+<div class="row">
+  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    <div class="panel panel-info">
+      <div class="panel-heading">
+        <h3 class="panel-title"><i class="material-icons">insert_invitation</i> Events</h3>
+      </div>
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <table cellspacing="0" width="100%">
+              <thead>
+                <tr>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    <div class="row">
+                      <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                        <% if @event.thumbnail == nil %>
+                        <div class="events-thumbnail" style="background-image: url(<%=image_path("blank.png")%>); background-size: cover">
+                        </div>
+                        <% else %>
+                        <div class="events-thumbnail" style="background-image: url(<%= @event.thumbnail.url %>); background-size: cover">
+                        </div>
+                        <% end %>
+                      </div>
+                      <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 events-page">
+                        <div class="row">
+                          <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                            <h3><%= image_tag("markers/#{@event.event_icon}", class: "icons") %> <%= @event.event_name %></h3>
+                            <hr>
+                            <p><%= @event.event_description %></p>
+                          </div>
+                          <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 details">
+                              <br><br><br>
+                            <div class="details">
+                              <i class="material-icons simple-tooltip" data-tipped-options="position: 'left'" title="Date">date_range</i> <%= @event.event_date.strftime("%d/%m/%Y") %><br>
+                              <i class="material-icons simple-tooltip" data-tipped-options="position: 'left'" title="Cost">attach_money</i> <%= @event.event_cost %><br>
+                              <i class="material-icons simple-tooltip" data-tipped-options="position: 'left'" title="Location">location_on</i> <%= @event.event_location %><br>
+                              <i class="material-icons simple-tooltip" data-tipped-options="position: 'left'" title="Category">list</i> <%= @event.event_category %><br>
+                              <br><a class="btn" href="/events/<%= @event.id %>">View Event</a>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 <% if @event.attendances.where(user_id: current_user.id).count == 0 && current_user.role == "child" %>
 <%= render 'attendances/form', attendance: @attendance %>
 <% end %>
 
 <h3>Attendances</h3>
-        <% if @attendances.count == 0 && current_user.role == "child" %>
-          Be the first one to attend the event!
-        <% end %>
-        <% @attendances.each do |attendance|%>
-        Name: <%= attendance.user.first_name %> <%= attendance.user.last_name %><br>
-        Email: <%= attendance.user.email %><br><br>
-        <% end %>
-      </div>
-    </div>
+  <% if @attendances.count == 0 && current_user.role == "child" %>
+    Be the first one to attend the event!
+  <% end %>
+  <% @attendances.each do |attendance|%>
+    Name: <%= attendance.user.first_name %> <%= attendance.user.last_name %><br>
+    Email: <%= attendance.user.email %><br><br>
+  <% end %>
+
+    <%= link_to 'Edit', edit_event_path(@event) %> | <%= link_to 'Back', events_path %>
