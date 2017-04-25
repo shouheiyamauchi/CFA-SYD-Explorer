@@ -48,6 +48,10 @@ class EventsController < ApplicationController
     end
     @event.user_id = current_user.id
 
+    if params[:email] == nil
+      @event.event_cost = 0
+    end
+
     respond_to do |format|
       if @event.save
         format.html { redirect_to @event, notice: 'Event was successfully created.' }
@@ -122,6 +126,6 @@ class EventsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def event_params
-      params.require(:event).permit(:event_name, :event_description, :event_location, :event_cost, :event_date, :event_approved, :event_category, :latitude, :longitude)
+      params.require(:event).permit(:event_name, :event_description, :event_location, :event_cost, :event_date, :event_approved, :event_category, :latitude, :longitude, :event_icon)
     end
 end

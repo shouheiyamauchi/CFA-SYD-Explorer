@@ -1,7 +1,7 @@
 <%= render 'partials/category_icons' %>
 <%= render 'partials/image_dropdown' %>
 
-<select id="payments" name="payments" style="width:250px;">
+<select id="image-dropdown" name="event[event_icon]" style="width:250px;">
  <option value="" data-description="Choose an appropiate image">Category image</option>
  <% @category_icons.each do |image| %>
     <%= image_tag "markers/#{image.split('/').last}" %>

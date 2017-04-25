@@ -2,9 +2,7 @@
 <script>
  //var tc;
  $(document).ready(function(e) {
- 	$("#payments").msDropdown({visibleRows:5});
- 	$("#tech").msDropdown().data("dd");//{animStyle:'none'} /{animStyle:'slideDown'} {animStyle:'show'}
- 	//no use
+ 	$("#image-dropdown").msDropdown({visibleRows:5});
  	try {
  		var pages = $("#pages").msDropdown({on:{change:function(data, ui) {
  												var val = data.value;

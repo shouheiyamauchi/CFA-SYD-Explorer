@@ -2,7 +2,7 @@
 
 <p>
   <strong>Event name:</strong>
-  <%= @event.event_name %>
+  <%= image_tag "markers/#{@event.event_icon}" %> <%= @event.event_name %>
 </p>
 
 <p>
@@ -17,12 +17,21 @@
 
 <p>
   <strong>Event cost:</strong>
-  <%= @event.event_cost %>
+  <% if @event.event_cost == 0 %>
+    Free
+  <% else %>
+    <%= @event.event_cost %>
+  <% end %>
 </p>
 
 <p>
   <strong>Event date:</strong>
   <%= @event.event_date %>
+</p>
+
+<p>
+  <strong>Event category:</strong>
+  <%= @event.event_category %>
 </p>
 
 <%= link_to 'Edit', edit_event_path(@event) %> |

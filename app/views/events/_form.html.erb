@@ -1,3 +1,8 @@
+<%= render 'partials/category_icons' %>
+<%= render 'partials/image_dropdown' %>
+
+
+
 <%= form_for event, :html => {:onsubmit => "return checkForm(this);"} do |f| %>
   <% if event.errors.any? %>
     <div id="error_explanation">
@@ -25,6 +30,14 @@
     <%= f.label :event_category %>
     <%= f.text_area :event_category %>
   </div>
+
+  <select id="image-dropdown" name="event[event_icon]" style="width:250px;">
+   <option value="" data-description="Choose an appropiate image">Category image</option>
+   <% @category_icons.each do |image| %>
+      <%= image_tag "markers/#{image.split('/').last}" %>
+      <option value="<%= "#{image.split('/').last}" %>" data-image="<%= image_url "markers/#{image.split('/').last}" %>"><%= image.split('/').last %></option>
+    <% end %>
+  </select>
 
   <div class="field">
     <input id="searchTextField" type="text" size="50" name="event[event_location]" placeholder="Enter a location" autocomplete="on" runat="server" />

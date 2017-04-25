@@ -96,7 +96,7 @@ class PagesController < ApplicationController
     @locations = Array.new
     if current_user.role == "child"
       current_user.attendances.attended.each do |attendance|
-        @locations << [Event.find(attendance.event_id).latitude, Event.find(attendance.event_id).longitude, 'supermarket.png']
+        @locations << [Event.find(attendance.event_id).latitude, Event.find(attendance.event_id).longitude, Event.find(attendance.event_id).event_icon]
       end
     end
   end
