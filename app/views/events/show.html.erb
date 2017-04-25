@@ -5,6 +5,8 @@
   <%= image_tag "markers/#{@event.event_icon}" %> <%= @event.event_name %>
 </p>
 
+<img src="<%= @event.thumbnail.url %>" alt="">
+
 <p>
   <strong>Event description:</strong>
   <%= @event.event_description %>

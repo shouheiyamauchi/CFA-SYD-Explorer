@@ -10,4 +10,6 @@ class Event < ApplicationRecord
   scope :past, -> { where("event_date < ?", Date.today ) }
   scope :today, -> { where("event_date = ?", Date.today ) }
   scope :owner, lambda { |user| where("user_id = ?", user.id)}
+
+  mount_uploader :thumbnail, ThumbnailUploader
 end
