@@ -1,24 +1,38 @@
-# README
+# SYD Explorer
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+SYD Explorer is a web application aimed at children to encourage them to participate in outdoor activities. I feel that as technology progresses and computers/smartphones becomes a bigger part of our daily lives, the day we spend outdoors gets sacrificed. Engaging in outdoor activities is not only good for our physical health, but also is beneficial for our mental health. This application gives children an incentive to participate in these type of activities by incorporating an online gaming experience when physically attending an event.
 
-Things you may want to cover:
+# Aim of the application user
 
-* Ruby version
+An online character will be created when a child signs up to the service. The application will have a list of events which are organised by councils and any other organisations aimed at children. Each time the child attends an event, he or she will be awared points and their characters will level up. In the future, there will be additional features included such as the ability to redeem the points for real life prizes, battling other users with your character, etc.
 
-* System dependencies
+# Installation
+```
+git clone https://github.com/shouheiyamauchi/CFA-SYD-Explorer.git
+```
+```
+cd CFA-SYD-Explorer
+```
+```
+rails db:create
+```
+```
+rails db:migrate
+```
+```
+rails s
+```
 
-* Configuration
+# Design process
 
-* Database creation
+![Imgur](http://i.imgur.com/18E177D.png)
 
-* Database initialization
+![Imgur](http://i.imgur.com/yANPoI9.png)
 
-* How to run the test suite
+![Imgur](http://i.imgur.com/jwVTU4o.jpg)
 
-* Services (job queues, cache servers, search engines, etc.)
+![Imgur](http://i.imgur.com/zc2y4Cm.jpg)
 
-* Deployment instructions
+![Imgur](http://i.imgur.com/yks2gNh.jpg)
 
-* ...
+![Imgur](http://i.imgur.com/m2WOIXr.jpg)
