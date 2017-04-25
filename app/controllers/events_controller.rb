@@ -1,6 +1,7 @@
 class EventsController < ApplicationController
   before_action :enable_header
   before_action :enable_navbar
+  before_action :enable_footer
   before_action :set_event, only: [:show, :edit, :update, :destroy]
   before_action :limit_events_index, only: [:index]
   before_action :limit_event_show, only: [:show]
@@ -126,6 +127,6 @@ class EventsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def event_params
-      params.require(:event).permit(:event_name, :event_description, :event_location, :event_cost, :event_date, :event_approved, :event_category, :latitude, :longitude, :event_icon)
+      params.require(:event).permit(:event_name, :event_description, :event_location, :event_cost, :event_date, :event_approved, :event_category, :latitude, :longitude, :event_icon, :thumbnail)
     end
 end

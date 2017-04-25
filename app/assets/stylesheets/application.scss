@@ -152,6 +152,44 @@ body {
   }
 }
 
+// footer styling
+.footer {
+ color: white;
+ height: 100%;
+ background-color: #FFA6A4;
+ width: 100%;
+ border-width: 1px 0px 0px 0px;
+ border-style: solid;
+ border-color: #DA8F8D;
+ h4 {
+   margin-top: 35px;
+ }
+ .material-icons {
+   font-size: 13px;
+ }
+ .fa {
+   font-size: 33px;
+ }
+ .form-control {
+   height: 35px;
+   border-width: 0px;
+ }
+ textarea  {
+      width: 100%;
+      box-sizing:border-box;
+      border-width: 0px;
+  }
+  span {
+      display: block;
+      overflow: hidden;
+
+  }
+
+  .btn {
+    height: 35px;
+  }
+}
+
 // login and signup pages
 .flexbox-container {
   display: -ms-flexbox;
@@ -563,4 +601,28 @@ table#example {
 }
 table#example_info.dataTables_info {
   color: #5E5E5F;
+}
+
+// Styling for today box
+.today {
+  .btn {
+    color: white;
+    background-color: #FFA6A4;
+    width: 80%;
+    border: solid 1px #DA8F8D;
+    &:hover {
+      color: grey;
+    }
+  }
+}
+
+.check-in {
+  .btn {
+    color: white;
+    background-color: #FFD67F;
+    border: solid 1px #D9B86C;
+    &:hover {
+      color: grey;
+    }
+  }
 }
