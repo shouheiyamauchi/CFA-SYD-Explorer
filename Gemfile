@@ -8,6 +8,10 @@ end
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.2'
+# Carrierwave
+gem 'carrierwave', '~> 1.0'
+# font awesome
+gem 'font-awesome-sass'
 # Geocoder
 gem 'geocoder'
 # Scroll bar themes

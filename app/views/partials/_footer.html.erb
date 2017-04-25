@@ -1,0 +1,42 @@
+<div class="footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-10 col-xs-10">
+        <h1>Contact info</h1>
+        <i class="material-icons">add_location</i> 1 Syd St, Sydney NSW 2000<br>
+        <i class="material-icons">local_phone</i> 1300 111 222<br>
+        <i class="material-icons">email</i> info@syd-explorer.com.au<br>
+        <i class="material-icons">access_time</i> Monday - Sunday (9am - 6pm)
+        <br><br>
+        &nbsp;&nbsp;<i class="fa fa-facebook"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-twitter" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-instagram" aria-hidden="true"></i>
+
+
+
+      </div>
+       <div class="hidden-lg hidden-md col-sm-2 col-xs-2">
+       </div>
+      <div class="col-lg-4 col-md-4 col-sm-10 col-xs-10">
+        <h4>Send us an e-mail using the form below:</h4>
+        <%= form_for :contact do |f| %>
+          <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+              <input class="form-control" type="text" id="fname" name="contact[name]" placeholder="Name:">
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+              <input class="form-control" type="text" id="lname" name="contact[email]" placeholder="Email:">
+            </div>
+          </div>
+          <br>
+          <span><textarea class="form-control" id="subject" name="contact[message]" placeholder="Message:" style="height:60px"></textarea></span>
+          <br><div style="float:right">
+            <input class="btn" type="submit" value="Submit">
+          </div>
+        <% end %>
+      </div>
+      <div class="col-lg-2 col-md-2 hidden-sm hidden-xs">
+      </div>
+    </div>
+  </div><div class="gap"></div>
+</div>

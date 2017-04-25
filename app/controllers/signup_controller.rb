@@ -1,5 +1,5 @@
 class SignupController < ApplicationController
-  before_action :enable_header
+  before_action :enable_header, :enable_footer
   before_action :enable_navbar, only: [:child]
   before_action :parent_logged_in, only: [:child]
   before_action :logged_in, only: [:parent, :organiser]
@@ -46,7 +46,7 @@ class SignupController < ApplicationController
     elsif @role == 'organiser'
       @user.dashboard_grid = "[\r\n    {\r\n        \"id\": \"map\",\r\n        \"x\": 0,\r\n        \"y\": 0,\r\n        \"width\": 6,\r\n        \"height\": 21\r\n    },\r\n    {\r\n        \"id\": \"events\",\r\n        \"x\": 0,\r\n        \"y\": 21,\r\n        \"width\": 6,\r\n        \"height\": 17\r\n    },\r\n    {\r\n        \"id\": \"calendar\",\r\n        \"x\": 6,\r\n        \"y\": 0,\r\n        \"width\": 6,\r\n        \"height\": 48\r\n    }\r\n]"
     elsif @role == 'child'
-      @user.dashboard_grid = "[\r\n    {\r\n        \"id\": \"map\",\r\n        \"x\": 0,\r\n        \"y\": 9,\r\n        \"width\": 6,\r\n        \"height\": 21\r\n    },\r\n    {\r\n        \"id\": \"events\",\r\n        \"x\": 0,\r\n        \"y\": 30,\r\n        \"width\": 6,\r\n        \"height\": 17\r\n    },\r\n    {\r\n        \"id\": \"calendar\",\r\n        \"x\": 6,\r\n        \"y\": 0,\r\n        \"width\": 6,\r\n        \"height\": 48\r\n    },\r\n    {\r\n        \"id\": \"event_attendance_history\",\r\n        \"x\": 0,\r\n        \"y\": 47,\r\n        \"width\": 6,\r\n        \"height\": 14\r\n    },\r\n    {\r\n        \"id\": \"today\",\r\n        \"x\": 0,\r\n        \"y\": 0,\r\n        \"width\": 6,\r\n        \"height\": 9\r\n    }\r\n]"
+      @user.dashboard_grid = "[\r\n    {\r\n        \"id\": \"map\",\r\n        \"x\": 0,\r\n        \"y\": 15,\r\n        \"width\": 6,\r\n        \"height\": 21\r\n    },\r\n    {\r\n        \"id\": \"events\",\r\n        \"x\": 0,\r\n        \"y\": 36,\r\n        \"width\": 6,\r\n        \"height\": 17\r\n    },\r\n    {\r\n        \"id\": \"calendar\",\r\n        \"x\": 6,\r\n        \"y\": 0,\r\n        \"width\": 6,\r\n        \"height\": 48\r\n    },\r\n    {\r\n        \"id\": \"event_attendance_history\",\r\n        \"x\": 0,\r\n        \"y\": 53,\r\n        \"width\": 6,\r\n        \"height\": 14\r\n    },\r\n    {\r\n        \"id\": \"today\",\r\n        \"x\": 0,\r\n        \"y\": 0,\r\n        \"width\": 6,\r\n        \"height\": 15\r\n    }\r\n]"
     elsif @role == 'administrator'
       @user.dashboard_grid = "[\r\n    {\r\n        \"id\": \"map\",\r\n        \"x\": 0,\r\n        \"y\": 0,\r\n        \"width\": 6,\r\n        \"height\": 21\r\n    },\r\n    {\r\n        \"id\": \"events\",\r\n        \"x\": 0,\r\n        \"y\": 21,\r\n        \"width\": 6,\r\n        \"height\": 17\r\n    },\r\n    {\r\n        \"id\": \"calendar\",\r\n        \"x\": 6,\r\n        \"y\": 0,\r\n        \"width\": 6,\r\n        \"height\": 48\r\n    }\r\n]"
     end

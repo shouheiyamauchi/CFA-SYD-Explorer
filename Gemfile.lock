@@ -50,6 +50,10 @@ GEM
       momentjs-rails (>= 2.8.1)
     builder (3.2.3)
     byebug (9.0.6)
+    carrierwave (1.0.0)
+      activemodel (>= 4.0.0)
+      activesupport (>= 4.0.0)
+      mime-types (>= 1.16)
     chart-js-rails (0.1.2)
       railties (> 3.1)
     coderay (1.1.1)
@@ -78,6 +82,8 @@ GEM
     faker (1.7.3)
       i18n (~> 0.5)
     ffi (1.9.18)
+    font-awesome-sass (4.7.0)
+      sass (>= 3.2)
     geocoder (1.4.3)
     globalid (0.4.0)
       activesupport (>= 4.2.0)
@@ -220,11 +226,13 @@ DEPENDENCIES
   bootstrap-sass (~> 3.3.6)
   bootstrap3-datetimepicker-rails (~> 4.17.47)
   byebug
+  carrierwave (~> 1.0)
   chart-js-rails
   coffee-rails (~> 4.2)
   devise
   factory_girl_rails (~> 4.0)
   faker
+  font-awesome-sass
   geocoder
   jbuilder (~> 2.5)
   jquery-rails

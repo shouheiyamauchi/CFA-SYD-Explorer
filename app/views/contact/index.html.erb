@@ -1,0 +1,35 @@
+<div class="rows">
+  <div class="col-md-3">
+  </div>
+  <div class="col-md-6">
+
+    <% if flash[:notice] %>
+        <div class="notice"><%= flash[:notice] %></div>
+      <% elsif flash[:warning] %>
+        <div class="alert alert-danger"><%= flash[:warning] %></div>
+      <% else %>
+    <% end %>
+
+  <h1>Contact Us</h1>
+  <br>
+  <%= form_for :contact do |f| %>
+    <div class="field">
+    <%= f.text_field :name, placeholder: 'Type name here', class: "form-control" %>
+    </div>
+    <br>
+    <div class="field">
+    <%= f.text_field :email, placeholder: 'Type email here', class: "form-control" %>
+    </div>
+    <br>
+    <div class="field">
+    <%= f.text_area  :message, placeholder: 'Type message here', :as => :text, class: "form-control", rows: "3" %>
+    </div>
+    <br>
+    <div class="actions">
+    <%= f.submit "Submit", class: "btn btn-default btn-danger" %>
+  </div>
+  <% end %>
+  </div>
+  <div class="col-md-3">
+  </div>
+</div>

@@ -7,38 +7,73 @@
     </div>
     <div class="content">
       <% if current_user.attendances.today.count > 0 %>
-        <% current_user.attendances.today.each do |attendance| %>
-          <%= Event.find(attendance.event_id).event_name %>
-          <%= form_tag pages_attend_event_path do %>
-            <%= hidden_field_tag :event_id, attendance.event_id %>
-            <%= hidden_field_tag :attendance_id, attendance.id %>
 
-              <input type="text" id="lat" name="latitude">
-              <input type="text" id="long" name="longitude">
+        <% @counter = 0 %>
+        <div class="text-center today">
+          <hr>
+          <button class="btn" onclick="getLocation()">Click and wait a moment to get your current location</button>
+          <hr>
+        </div>
 
-              <div class="actions">
+        <table class="table table-hover text-center">
+          <tr>
+            <th class="text-center">Date</th>
+            <th></th>
+            <th class="text-center">Event</th>
+            <th class="text-center">Manage</th>
+          </tr>
+          <% current_user.attendances.today.each do |attendance| %>
+          <tr>
+            <td><%= Event.find(attendance.event_id).event_date %></td>
+            <td class="text-right"><%= image_tag("markers/#{Event.find(attendance.event_id).event_icon}", class: "icons") %></td>
+            <td><%= Event.find(attendance.event_id).event_name %></td>
+            <td><%= form_tag pages_attend_event_path, :onsubmit => 'getLocation()' do %>
+              <%= hidden_field_tag :event_id, attendance.event_id %>
+              <%= hidden_field_tag :attendance_id, attendance.id %>
+
+              <input type="hidden" id="lat<%= @counter %>" name="latitude">
+              <input type="hidden" id="long<%= @counter %>" name="longitude">
+
+              <div class="actions check-in">
                 <%= submit_tag "Check-in", :class => "btn" %>
-              </div>
-            <% end %>
-          <button onclick="getLocation()">Click to get location</button>
+              </div></td>
+          </tr>
+
+
+            <% @counter += 1 %>
+          <% end %>
         <% end %>
+        </table>
       <% else %>
-        You have no events on today.
+      <table class="table table-hover text-center">
+        <tr>
+          <th class="text-center">Date</th>
+          <th class="text-center">Event</th>
+          <th class="text-center">Manage</th>
+        </tr>
+        <tr>
+          <td colspan="3" class="text-center">You have no events on today.</td>
+        </tr>
+      </table>
       <% end %>
     </div>
   </div>
 </div>
 
 <script>
-
-function getLocation() {
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(function(position) {
-            document.getElementById("lat").value = position.coords.latitude;
-            document.getElementById("long").value =  position.coords.longitude;
-        });
-    } else {
-        x.innerHTML = "Geolocation is not supported by this browser.";
-    }
-}
+  function getLocation() {
+      if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(function(position) {
+            for (var i=0; i < <%= current_user.attendances.today.count %>; i++) {
+                document.getElementById("lat"+i).value = position.coords.latitude;
+            }
+            for (var i=0; i < <%= current_user.attendances.today.count %>; i++) {
+                document.getElementById("long"+i).value = position.coords.longitude;
+            }
+            window.alert("You're ready to check-in now.");
+          });
+      } else {
+          x.innerHTML = "Geolocation is not supported by this browser.";
+      }
+  }
 </script>

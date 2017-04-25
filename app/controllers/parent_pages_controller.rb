@@ -1,6 +1,6 @@
 class ParentPagesController < ApplicationController
   before_action :set_children
-  before_action :enable_header, :enable_navbar
+  before_action :enable_header, :enable_navbar, :enable_footer
   before_action :check_if_parent
 
   def events

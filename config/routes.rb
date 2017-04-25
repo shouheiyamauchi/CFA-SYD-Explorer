@@ -8,6 +8,9 @@ Rails.application.routes.draw do
     end
   end
 
+  get 'contact', to: 'contact#index'
+  post '/', to: 'contact#mail'
+
   get 'parent_pages/events'
   get 'parent_pages/children'
   get 'parent_pages/point_store'

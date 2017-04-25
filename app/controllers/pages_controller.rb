@@ -1,5 +1,5 @@
 class PagesController < ApplicationController
-  before_action :enable_header, :enable_navbar
+  before_action :enable_header, :enable_navbar, :enable_footer
   before_action :set_calendar
   before_action :set_dashboard
   before_action :set_locations
@@ -22,6 +22,9 @@ class PagesController < ApplicationController
     if @distance < 5
       Attendance.find(params[:attendance_id]).update_attribute :attendance_status, "attended"
       flash[:success] = 'You have successfully checked in. Enjoy the event!'
+      redirect_to root_path
+    elsif @user_location == ["",""]
+      flash[:danger] = 'Please click on the get location button before checking in.'
       redirect_to root_path
     else
       flash[:danger] = 'You cannot check in as you are not at the event location.'

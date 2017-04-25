@@ -9,4 +9,8 @@ class ApplicationController < ActionController::Base
   def enable_navbar
     @enable_navbar = true
   end
+
+  def enable_footer
+    @enable_footer = true
+  end
 end

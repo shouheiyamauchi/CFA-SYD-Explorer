@@ -1,6 +1,7 @@
 class EventsController < ApplicationController
   before_action :enable_header
   before_action :enable_navbar
+  before_action :enable_footer
   before_action :set_event, only: [:show, :edit, :update, :destroy]
   before_action :limit_events_index, only: [:index]
   before_action :limit_event_show, only: [:show]
