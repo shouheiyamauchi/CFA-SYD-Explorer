@@ -43,7 +43,7 @@ class EventsController < ApplicationController
     @event = Event.new(event_params)
     if current_user.role == "organiser"
       @event.event_approved = "false"
-    elsif current_user.role == "admin"
+    elsif current_user.role == "administrator"
       @event.event_approved = "true"
     end
     @event.user_id = current_user.id
@@ -122,6 +122,6 @@ class EventsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def event_params
-      params.require(:event).permit(:event_name, :event_description, :event_location, :event_cost, :event_date, :event_approved, :event_category)
+      params.require(:event).permit(:event_name, :event_description, :event_location, :event_cost, :event_date, :event_approved, :event_category, :latitude, :longitude)
     end
 end

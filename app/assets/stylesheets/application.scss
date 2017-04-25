@@ -433,14 +433,6 @@ body {
 
 
 // Google maps
-#map {
-  height: 340px;
-  border-width: 1px;
-  border-color: #CACACA;
-  border-style: solid;
-  border-radius: 5px;
-}
-
 a[href^="http://maps.google.com/maps"]{display:none !important}
 a[href^="https://maps.google.com/maps"]{display:none !important}
 
