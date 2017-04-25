@@ -10,6 +10,7 @@ end
 gem 'rails', '~> 5.0.2'
 # Fog for AWS
 gem "fog-aws"
+gem 'fog'
 # Carrierwave
 gem 'carrierwave', '~> 1.0'
 # font awesome
