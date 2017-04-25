@@ -522,6 +522,11 @@ a[href^="https://maps.google.com/maps"]{display:none !important}
    }
  }
 
+// Calendar styling
+.calendar a {
+    color: white;
+}
+
 // Filter table styling
 table#example.dataTable {
  tbody tr {

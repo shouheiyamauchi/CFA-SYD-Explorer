@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   post 'parent_pages/reject'
 
   root 'pages#home'
+  get 'pages/calendar'
   post 'pages/save_grid'
 
   get 'signup/parent'

@@ -140,7 +140,7 @@
                   </tr>
                 <% end %>
               <% else %>
-                  <td colspan="7" class="text-center">No pending events to display</td>
+                  <td colspan="7" class="text-center">No events pending approval</td>
               <% end %>
             </tbody>
           </table>
@@ -403,7 +403,7 @@
                 </tr>
               </thead>
               <tbody>
-                <% @events.future.each do |event| %>
+                <% @events.future.order(event_date: :asc).each do |event| %>
                   <tr>
                     <td>
                       <div class="row">

@@ -75,7 +75,7 @@
                 </ul>
                 <div class="tab-content">
                   <div id="<%= child.id %>-pending" class="tab-pane fade in active">
-                    <table class="table table-hover text-center">
+                    <table class="table table-hover text-center admin-form">
                       <tr>
                         <th class="text-center">Date</th>
                         <th class="text-center"></th>
@@ -85,18 +85,27 @@
                       <% if child.attendances.pending.count > 0 %>
                         <% child.attendances.pending.each do |pending| %>
                           <tr>
-                            <td><%= Event.find(pending.event_id).event_date %></td>
-                            <td>*Icon*</td>
-                            <td><%= Event.find(pending.event_id).event_name %></td>
-                            <td><a href="/events/<%= Event.find(pending.event_id).id %>"><i class="material-icons simple-tooltip yellow" title="View">event_note</i></a> <i class="material-icons simple-tooltip blue" title="Accept">event_available</i> <i class="material-icons simple-tooltip red" title="Reject">event_busy</i></td>
+                            <td><p><%= Event.find(pending.event_id).event_date %></p></td>
+                            <td><p>*Icon*</p></td>
+                            <td><p><%= Event.find(pending.event_id).event_name %></p></td>
+                            <td><button class="btn"><a href="/events/<%= Event.find(pending.event_id).id %>"><i class="material-icons simple-tooltip yellow" title="View">event_note</i></a></button>
+                                <%= form_tag parent_pages_approve_path do %>
+                                  <%= hidden_field_tag :attendance_id, pending.id %>
+                                    <%= button_tag(type: "submit", class: "btn") do %>
+                                        <i class="material-icons simple-tooltip blue" title="Accept">event_available</i>
+                                    <% end %>
+                                <% end %>
+                                <%= form_tag parent_pages_reject_path do %>
+                                  <%= hidden_field_tag :attendance_id, pending.id %>
+                                    <%= button_tag(type: "submit", class: "btn") do %>
+                                        <i class="material-icons simple-tooltip red" title="Reject">event_busy</i>
+                                    <% end %>
+                                <% end %></td>
                           </tr>
                         <% end %>
                       <% else %>
                         <tr>
-                          <td></td>
-                          <td></td>
-                          <td>No events pending approval</td>
-                          <td></td>
+                          <td colspan="4" class="text-center">No events pending approval</td>
                         </tr>
                       <% end %>
                     </table>
@@ -118,10 +127,7 @@
                             <td><a href="/events/<%= Event.find(approved.event_id).id %>"><i class="material-icons simple-tooltip yellow" title="View">event_note</i></a></td>
                           <% end %>
                         <% else %>
-                          <td></td>
-                          <td></td>
-                          <td>No future events to display</td>
-                          <td></td>
+                          <td colspan="4" class="text-center">No future events to display</td>
                         <% end %>
                       </tr>
                     </table>
@@ -143,10 +149,7 @@
                             <td><a href="/events/<%= Event.find(attended.event_id).id %>"><i class="material-icons simple-tooltip yellow" title="View">event_note</i></a></td>
                           <% end %>
                         <% else %>
-                          <td></td>
-                          <td></td>
-                          <td>No past events to display</td>
-                          <td></td>
+                          <td colspan="4" class="text-center">No past events to display</td>
                         <% end %>
                       </tr>
                     </table>

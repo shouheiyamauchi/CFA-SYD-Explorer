@@ -3,9 +3,9 @@
 
 
 <% @logged_in_role = current_user.role %>
-<% @menu_buttons = { "dashboard" => ["", "dashboard", "Dashboard"], "events" => ["", "insert_invitation", "Events"],
-                    "children" => ["children", "face", "Children"], "point_store" => ["point_store", "card_giftcard", "Point Store"]} %>
-<% @menu_items = { "parent" => ["dashboard", "events", "children", "point_store"], "child" => ["dashboard", "events", "children", "point_store"], "organiser" => ["dashboard", "events", "children", "point_store"], "administrator" => ["dashboard", "events", "children", "point_store"]} %>
+<% @menu_buttons = { "dashboard" => ["/", "dashboard", "Dashboard"], "events" => ["/events", "insert_invitation", "Events"],
+                    "children" => ["/parent_pages/children", "face", "Children"], "point_store" => ["/parent_pages/point_store", "card_giftcard", "Point Store"], "calendar" => ["/pages/calendar", "date_range", "Calendar"]} %>
+<% @menu_items = { "parent" => ["dashboard", "events", "calendar", "children", "point_store"], "child" => ["dashboard", "events", "calendar"], "organiser" => ["dashboard", "events", "calendar"], "administrator" => ["dashboard", "events", "calendar"]} %>
 
 <div class="row">
   <div class="col-lg-12 col-md-12 col-sm-12 hidden-xs">
@@ -13,7 +13,7 @@
       <div class="container">
         <div class="btn-group" role="group" aria-label="...">
           <% @menu_items[@logged_in_role].each do |button|%>
-            <a href="<% if button == "dashboard" %><%= "/" %><% elsif button == "events" %><%= "/events" %><% else %><%= "/" + @logged_in_role + "_pages/" + @menu_buttons[button][0] %><% end %>" type="button" class="btn btn-default"><i class="material-icons"><%= @menu_buttons[button][1] %></i><br>
+            <a href="<%= @menu_buttons[button][0] %>" type="button" class="btn btn-default"><i class="material-icons"><%= @menu_buttons[button][1] %></i><br>
             <%= @menu_buttons[button][2] %></a>
           <% end %>
           <% if @page == "home" %>
@@ -41,7 +41,7 @@
 <div class="collapse" id="collapseExample">
   <div class="menu-dropdown">
     <% @menu_items[@logged_in_role].each do |button|%>
-      <a href="<% if button == "dashboard" %><%= "/" %><% elsif button == "events" %><%= "/events" %><% else %><%= "/" + @logged_in_role + "_pages/" + @menu_buttons[button][0] %><% end %>">
+      <a href="<%= @menu_buttons[button][0] %>">
         <div class="item">
           <i class="material-icons"><%= @menu_buttons[button][1] %></i> <%= @menu_buttons[button][2] %>
         </div>
