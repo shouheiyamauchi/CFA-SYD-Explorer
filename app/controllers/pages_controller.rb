@@ -2,10 +2,10 @@ class PagesController < ApplicationController
   before_action :enable_header, :enable_navbar
   before_action :set_calendar
   before_action :set_dashboard
+  before_action :set_locations
 
   def home
     @page = "home"
-
   end
 
   def save_grid
@@ -88,6 +88,15 @@ class PagesController < ApplicationController
       end
       @past_attendances.each do |attendance|
         @past_events << ["<a href=\"\/events\/#{attendance.event_id}\">#{Event.find(attendance.event_id).event_name}<\/a>", Event.find(attendance.event_id).event_date.to_s]
+      end
+    end
+  end
+
+  def set_locations
+    @locations = Array.new
+    if current_user.role == "child"
+      current_user.attendances.attended.each do |attendance|
+        @locations << [Event.find(attendance.event_id).latitude, Event.find(attendance.event_id).longitude, 'supermarket.png']
       end
     end
   end

@@ -89,18 +89,19 @@
                             <td><p>*Icon*</p></td>
                             <td><p><%= Event.find(pending.event_id).event_name %></p></td>
                             <td><button class="btn"><a href="/events/<%= Event.find(pending.event_id).id %>"><i class="material-icons simple-tooltip yellow" title="View">event_note</i></a></button>
-                                <%= form_tag parent_pages_approve_path do %>
-                                  <%= hidden_field_tag :attendance_id, pending.id %>
-                                    <%= button_tag(type: "submit", class: "btn") do %>
-                                        <i class="material-icons simple-tooltip blue" title="Accept">event_available</i>
-                                    <% end %>
+                              <%= form_tag parent_pages_approve_path do %>
+                                <%= hidden_field_tag :attendance_id, pending.id %>
+                                <%= button_tag(type: "submit", class: "btn") do %>
+                                    <i class="material-icons simple-tooltip blue" title="Accept">event_available</i>
                                 <% end %>
-                                <%= form_tag parent_pages_reject_path do %>
-                                  <%= hidden_field_tag :attendance_id, pending.id %>
-                                    <%= button_tag(type: "submit", class: "btn") do %>
-                                        <i class="material-icons simple-tooltip red" title="Reject">event_busy</i>
-                                    <% end %>
-                                <% end %></td>
+                              <% end %>
+                              <%= form_tag parent_pages_reject_path do %>
+                                <%= hidden_field_tag :attendance_id, pending.id %>
+                                <%= button_tag(type: "submit", class: "btn") do %>
+                                    <i class="material-icons simple-tooltip red" title="Reject">event_busy</i>
+                                <% end %>
+                              <% end %>
+                            </td>
                           </tr>
                         <% end %>
                       <% else %>
@@ -118,18 +119,20 @@
                         <th class="text-center">Event</th>
                         <th class="text-center">Manage</th>
                       </tr>
-                      <tr>
-                        <% if child.attendances.approved.count > 0 %>
-                          <% child.attendances.approved.each do |approved| %>
+                      <% if child.attendances.approved.count > 0 %>
+                        <% child.attendances.approved.each do |approved| %>
+                          <tr>
                             <td><%= Event.find(approved.event_id).event_date %></td>
                             <td>*Icon*</td>
                             <td><%= Event.find(approved.event_id).event_name %></td>
                             <td><a href="/events/<%= Event.find(approved.event_id).id %>"><i class="material-icons simple-tooltip yellow" title="View">event_note</i></a></td>
-                          <% end %>
-                        <% else %>
-                          <td colspan="4" class="text-center">No future events to display</td>
+                          </tr>
                         <% end %>
-                      </tr>
+                      <% else %>
+                        <tr>
+                          <td colspan="4" class="text-center">No future events to display</td>
+                        </tr>
+                      <% end %>
                     </table>
                   </div>
                   <div id="<%= child.id %>-past" class="tab-pane fade">
@@ -140,18 +143,20 @@
                         <th class="text-center">Event</th>
                         <th class="text-center">Manage</th>
                       </tr>
-                      <tr>
-                        <% if child.attendances.attended.count > 0 %>
-                          <% child.attendances.attended.each do |attended| %>
+                      <% if child.attendances.attended.count > 0 %>
+                        <% child.attendances.attended.each do |attended| %>
+                          <tr>
                             <td><%= Event.find(attended.event_id).event_date %></td>
                             <td>*Icon*</td>
                             <td><%= Event.find(attended.event_id).event_name %></td>
                             <td><a href="/events/<%= Event.find(attended.event_id).id %>"><i class="material-icons simple-tooltip yellow" title="View">event_note</i></a></td>
-                          <% end %>
-                        <% else %>
-                          <td colspan="4" class="text-center">No past events to display</td>
+                          </tr>
                         <% end %>
-                      </tr>
+                      <% else %>
+                        <tr>
+                          <td colspan="4" class="text-center">No past events to display</td>
+                        </tr>
+                      <% end %>
                     </table>
                   </div>
                 </div>
@@ -165,64 +170,4 @@
 
   <% end %>
 
-  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-    <div class="panel panel-info">
-      <div class="panel-heading">
-        <h3 class="panel-title"><i class="material-icons">insert_invitation</i> Events awaiting approval</h3>
-      </div>
-      <div class="panel-body">
-        Panel content
-      </div>
-    </div>
-  </div>
-  <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-    <div class="panel panel-info">
-      <div class="panel-heading">
-        <h3 class="panel-title"><i class="material-icons">insert_invitation</i> Events coming up</h3>
-      </div>
-      <div class="panel-body">
-        Panel content
-      </div>
-    </div>
-  </div>
-  <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-    <div class="panel panel-info">
-      <div class="panel-heading">
-        <h3 class="panel-title"><i class="material-icons">insert_invitation</i> Events attendance history</h3>
-      </div>
-      <div class="panel-body">
-        Panel content
-      </div>
-    </div>
-  </div>
-  <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-    <div class="panel panel-info">
-      <div class="panel-heading">
-        <h3 class="panel-title"><i class="material-icons">face</i> Children</h3>
-      </div>
-      <div class="panel-body">
-        Panel content
-      </div>
-    </div>
-  </div>
-  <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-    <div class="panel panel-info">
-      <div class="panel-heading">
-        <h3 class="panel-title"><i class="material-icons">card_giftcard</i> Prizes</h3>
-      </div>
-      <div class="panel-body">
-        Panel content
-      </div>
-    </div>
-  </div>
-  <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-    <div class="panel panel-info">
-      <div class="panel-heading">
-        <h3 class="panel-title"><i class="material-icons">exit_to_app</i> Panel title</h3>
-      </div>
-      <div class="panel-body">
-        Panel body
-      </div>
-    </div>
-  </div>
 </div>
