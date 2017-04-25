@@ -1,0 +1,37 @@
+<div class="grid-stack-item"
+    data-gs-x=<%= @dashboard_grid[@index]["x"] %> data-gs-y=<%= @dashboard_grid[@index]["y"] %>
+    data-gs-width=<%= @dashboard_grid[@index]["width"] %> data-gs-height=<%= @dashboard_grid[@index]["height"] %> data-custom-id="mycharacter">
+  <div class="grid-stack-item-content">
+    <div class="title">
+      <i class="material-icons">accessibility</i> My character
+    </div>
+    <div class="content">
+      <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+          <table class="table table-hover text-center">
+            <tr>
+              <th class="text-center">Character</th>
+              <th class="text-center">Details</th>
+            </tr>
+            <tr>
+              <td><% if current_user.sex == "male" %><%= image_tag("sample/char1.png", class: "character") %><% else %><%= image_tag("sample/char2.png", class: "character") %><% end %>
+                <br><br>
+
+                <div class="progress">
+                  <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%;"><span><span class="blue">HP: <%= current_user.points * 3 + 3 %></span></span>
+                  </div>
+                </div>
+
+                <div class="progress">
+                  <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%;"><span><span class="yellow">EXP: <%= current_user.points %></span></span>
+                  </div>
+                </div></td>
+              <td>ID: <%= current_user.id %><br>Email: <%= current_user.email %><br>HP: <%= current_user.points * 3 + 3 %><br>EXP: <%= current_user.points %><br>Total attendances: <%= current_user.attendances.attended.count %>
+              <br><br><i class="material-icons simple-tooltip yellow" title="View">apps</i> <i class="material-icons simple-tooltip blue" title="Edit details">description</i> <i class="material-icons simple-tooltip red" title="Remove account">delete_forever</i></td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

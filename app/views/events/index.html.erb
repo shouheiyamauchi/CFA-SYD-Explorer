@@ -60,7 +60,7 @@
                 <% @events.pending.future.each do |event| %>
                   <tr>
                     <td><p><%= event.event_date.strftime("%d/%m/%Y") %></p></td>
-                    <td><p>*ICON</p></td>
+                    <td><p><%= image_tag("markers/#{event.event_icon}", class: "icons") %></p></td>
                     <td><p><%= event.event_name %></p></td>
                     <td><p><%= event.event_cost %></p></td>
                     <td><p><%= event.event_location %></p></td>
@@ -118,7 +118,7 @@
                 <% @attendance_ids.each do |attendance_id| %>
                   <tr>
                     <td><p><%= Event.find(Attendance.find(attendance_id).event_id).event_date.strftime("%d/%m/%Y") %></p></td>
-                    <td><p>*ICON</p></td>
+                    <td><p><%= image_tag("markers/#{Event.find(Attendance.find(attendance_id).event_id).event_icon}", class: "icons") %></p></td>
                     <td><p><%= Event.find(Attendance.find(attendance_id).event_id).event_name %></p></td>
                     <td><p><%= Event.find(Attendance.find(attendance_id).event_id).event_cost %></p></td>
                     <td><p><%= Event.find(Attendance.find(attendance_id).event_id).event_location %></p></td>
@@ -183,7 +183,7 @@
                     <% current_user.attendances.pending.each do |attendance| %>
                       <tr>
                         <td><%= Event.find(attendance.event_id).event_date.strftime("%d/%m/%Y") %></td>
-                        <td>*ICON</td>
+                        <td><%= image_tag("markers/#{Event.find(attendance.event_id).event_icon}", class: "icons") %></td>
                         <td><%= Event.find(attendance.event_id).event_name %></td>
                         <td><%= Event.find(attendance.event_id).event_cost %></td>
                         <td><%= Event.find(attendance.event_id).event_location %></td>
@@ -215,7 +215,7 @@
                     <% current_user.attendances.approved.each do |attendance| %>
                       <tr>
                         <td><%= Event.find(attendance.event_id).event_date.strftime("%d/%m/%Y") %></td>
-                        <td>*ICON</td>
+                        <td><%= image_tag("markers/#{Event.find(attendance.event_id).event_icon}", class: "icons") %></td>
                         <td><%= Event.find(attendance.event_id).event_name %></td>
                         <td><%= Event.find(attendance.event_id).event_cost %></td>
                         <td><%= Event.find(attendance.event_id).event_location %></td>
@@ -247,7 +247,7 @@
                     <% current_user.attendances.attended.each do |attendance| %>
                       <tr>
                         <td><%= Event.find(attendance.event_id).event_date.strftime("%d/%m/%Y") %></td>
-                        <td>*ICON</td>
+                        <td><%= image_tag("markers/#{Event.find(attendance.event_id).event_icon}", class: "icons") %></td>
                         <td><%= Event.find(attendance.event_id).event_name %></td>
                         <td><%= Event.find(attendance.event_id).event_cost %></td>
                         <td><%= Event.find(attendance.event_id).event_location %></td>
@@ -301,7 +301,7 @@
                     <% @organiser_events.pending.future.each do |event| %>
                       <tr>
                         <td><%= event.event_date.strftime("%d/%m/%Y") %></td>
-                        <td>*ICON</td>
+                        <td><%= image_tag("markers/#{event.event_icon}", class: "icons") %></td>
                         <td><%= event.event_name %></td>
                         <td><%= event.event_cost %></td>
                         <td><%= event.event_location %></td>
@@ -333,7 +333,7 @@
                     <% @organiser_events.approved.future.each do |event| %>
                       <tr>
                         <td><%= event.event_date.strftime("%d/%m/%Y") %></td>
-                        <td>*ICON</td>
+                        <td><%= image_tag("markers/#{event.event_icon}", class: "icons") %></td>
                         <td><%= event.event_name %></td>
                         <td><%= event.event_cost %></td>
                         <td><%= event.event_location %></td>
@@ -365,7 +365,7 @@
                     <% @organiser_events.approved.past.each do |event| %>
                       <tr>
                         <td><%= event.event_date.strftime("%d/%m/%Y") %></td>
-                        <td>*ICON</td>
+                        <td><%= image_tag("markers/#{event.event_icon}", class: "icons") %></td>
                         <td><%= event.event_name %></td>
                         <td><%= event.event_cost %></td>
                         <td><%= event.event_location %></td>
@@ -408,13 +408,13 @@
                     <td>
                       <div class="row">
                         <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                          <div class="events-thumbnail">
+                          <div class="events-thumbnail" style="background-image: url(<%= event.thumbnail.url %>); background-size: cover">
                           </div>
                         </div>
                         <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 events-content">
                           <div class="row">
                             <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
-                              <h3>*ICON <% if event.event_name.length > 40 %><%= event.event_name[0..40] %>...<% else %><%= event.event_name %><% end %></h3>
+                              <h3><%= image_tag("markers/#{event.event_icon}", class: "icons") %> <% if event.event_name.length > 40 %><%= event.event_name[0..40] %>...<% else %><%= event.event_name %><% end %></h3>
                               <hr>
                               <p><% if event.event_description.length > 250 %><%= event.event_description[0..250] %>...<% else %><%= event.event_description %><% end %></p>
                             </div>
