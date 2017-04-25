@@ -12,8 +12,12 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
 //= require_tree .
 //= require bootstrap-sprockets
 //= require moment
 //= require bootstrap-datetimepicker
+//= require Chart
+//= require jquery.slick
+//= require lodash
+//= require jquery-ui
+//= require jquery.mCustomScrollbar

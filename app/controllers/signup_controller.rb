@@ -1,4 +1,6 @@
 class SignupController < ApplicationController
+  before_action :enable_header
+  before_action :enable_navbar, only: [:child]
   before_action :parent_logged_in, only: [:child]
   before_action :logged_in, only: [:parent, :organiser]
   skip_before_action :authenticate_user!, only: [:parent, :organiser, :child, :create_user]
@@ -21,7 +23,7 @@ class SignupController < ApplicationController
 
   def admin
     @user = User.new
-    @role = 'admin'
+    @role = 'administrator'
   end
 
   def create_user
@@ -32,16 +34,31 @@ class SignupController < ApplicationController
                         :dob => params[:dob], :sex => params[:sex],
                         :address_line1 => params[:address_line1], :address_line2 => params[:address_line2],
                         :address_suburb => params[:address_suburb], :address_state => params[:address_state],
-                        :address_pcode => params[:address_pcode], :parent_id => params[:parent_id],
+                        :address_pcode => params[:address_pcode], :autoapprove => params[:autoapprove],
                         :organisation => params[:organisation], :role => @role
+    if @role == "child"
+      @user.parent_id = current_user.id
+    end
+
+    # Assign default dashboard grid
+    if @role == 'parent'
+      @user.dashboard_grid = "[\r\n    {\r\n        \"id\": \"map\",\r\n        \"x\": 0,\r\n        \"y\": 0,\r\n        \"width\": 6,\r\n        \"height\": 21\r\n    },\r\n    {\r\n        \"id\": \"events\",\r\n        \"x\": 0,\r\n        \"y\": 34,\r\n        \"width\": 6,\r\n        \"height\": 17\r\n    },\r\n    {\r\n        \"id\": \"calendar\",\r\n        \"x\": 6,\r\n        \"y\": 0,\r\n        \"width\": 6,\r\n        \"height\": 48\r\n    },\r\n    {\r\n        \"id\": \"event_attendance_history\",\r\n        \"x\": 0,\r\n        \"y\": 51,\r\n        \"width\": 6,\r\n        \"height\": 14\r\n    },\r\n    {\r\n        \"id\": \"children\",\r\n        \"x\": 0,\r\n        \"y\": 21,\r\n        \"width\": 6,\r\n        \"height\": 13\r\n    }\r\n]"
+    elsif @role == 'organiser'
+      @user.dashboard_grid = "[\r\n    {\r\n        \"id\": \"map\",\r\n        \"x\": 0,\r\n        \"y\": 0,\r\n        \"width\": 6,\r\n        \"height\": 21\r\n    },\r\n    {\r\n        \"id\": \"events\",\r\n        \"x\": 0,\r\n        \"y\": 21,\r\n        \"width\": 6,\r\n        \"height\": 17\r\n    },\r\n    {\r\n        \"id\": \"calendar\",\r\n        \"x\": 6,\r\n        \"y\": 0,\r\n        \"width\": 6,\r\n        \"height\": 48\r\n    }\r\n]"
+    elsif @role == 'child'
+      @user.dashboard_grid = "[\r\n    {\r\n        \"id\": \"map\",\r\n        \"x\": 0,\r\n        \"y\": 9,\r\n        \"width\": 6,\r\n        \"height\": 21\r\n    },\r\n    {\r\n        \"id\": \"events\",\r\n        \"x\": 0,\r\n        \"y\": 30,\r\n        \"width\": 6,\r\n        \"height\": 17\r\n    },\r\n    {\r\n        \"id\": \"calendar\",\r\n        \"x\": 6,\r\n        \"y\": 0,\r\n        \"width\": 6,\r\n        \"height\": 48\r\n    },\r\n    {\r\n        \"id\": \"event_attendance_history\",\r\n        \"x\": 0,\r\n        \"y\": 47,\r\n        \"width\": 6,\r\n        \"height\": 14\r\n    },\r\n    {\r\n        \"id\": \"today\",\r\n        \"x\": 0,\r\n        \"y\": 0,\r\n        \"width\": 6,\r\n        \"height\": 9\r\n    }\r\n]"
+    elsif @role == 'administrator'
+      @user.dashboard_grid = "[\r\n    {\r\n        \"id\": \"map\",\r\n        \"x\": 0,\r\n        \"y\": 0,\r\n        \"width\": 6,\r\n        \"height\": 21\r\n    },\r\n    {\r\n        \"id\": \"events\",\r\n        \"x\": 0,\r\n        \"y\": 21,\r\n        \"width\": 6,\r\n        \"height\": 17\r\n    },\r\n    {\r\n        \"id\": \"calendar\",\r\n        \"x\": 6,\r\n        \"y\": 0,\r\n        \"width\": 6,\r\n        \"height\": 48\r\n    }\r\n]"
+    end
+
     if @user.save
       if @role == 'parent' || @role == 'organiser'
         flash[:success] = 'Thank you for signing up! Please log in using your e-mail and password.'
         redirect_to new_user_session_path
       elsif @role == 'child'
-        flash[:success] = 'Thank you for signing up! You can now log in using your e-mail and password.'
+        flash[:success] = 'Thank you for signing up! Your child can now log in using their e-mail and password.'
         redirect_to root_path
-      elsif @role == 'admin'
+      elsif @role == 'administrator'
         redirect_to root_path
       end
     else
@@ -51,7 +68,7 @@ class SignupController < ApplicationController
         render :organiser
       elsif @role == 'child'
         render :child
-      elsif @role == 'admin'
+      elsif @role == 'administrator'
         render :admin
       end
     end

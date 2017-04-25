@@ -1,0 +1,55 @@
+<div class="grid-stack-item"
+    data-gs-x=<%= @dashboard_grid[@index]["x"] %> data-gs-y=<%= @dashboard_grid[@index]["y"] %>
+    data-gs-width=<%= @dashboard_grid[@index]["width"] %> data-gs-height=<%= @dashboard_grid[@index]["height"] %> data-custom-id="events">
+  <div class="grid-stack-item-content">
+    <div class="title">
+      <i class="material-icons">insert_invitation</i> Events
+    </div>
+    <div class="content">
+      <table class="table table-hover text-center">
+        <tr>
+          <th class="text-center">Date</th>
+          <th></th>
+          <th class="text-center">Event</th>
+          <th class="text-center">Child</th>
+          <th class="text-center">Manage</th>
+        </tr>
+        <tr>
+          <td>16/01/2017</td>
+          <td class="text-right"><%= image_tag("markers/lake.png", class: "icons") %></td>
+          <td>Luna Park Day</td>
+          <td>Tom</td>
+          <td><i class="material-icons simple-tooltip yellow" title="View">event_note</i> <i class="material-icons simple-tooltip blue" title="Accept">event_available</i> <i class="material-icons simple-tooltip red" title="Reject">event_busy</i></td>
+        </tr>
+        <tr>
+          <td>10/01/2017</td>
+          <td class="text-right"><%= image_tag("markers/laterne.png", class: "icons") %></td>
+          <td>Fishing at Manly</td>
+          <td>Tom</td>
+          <td><i class="material-icons simple-tooltip yellow" title="View">event_note</i> <i class="material-icons simple-tooltip blue" title="Accept">event_available</i> <i class="material-icons simple-tooltip red" title="Reject">event_busy</i></td>
+        </tr>
+        <tr>
+          <td>10/01/2017</td>
+          <td class="text-right"><%= image_tag("markers/kiosk.png", class: "icons") %></td>
+          <td>Fishing at Manly</td>
+          <td>Tim</td>
+          <td><i class="material-icons simple-tooltip yellow" title="View">event_note</i> <i class="material-icons simple-tooltip blue" title="Accept">event_available</i> <i class="material-icons simple-tooltip red" title="Reject">event_busy</i></td>
+        </tr>
+        <tr>
+          <td>10/05/2017</td>
+          <td class="text-right"><%= image_tag("markers/library.png", class: "icons") %></td>
+          <td>Lunch with the Stars</td>
+          <td>Tom</td>
+          <td><i class="material-icons simple-tooltip yellow" title="View">event_note</i> <i class="material-icons simple-tooltip blue" title="Accept">event_available</i> <i class="material-icons simple-tooltip red" title="Reject">event_busy</i></td>
+        </tr>
+        <tr>
+          <td>23/08/2017</td>
+          <td class="text-right"><%= image_tag("markers/information.png", class: "icons") %></td>
+          <td>Aquarium Day</td>
+          <td>Lucy</td>
+          <td><i class="material-icons simple-tooltip yellow" title="View">event_note</i> <i class="material-icons simple-tooltip blue" title="Accept">event_available</i> <i class="material-icons simple-tooltip red" title="Reject">event_busy</i></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>

@@ -11,10 +11,18 @@
  * It is generally better to create a new file per style scope.
  *
  */
+
+ /*
+  *= require jquery-ui
+  */
+
  // "bootstrap-sprockets" must be imported before "bootstrap" and "bootstrap/variables"
 @import "bootstrap-sprockets";
 @import "bootstrap";
 @import 'bootstrap-datetimepicker';
+@import 'tipped.css';
+@import 'slick';
+@import 'jquery.mCustomScrollbar';
 
 @font-face {
  font-family: 'Eraser';
@@ -27,9 +35,15 @@
 body {
   font-family: 'Pangolin', cursive;
   background-color: #FFD67F;
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
-// header and navbar styling
+.gap {
+  height: 30px;
+}
+
+// header styling
 .header {
  color: white;
  height: 100%;
@@ -50,59 +64,92 @@ body {
  }
 }
 
-.navigation {
- background-color: white;
- height: 60px;
- width: 100%;
- border-width: 0px 0px 1px 0px;
- border-color: #C0C0C0;
- border-style: solid;
- overflow: hidden;
- position: relative;
- a {
-   color: #363636;
-   &:hover {
-     color: #C0C0C0;
-     text-decoration: none;
-   }
- }
- .menu-box {
-   padding-top: 10px;
-   float: left;
-   width: 80px;
-   height: 60px;
-   &:hover {
-     color: #C0C0C0;
-   }
-   .material-icons {
-     font-size: 20px;
-   }
- }
- .vert-line{
-   float: left;
-   width: 1px;
-   height: 80px;
-   background-color: #C0C0C0;
- }
-}
-
 .navbar-form {
   .form-control {
     height: 23px;
-
   }
   .btn {
     height: 23px;
     padding-top: 3px;
     padding-bottom: 0px;
   }
-
   .glyphicon {
     font-size: 15px;
   }
 }
-.header-gap {
-  height: 30px;
+
+// navbar styling
+.navigation {
+ background-color: white;
+ height: 63px;
+ width: 100%;
+ border-width: 0px 0px 1px 0px;
+ border-color: #C0C0C0;
+ border-style: solid;
+ a {
+   color: #5F5E5F;
+   &:hover {
+     color: white;
+     text-decoration: none;
+   }
+ }
+}
+
+
+
+.navigation {
+  .btn {
+    width: 80px;
+    border-top: 0px;
+    padding: 6px 0px;
+  }
+  .btn-group > .btn:first-child:not(:last-child):not(.dropdown-toggle) {
+    border-radius: 0px;
+  }
+  .btn-group > .btn:last-child:not(:first-child), .btn-group > .dropdown-toggle:not(:first-child) {
+    border-radius: 0px;
+  }
+}
+
+.mini-navigation {
+  background-color: white;
+  height: 43px;
+  width: 100%;
+  border-width: 0px 0px 1px 0px;
+  border-color: #C0C0C0;
+  border-style: solid;
+  overflow: hidden;
+  position: relative;
+  .btn-group > .btn:first-child {
+    height: 42px;
+    border-radius: 0px;
+    border-width: 0px;
+  }
+}
+
+.menu-dropdown {
+  background-color: white;
+  width: 100%;
+  border-style: solid;
+  border-color: #C0C0C0;
+  border-width: 0px 0px 1px 0px;
+  .item {
+    .material-icons {
+      font-size: 13px;
+    }
+    padding: 10px 20px;
+    width: 100%;
+    &:hover {
+      background-color: #C0C0C0;
+    }
+  }
+  a {
+    color: #5F5E5F;
+    &:hover {
+      color: white;
+      text-decoration: none;
+    }
+  }
 }
 
 // login and signup pages
@@ -127,6 +174,9 @@ body {
   .title {
     font-family: 'Eraser'
   }
+  img {
+    height: 80px;
+  }
 }
 
 .box {
@@ -137,6 +187,10 @@ body {
     color: white;
     background-color: #FFA6A4;
     border-radius: 5px 5px 0px 0px;
+    border-width: 1px 1px 1px 1px;
+    border-style: solid;
+    border-color: #DA8F8D;
+    border-bottom-color: #A9A9A9;
     padding: 10px 20px;
   }
 
@@ -144,6 +198,9 @@ body {
     color: white;
     background-color: #7AD6FD;
     border-radius: 0px 0px 5px 5px;
+    border-width: 0px 1px 1px 1px;
+    border-style: solid;
+    border-color: #6CBEE0;
     padding: 10px 20px;
 
     ul {
@@ -169,12 +226,14 @@ body {
   .btn {
     background-color: #FFD67F;
     width: 50%;
+    border: solid 1px #D9B86C;
     &:hover {
       color: grey;
     }
   }
 }
 
+// Switch field
 .switch-field {
   overflow: hidden;
 }
@@ -227,16 +286,281 @@ body {
   border-radius: 0 4px 4px 0;
 }
 
-// dashboard contents
+// Panel contents
 .panel {
   border-width: 0px;
   border-radius: 5px;
+  color: #5F5E5F;
+  .icons {
+    height: 25px;
+  }
+  th {
+    background-color: #F5F5F5;
+    color: #424242;
+  }
   .material-icons {
-    font-size: 13px;
+    font-size: 18px;
+  }
+  .blue {
+    color: #7AD6FD;
+    padding: 2px;
+    &:hover {
+      color: white;
+      background-color: #7AD6FD;
+      border-radius: 3px;
+
+    }
+  }
+  .yellow {
+    color: #EFC677;
+    padding: 2px;
+    &:hover {
+      color: white;
+      background-color: #EFC677;
+      border-radius: 3px;
+    }
+  }
+  .red {
+    color: #FFA6A4;
+    padding: 2px;
+    &:hover {
+      color: white;
+      background-color: #FFA6A4;
+      border-radius: 3px;
+    }
   }
   .panel-heading {
+    border-width: 1px 1px 0px 1px;
+    border-style: solid;
+    border-color: #6BBCDE;
     color: white;
     background-color: #7AD6FD;
     border-radius: 5px 5px 0px 0px;
   }
+
+  .panel-body {
+    border-width: 0px 1px 1px 1px;
+    border-style: solid;
+    border-color: #CACACA;
+    border-radius: 0px 0px 5px 5px;
+  }
+
+  .panel-title {
+    .material-icons {
+      color: #0D99FC;
+      font-size: 13px;
+    }
+  }
+  .character {
+    height: 50px;
+  }
+}
+
+.panel-title {
+  .material-icons {
+
+  }
+}
+
+//Dashboard grid stack
+.grid-stack-item-content {
+
+  .title {
+    font-size: 16px;
+    border-width: 1px 1px 0px 1px;
+    border-style: solid;
+    border-color: #6BBCDE;
+    color: white;
+    background-color: #7AD6FD;
+    border-radius: 5px 5px 0px 0px;
+    padding: 10px 15px;
+    .material-icons {
+      color: #0D99FC;
+      font-size: 13px;
+    }
+  }
+  .content {
+    border-width: 0px 1px 1px 1px;
+    border-style: solid;
+    border-color: #CACACA;
+    border-radius: 0px 0px 5px 5px;
+    padding: 10px 15px;
+    background-color: white;
+    overflow-y: auto;
+    height: 100%;
+    color: #5F5E5F;
+    .icons {
+      height: 25px;
+    }
+    th {
+      background-color: #F5F5F5;
+      color: #424242;
+    }
+    .material-icons {
+      font-size: 18px;
+    }
+    .blue {
+      color: #7AD6FD;
+      padding: 2px;
+      &:hover {
+        color: white;
+        background-color: #7AD6FD;
+        border-radius: 3px;
+
+      }
+    }
+    .yellow {
+      color: #EFC677;
+      padding: 2px;
+      &:hover {
+        color: white;
+        background-color: #EFC677;
+        border-radius: 3px;
+      }
+    }
+    .red {
+      color: #FFA6A4;
+      padding: 2px;
+      &:hover {
+        color: white;
+        background-color: #FFA6A4;
+        border-radius: 3px;
+      }
+    }
+  }
+}
+
+
+
+// Google maps
+a[href^="http://maps.google.com/maps"]{display:none !important}
+a[href^="https://maps.google.com/maps"]{display:none !important}
+
+.gmnoprint a, .gmnoprint span, .gm-style-cc {
+    display:none;
+}
+.gmnoprint div {
+    background:none !important;
+}
+
+
+// Progress bars with centered text
+.progress {
+    position: relative;
+}
+
+.progress span {
+  position: absolute;
+  display: block;
+  width: 100%;
+  .blue {
+    color: #A4DCED;
+  }
+  .yellow {
+    color: #FFD37F;
+  }
+ }
+
+ // Events display page
+ .events-thumbnail {
+   height: 200px;
+   border-radius: 5px;
+   border-width: 1px;
+   border-color: #C0C0C0;
+   border-style: solid;
+   background-image: image-url("blank.png");
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+ }
+
+ .events-content {
+   p {
+     word-wrap: break-word;
+   }
+   height: 200px;
+   color: #929292;
+   .material-icons {
+     color: #424242;
+     font-size: 11px;
+     padding: 2px;
+     &:hover {
+       color: white;
+       background-color: #424242;
+       border-radius: 3px;
+
+     }
+   }
+   h3 {
+     color: #424242;
+   }
+   a {
+     color: white;
+   }
+   .btn {
+     background-color: #FFA6A4;
+     border: solid 1px #E0908F;
+     width: 50%;
+     &:hover {
+       color: grey;
+     }
+   }
+ }
+
+// Make invisible buttons for admin-form
+ .admin-form {
+   .btn {
+     background: transparent; border: none; padding: 0;
+   }
+   form {
+        display:inline;
+        margin:0px;
+        padding:0px;
+   }
+   p {
+      margin-top: 3px;
+   }
+ }
+
+// Calendar styling
+.calendar a {
+    color: white;
+}
+
+// Filter table styling
+table#example.dataTable {
+ tbody tr {
+   background-color: transparent;
+ }
+ thead th {
+   border-width: 0px;
+   background-color: transparent;
+ }
+}
+table#example.dataTable.no-footer {
+ border-width: 0px;
+}
+
+table#example {
+ table-layout: fixed;
+ border-collapse:collapse;
+}
+
+.search {
+  label {
+    color: #5E5E5F;
+  }
+
+  input {
+    border-radius: 5px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #929292;
+    padding: 3px 7px;
+    height: 20px;
+    width: 130px;
+  }
+}
+table#example_info.dataTables_info {
+  color: #5E5E5F;
 }

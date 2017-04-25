@@ -1,0 +1,416 @@
+<%= render 'partials/category_icons' %>
+<%# @locations = [[-33.81721, 151.22630, 'aboriginal.png'], [-34.02539, 151.22820, 'aboriginal.png'], [-33.93747, 150.89089, 'aboriginal.png'], [-33.88910, 150.87089, 'aboriginal.png'], [-33.91725, 150.86089, 'supermarket.png'], [-33.81872, 150.86089, 'zombie-outbreak1.png'], [-33.91784, 151.23094, 'supermarket.png'], [-33.71682, 151.24149, 'volcano-2.png']] %>
+
+<style media="screen">
+  #map {
+    height: 340px;
+    border-width: 1px;
+    border-color: #CACACA;
+    border-style: solid;
+    border-radius: 5px;
+  }
+</style>
+
+<div class="grid-stack-item"
+data-gs-x=<%= @dashboard_grid[@index]["x"] %> data-gs-y=<%= @dashboard_grid[@index]["y"] %>
+data-gs-width=<%= @dashboard_grid[@index]["width"] %> data-gs-height=<%= @dashboard_grid[@index]["height"] %> data-custom-id="map" data-gs-no-resize="yes">
+
+  <div class="grid-stack-item-content">
+    <div class="title">
+      <i class="material-icons">map</i> Explorer map<span style="float: right;"><i class="material-icons">zoom_out_map</i></span>
+    </div>
+    <div class="content">
+      <div id="map"></div>
+    </div>
+  </div>
+
+</div>
+
+<!-- Google maps data -->
+<script>
+  var map;
+  function initMap() {
+    map = new google.maps.Map(document.getElementById('map'), {
+      zoom: 10,
+      zoomControl: true,
+      disableDefaultUI: true,
+      center: new google.maps.LatLng(-33.85, 151),
+      mapTypeId: 'roadmap',
+      styles: [
+    {
+        "featureType": "all",
+        "elementType": "labels",
+        "stylers": [
+            {
+                "visibility": "off"
+            }
+        ]
+    },
+    {
+        "featureType": "landscape",
+        "elementType": "all",
+        "stylers": [
+            {
+                "visibility": "on"
+            },
+            {
+                "color": "#f3f4f4"
+            }
+        ]
+    },
+    {
+        "featureType": "landscape.man_made",
+        "elementType": "geometry",
+        "stylers": [
+            {
+                "weight": 0.9
+            },
+            {
+                "visibility": "off"
+            }
+        ]
+    },
+    {
+        "featureType": "poi.park",
+        "elementType": "geometry.fill",
+        "stylers": [
+            {
+                "visibility": "on"
+            },
+            {
+                "color": "#83cead"
+            }
+        ]
+    },
+    {
+        "featureType": "road",
+        "elementType": "all",
+        "stylers": [
+            {
+                "visibility": "on"
+            },
+            {
+                "color": "#ffffff"
+            }
+        ]
+    },
+    {
+        "featureType": "road",
+        "elementType": "labels",
+        "stylers": [
+            {
+                "visibility": "off"
+            }
+        ]
+    },
+    {
+        "featureType": "road.highway",
+        "elementType": "all",
+        "stylers": [
+            {
+                "visibility": "on"
+            },
+            {
+                "color": "#fee379"
+            }
+        ]
+    },
+    {
+        "featureType": "road.arterial",
+        "elementType": "all",
+        "stylers": [
+            {
+                "visibility": "on"
+            },
+            {
+                "color": "#fee379"
+            }
+        ]
+    },
+    {
+        "featureType": "water",
+        "elementType": "all",
+        "stylers": [
+            {
+                "visibility": "on"
+            },
+            {
+                "color": "#7fc8ed"
+            }
+        ]
+    }
+]
+    });
+
+    var icons = {
+      '<%= @category_icons[0].split('/').last %>': {
+        icon: '<%= image_url "markers/#{@category_icons[0].split('/').last}" %>'
+      },
+      '<%= @category_icons[1].split('/').last %>': {
+        icon: '<%= image_url "markers/#{@category_icons[1].split('/').last}" %>'
+      },
+      '<%= @category_icons[2].split('/').last %>': {
+        icon: '<%= image_url "markers/#{@category_icons[2].split('/').last}" %>'
+      },
+      '<%= @category_icons[3].split('/').last %>': {
+        icon: '<%= image_url "markers/#{@category_icons[3].split('/').last}" %>'
+      },
+      '<%= @category_icons[4].split('/').last %>': {
+        icon: '<%= image_url "markers/#{@category_icons[4].split('/').last}" %>'
+      },
+      '<%= @category_icons[5].split('/').last %>': {
+        icon: '<%= image_url "markers/#{@category_icons[5].split('/').last}" %>'
+      },
+      '<%= @category_icons[6].split('/').last %>': {
+        icon: '<%= image_url "markers/#{@category_icons[6].split('/').last}" %>'
+      },
+      '<%= @category_icons[7].split('/').last %>': {
+        icon: '<%= image_url "markers/#{@category_icons[7].split('/').last}" %>'
+      },
+      '<%= @category_icons[8].split('/').last %>': {
+        icon: '<%= image_url "markers/#{@category_icons[8].split('/').last}" %>'
+      },
+      '<%= @category_icons[9].split('/').last %>': {
+        icon: '<%= image_url "markers/#{@category_icons[9].split('/').last}" %>'
+      },
+      '<%= @category_icons[10].split('/').last %>': {
+        icon: '<%= image_url "markers/#{@category_icons[10].split('/').last}" %>'
+      },
+      '<%= @category_icons[11].split('/').last %>': {
+        icon: '<%= image_url "markers/#{@category_icons[11].split('/').last}" %>'
+      },
+      '<%= @category_icons[12].split('/').last %>': {
+        icon: '<%= image_url "markers/#{@category_icons[12].split('/').last}" %>'
+      },
+      '<%= @category_icons[13].split('/').last %>': {
+        icon: '<%= image_url "markers/#{@category_icons[13].split('/').last}" %>'
+      },
+      '<%= @category_icons[14].split('/').last %>': {
+        icon: '<%= image_url "markers/#{@category_icons[14].split('/').last}" %>'
+      },
+      '<%= @category_icons[15].split('/').last %>': {
+        icon: '<%= image_url "markers/#{@category_icons[15].split('/').last}" %>'
+      },
+      '<%= @category_icons[16].split('/').last %>': {
+        icon: '<%= image_url "markers/#{@category_icons[16].split('/').last}" %>'
+      },
+      '<%= @category_icons[17].split('/').last %>': {
+        icon: '<%= image_url "markers/#{@category_icons[17].split('/').last}" %>'
+      },
+      '<%= @category_icons[18].split('/').last %>': {
+        icon: '<%= image_url "markers/#{@category_icons[18].split('/').last}" %>'
+      },
+      '<%= @category_icons[19].split('/').last %>': {
+        icon: '<%= image_url "markers/#{@category_icons[19].split('/').last}" %>'
+      },
+      '<%= @category_icons[20].split('/').last %>': {
+        icon: '<%= image_url "markers/#{@category_icons[20].split('/').last}" %>'
+      },
+      '<%= @category_icons[21].split('/').last %>': {
+        icon: '<%= image_url "markers/#{@category_icons[21].split('/').last}" %>'
+      },
+      '<%= @category_icons[22].split('/').last %>': {
+        icon: '<%= image_url "markers/#{@category_icons[22].split('/').last}" %>'
+      },
+      '<%= @category_icons[23].split('/').last %>': {
+        icon: '<%= image_url "markers/#{@category_icons[23].split('/').last}" %>'
+      },
+      '<%= @category_icons[24].split('/').last %>': {
+        icon: '<%= image_url "markers/#{@category_icons[24].split('/').last}" %>'
+      },
+      '<%= @category_icons[25].split('/').last %>': {
+        icon: '<%= image_url "markers/#{@category_icons[25].split('/').last}" %>'
+      },
+      '<%= @category_icons[26].split('/').last %>': {
+        icon: '<%= image_url "markers/#{@category_icons[26].split('/').last}" %>'
+      },
+      '<%= @category_icons[27].split('/').last %>': {
+        icon: '<%= image_url "markers/#{@category_icons[27].split('/').last}" %>'
+      },
+      '<%= @category_icons[28].split('/').last %>': {
+        icon: '<%= image_url "markers/#{@category_icons[28].split('/').last}" %>'
+      },
+      '<%= @category_icons[29].split('/').last %>': {
+        icon: '<%= image_url "markers/#{@category_icons[29].split('/').last}" %>'
+      },
+      '<%= @category_icons[30].split('/').last %>': {
+        icon: '<%= image_url "markers/#{@category_icons[30].split('/').last}" %>'
+      },
+      '<%= @category_icons[31].split('/').last %>': {
+        icon: '<%= image_url "markers/#{@category_icons[31].split('/').last}" %>'
+      },
+      '<%= @category_icons[32].split('/').last %>': {
+        icon: '<%= image_url "markers/#{@category_icons[32].split('/').last}" %>'
+      },
+      '<%= @category_icons[33].split('/').last %>': {
+        icon: '<%= image_url "markers/#{@category_icons[33].split('/').last}" %>'
+      },
+      '<%= @category_icons[34].split('/').last %>': {
+        icon: '<%= image_url "markers/#{@category_icons[34].split('/').last}" %>'
+      },
+      '<%= @category_icons[35].split('/').last %>': {
+        icon: '<%= image_url "markers/#{@category_icons[35].split('/').last}" %>'
+      },
+      '<%= @category_icons[36].split('/').last %>': {
+        icon: '<%= image_url "markers/#{@category_icons[36].split('/').last}" %>'
+      },
+      '<%= @category_icons[37].split('/').last %>': {
+        icon: '<%= image_url "markers/#{@category_icons[37].split('/').last}" %>'
+      },
+      '<%= @category_icons[38].split('/').last %>': {
+        icon: '<%= image_url "markers/#{@category_icons[38].split('/').last}" %>'
+      },
+      '<%= @category_icons[39].split('/').last %>': {
+        icon: '<%= image_url "markers/#{@category_icons[39].split('/').last}" %>'
+      },
+      '<%= @category_icons[40].split('/').last %>': {
+        icon: '<%= image_url "markers/#{@category_icons[40].split('/').last}" %>'
+      },
+      '<%= @category_icons[41].split('/').last %>': {
+        icon: '<%= image_url "markers/#{@category_icons[41].split('/').last}" %>'
+      },
+      '<%= @category_icons[42].split('/').last %>': {
+        icon: '<%= image_url "markers/#{@category_icons[42].split('/').last}" %>'
+      },
+      '<%= @category_icons[43].split('/').last %>': {
+        icon: '<%= image_url "markers/#{@category_icons[43].split('/').last}" %>'
+      },
+      '<%= @category_icons[44].split('/').last %>': {
+        icon: '<%= image_url "markers/#{@category_icons[44].split('/').last}" %>'
+      },
+      '<%= @category_icons[45].split('/').last %>': {
+        icon: '<%= image_url "markers/#{@category_icons[45].split('/').last}" %>'
+      },
+      '<%= @category_icons[46].split('/').last %>': {
+        icon: '<%= image_url "markers/#{@category_icons[46].split('/').last}" %>'
+      },
+      '<%= @category_icons[47].split('/').last %>': {
+        icon: '<%= image_url "markers/#{@category_icons[47].split('/').last}" %>'
+      },
+      '<%= @category_icons[48].split('/').last %>': {
+        icon: '<%= image_url "markers/#{@category_icons[48].split('/').last}" %>'
+      },
+      '<%= @category_icons[49].split('/').last %>': {
+        icon: '<%= image_url "markers/#{@category_icons[49].split('/').last}" %>'
+      },
+      '<%= @category_icons[50].split('/').last %>': {
+        icon: '<%= image_url "markers/#{@category_icons[50].split('/').last}" %>'
+      },
+      '<%= @category_icons[51].split('/').last %>': {
+        icon: '<%= image_url "markers/#{@category_icons[51].split('/').last}" %>'
+      },
+      '<%= @category_icons[52].split('/').last %>': {
+        icon: '<%= image_url "markers/#{@category_icons[52].split('/').last}" %>'
+      },
+      '<%= @category_icons[53].split('/').last %>': {
+        icon: '<%= image_url "markers/#{@category_icons[53].split('/').last}" %>'
+      },
+      '<%= @category_icons[54].split('/').last %>': {
+        icon: '<%= image_url "markers/#{@category_icons[54].split('/').last}" %>'
+      },
+      '<%= @category_icons[55].split('/').last %>': {
+        icon: '<%= image_url "markers/#{@category_icons[55].split('/').last}" %>'
+      },
+      '<%= @category_icons[56].split('/').last %>': {
+        icon: '<%= image_url "markers/#{@category_icons[56].split('/').last}" %>'
+      },
+      '<%= @category_icons[57].split('/').last %>': {
+        icon: '<%= image_url "markers/#{@category_icons[57].split('/').last}" %>'
+      },
+      '<%= @category_icons[58].split('/').last %>': {
+        icon: '<%= image_url "markers/#{@category_icons[58].split('/').last}" %>'
+      },
+      '<%= @category_icons[59].split('/').last %>': {
+        icon: '<%= image_url "markers/#{@category_icons[59].split('/').last}" %>'
+      },
+      '<%= @category_icons[60].split('/').last %>': {
+        icon: '<%= image_url "markers/#{@category_icons[60].split('/').last}" %>'
+      },
+      '<%= @category_icons[61].split('/').last %>': {
+        icon: '<%= image_url "markers/#{@category_icons[61].split('/').last}" %>'
+      },
+      '<%= @category_icons[62].split('/').last %>': {
+        icon: '<%= image_url "markers/#{@category_icons[62].split('/').last}" %>'
+      },
+      '<%= @category_icons[63].split('/').last %>': {
+        icon: '<%= image_url "markers/#{@category_icons[63].split('/').last}" %>'
+      },
+      '<%= @category_icons[64].split('/').last %>': {
+        icon: '<%= image_url "markers/#{@category_icons[64].split('/').last}" %>'
+      },
+      '<%= @category_icons[65].split('/').last %>': {
+        icon: '<%= image_url "markers/#{@category_icons[65].split('/').last}" %>'
+      },
+      '<%= @category_icons[66].split('/').last %>': {
+        icon: '<%= image_url "markers/#{@category_icons[66].split('/').last}" %>'
+      },
+      '<%= @category_icons[67].split('/').last %>': {
+        icon: '<%= image_url "markers/#{@category_icons[67].split('/').last}" %>'
+      },
+      '<%= @category_icons[68].split('/').last %>': {
+        icon: '<%= image_url "markers/#{@category_icons[68].split('/').last}" %>'
+      },
+      '<%= @category_icons[69].split('/').last %>': {
+        icon: '<%= image_url "markers/#{@category_icons[69].split('/').last}" %>'
+      },
+      '<%= @category_icons[70].split('/').last %>': {
+        icon: '<%= image_url "markers/#{@category_icons[70].split('/').last}" %>'
+      },
+      '<%= @category_icons[71].split('/').last %>': {
+        icon: '<%= image_url "markers/#{@category_icons[71].split('/').last}" %>'
+      },
+      '<%= @category_icons[72].split('/').last %>': {
+        icon: '<%= image_url "markers/#{@category_icons[72].split('/').last}" %>'
+      },
+      '<%= @category_icons[73].split('/').last %>': {
+        icon: '<%= image_url "markers/#{@category_icons[73].split('/').last}" %>'
+      },
+      '<%= @category_icons[74].split('/').last %>': {
+        icon: '<%= image_url "markers/#{@category_icons[74].split('/').last}" %>'
+      },
+      '<%= @category_icons[75].split('/').last %>': {
+        icon: '<%= image_url "markers/#{@category_icons[75].split('/').last}" %>'
+      },
+      '<%= @category_icons[76].split('/').last %>': {
+        icon: '<%= image_url "markers/#{@category_icons[76].split('/').last}" %>'
+      },
+      '<%= @category_icons[77].split('/').last %>': {
+        icon: '<%= image_url "markers/#{@category_icons[77].split('/').last}" %>'
+      },
+      '<%= @category_icons[78].split('/').last %>': {
+        icon: '<%= image_url "markers/#{@category_icons[78].split('/').last}" %>'
+      },
+      '<%= @category_icons[79].split('/').last %>': {
+        icon: '<%= image_url "markers/#{@category_icons[79].split('/').last}" %>'
+      },
+      '<%= @category_icons[80].split('/').last %>': {
+        icon: '<%= image_url "markers/#{@category_icons[80].split('/').last}" %>'
+      }
+    };
+
+    var locations = <%= @locations.inspect.html_safe %>;
+    var locations_array = []
+
+    for (i = 0; i < <%= @locations.count %>; i++) {
+      var hash = {
+        position: new google.maps.LatLng(locations[i][0], locations[i][1]),
+        type: locations[i][2]
+      }
+      locations_array.push(hash)
+    };
+
+    var features = locations_array;
+
+    // Create markers.
+    features.forEach(function(feature) {
+      var marker = new google.maps.Marker({
+        position: feature.position,
+        icon: icons[feature.type].icon,
+        map: map
+      });
+    });
+  }
+</script>
+<script async defer
+src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_API'] %>&callback=initMap">
+</script>

@@ -5,4 +5,8 @@ class ApplicationController < ActionController::Base
   def enable_header
     @enable_header = true
   end
+
+  def enable_navbar
+    @enable_navbar = true
+  end
 end

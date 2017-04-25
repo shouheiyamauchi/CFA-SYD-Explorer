@@ -1,19 +1,30 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="mwl.calendar.docs">
   <head>
     <title>SYD Explorer</title>
+
     <%= csrf_meta_tags %>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Pangolin" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Oxygen:300,400,700" rel="stylesheet">
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag    'application', media: 'all' %>
+    <%= javascript_include_tag 'application' %>
   </head>
 
   <body>
     <%= render "partials/header" if @enable_header %>
+    <%= render "partials/navbar" if @enable_navbar %>
     <div class="container">
       <%= yield %>
     </div>
+    <div class="gap">
+    </div>
   </body>
+
+  <script type="text/javascript">
+    $(document).ready(function() {
+      Tipped.create('.simple-tooltip');
+    });
+  </script>
 </html>

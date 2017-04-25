@@ -1,0 +1,44 @@
+<div class="grid-stack-item"
+    data-gs-x=<%= @dashboard_grid[@index]["x"] %> data-gs-y=<%= @dashboard_grid[@index]["y"] %>
+    data-gs-width=<%= @dashboard_grid[@index]["width"] %> data-gs-height=<%= @dashboard_grid[@index]["height"] %> data-custom-id="today">
+  <div class="grid-stack-item-content">
+    <div class="title">
+      <i class="material-icons">directions_run</i> What's on today
+    </div>
+    <div class="content">
+      <% if current_user.attendances.today.count > 0 %>
+        <% current_user.attendances.today.each do |attendance| %>
+          <%= Event.find(attendance.event_id).event_name %>
+          <%= form_tag pages_attend_event_path do %>
+            <%= hidden_field_tag :event_id, attendance.event_id %>
+            <%= hidden_field_tag :attendance_id, attendance.id %>
+
+              <input type="text" id="lat" name="latitude">
+              <input type="text" id="long" name="longitude">
+
+              <div class="actions">
+                <%= submit_tag "Check-in", :class => "btn" %>
+              </div>
+            <% end %>
+          <button onclick="getLocation()">Click to get location</button>
+        <% end %>
+      <% else %>
+        You have no events on today.
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<script>
+
+function getLocation() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function(position) {
+            document.getElementById("lat").value = position.coords.latitude;
+            document.getElementById("long").value =  position.coords.longitude;
+        });
+    } else {
+        x.innerHTML = "Geolocation is not supported by this browser.";
+    }
+}
+</script>

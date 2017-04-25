@@ -8,6 +8,18 @@ end
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.2'
+# Geocoder
+gem 'geocoder'
+# Scroll bar themes
+gem 'scrollbar-rails'
+# Bring in logdash for grid stack
+gem 'lodash-rails'
+# Bring in jQuery UI for grid stack
+gem 'jquery-ui-rails'
+# Slick carousel
+gem "jquery-slick-rails"
+# Chart.js
+gem 'chart-js-rails'
 # Bootstrap for rails
 gem 'bootstrap-sass', '~> 3.3.6'
 # Date picker
@@ -30,8 +42,7 @@ gem 'coffee-rails', '~> 4.2'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
-# Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
-gem 'turbolinks', '~> 5'
+
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.5'
 # Use Redis adapter to run Action Cable in production
