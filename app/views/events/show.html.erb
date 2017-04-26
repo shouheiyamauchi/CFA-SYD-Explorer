@@ -37,13 +37,28 @@
                             <p><%= @event.event_description %></p>
                           </div>
                           <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 details">
-                              <br><br><br>
+                            <br><br><br>
+                            <% if current_user.role == "administrator" && @event.event_approved == "false" %>
+                              <div class="admin-form">
+                                <%= form_tag events_approve_path do %>
+                                  <%= hidden_field_tag :event_id, @event.id %>
+                                    <%= button_tag(type: "submit", class: "btn") do %>
+                                        <i class="material-icons simple-tooltip blue" title="Accept">event_available</i>
+                                    <% end %>
+                                <% end %>
+                                <%= form_tag events_reject_path do %>
+                                  <%= hidden_field_tag :event_id, @event.id %>
+                                    <%= button_tag(type: "submit", class: "btn") do %>
+                                        <i class="material-icons simple-tooltip red" title="Reject">event_busy</i>
+                                    <% end %>
+                                <% end %>
+                              </div>
+                            <% end %>
                             <div class="details">
                               <i class="material-icons simple-tooltip" data-tipped-options="position: 'left'" title="Date">date_range</i> <%= @event.event_date.strftime("%d/%m/%Y") %><br>
                               <i class="material-icons simple-tooltip" data-tipped-options="position: 'left'" title="Cost">attach_money</i> <%= @event.event_cost %><br>
                               <i class="material-icons simple-tooltip" data-tipped-options="position: 'left'" title="Location">location_on</i> <%= @event.event_location %><br>
                               <i class="material-icons simple-tooltip" data-tipped-options="position: 'left'" title="Category">list</i> <%= @event.event_category %><br>
-                              <br><a class="btn" href="/events/<%= @event.id %>">View Event</a>
                             </div>
                           </div>
                         </div>

@@ -1,65 +1,103 @@
 <%= render 'partials/category_icons' %>
 <%= render 'partials/image_dropdown' %>
 
+<div class="row">
+  <div class="col-lg-1 col-md-1 col-sm-0 col-xs-0">
+  </div>
+  <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
+    <div class="box-frame">
+      <div class="box">
+        <div class="upper">
+          <h3>Please fill out the following form to create an event:</h3>
+        </div>
+        <div class="lower">
+          <% if event.errors.any? %>
+            <div class="alert alert-danger" role="alert">
+              <% event.errors.full_messages.each do |message| %>
+              <ul><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+              <span class="sr-only">Error:</span>
+              <%= message %></ul>
+              <% end %>
+            </div>
+          <% end %>
+          <div class="row">
+            <%= form_for event, :html => {:onsubmit => "return checkForm(this);"} do |f| %>
+              <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <div class="field">
+                  <%= f.text_field :event_name, placeholder: "Event name:", class: "form-control" %>
+                </div>
+                <br>
+                <div class="field">
+                  <%= f.text_area :event_description, placeholder: "Event description:", class: "form-control", style: "height:60px" %>
+                </div>
+                <br>
+                <div class="row">
+                  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                    <div class="field">
+                      <%= f.text_field :event_cost, placeholder: "Event cost:", class: "form-control" %>
+                    </div>
+                  </div>
+                  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                    <div class="field">
+                      <div class="dates">
+                        <input type='text' name="event[event_date]" class="form-control" id='datetimepicker4' placeholder='Event date (DD/MM/YYYY)' />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <br>
+              </div>
+              <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <select id="image-dropdown" name="event[event_icon]" style="width:250px;">
+                 <option value="" data-description="Choose an appropiate image">Category image</option>
+                 <% @category_icons.each do |image| %>
+                    <%= image_tag "markers/#{image.split('/').last}" %>
+                    <option value="<%= "#{image.split('/').last}" %>" data-image="<%= image_url "markers/#{image.split('/').last}" %>"><%= image.split('/').last %></option>
+                  <% end %>
+                </select>
 
-
-<%= form_for event, :html => {:onsubmit => "return checkForm(this);"} do |f| %>
-  <% if event.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(event.errors.count, "error") %> prohibited this event from being saved:</h2>
-
-      <ul>
-      <% event.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+                  <br>
+                  <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                      <br>Event thumbnail: <%= f.file_field :thumbnail %>
+                    </div>
+                    <br>
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                      <div class="field">
+                        <%= f.text_field :event_category, placeholder: "Event category:", class: "form-control" %>
+                      </div>
+                    </div>
+                  </div>
+                  <br>
+                  <div class="field">
+                    <input id="searchTextField" type="text" size="50" name="event[event_location]" placeholder="Start typing your event location:" autocomplete="on" runat="server" class="form-control"/>
+                    <input type="hidden" id="latitude" name="event[latitude]" />
+                    <input type="hidden" id="longitude" name="event[longitude]" />
+                  </div>
+                  <br>
+              </div>
+              <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="actions">
+                  <input id="my_submit_button" type="submit" value="Create Event" class="btn">
+                </div>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
     </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :event_name %>
-    <%= f.text_field :event_name %>
   </div>
-
-  <%= f.file_field :thumbnail %>
-
-  <div class="field">
-    <%= f.label :event_description %>
-    <%= f.text_area :event_description %>
+  <div class="col-lg-1 col-md-1 col-sm-0 col-xs-0">
   </div>
+</div>
 
-  <div class="field">
-    <%= f.label :event_category %>
-    <%= f.text_area :event_category %>
-  </div>
-
-  <select id="image-dropdown" name="event[event_icon]" style="width:250px;">
-   <option value="" data-description="Choose an appropiate image">Category image</option>
-   <% @category_icons.each do |image| %>
-      <%= image_tag "markers/#{image.split('/').last}" %>
-      <option value="<%= "#{image.split('/').last}" %>" data-image="<%= image_url "markers/#{image.split('/').last}" %>"><%= image.split('/').last %></option>
-    <% end %>
-  </select>
-
-  <div class="field">
-    <input id="searchTextField" type="text" size="50" name="event[event_location]" placeholder="Enter a location" autocomplete="on" runat="server" />
-    <input type="text" id="latitude" name="event[latitude]" />
-    <input type="text" id="longitude" name="event[longitude]" />
-  </div>
-
-  <div class="field">
-    <%= f.label :event_cost %>
-    <%= f.text_field :event_cost %>
-  </div>
-
-  <div class="field">
-    <%= f.label :event_date %>
-    <%= f.date_select :event_date %>
-  </div>
-
-<input id="my_submit_button" type="submit" value="Create Event">
-<% end %>
-
+<script type="text/javascript">
+    $(function () {
+        $('#datetimepicker4').datetimepicker({
+          format: 'DD/MM/YYYY'
+        });
+    });
+</script>
 
 <script src="http://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_API'] %>&libraries=places" type="text/javascript"></script>
 
