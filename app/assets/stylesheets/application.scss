@@ -184,9 +184,20 @@ body {
       overflow: hidden;
 
   }
+  i {
+    &:hover {
+      color: grey;
+    }
+  }
 
   .btn {
     height: 35px;
+    border-color: #6AB9DA;
+    color: white;
+    background-color: #7AD6FD;
+    &:hover {
+      color: grey;
+    }
   }
 }
 
@@ -512,7 +523,7 @@ a[href^="https://maps.google.com/maps"]{display:none !important}
    p {
      word-wrap: break-word;
    }
-   height: 200px;
+   height: 230px;
    color: #929292;
    .material-icons {
      color: #424242;
@@ -576,6 +587,7 @@ a[href^="https://maps.google.com/maps"]{display:none !important}
 // Make invisible buttons for admin-form
  .admin-form {
    .btn {
+     width: 20px;
      background: transparent; border: none; padding: 0;
    }
    form {
@@ -585,6 +597,37 @@ a[href^="https://maps.google.com/maps"]{display:none !important}
    }
    p {
       margin-top: 3px;
+   }
+   .material-icons {
+     font-size: 18px;
+   }
+   .blue {
+     color: #7AD6FD;
+     padding: 2px;
+     &:hover {
+       color: white;
+       background-color: #7AD6FD;
+       border-radius: 3px;
+
+     }
+   }
+   .yellow {
+     color: #EFC677;
+     padding: 2px;
+     &:hover {
+       color: white;
+       background-color: #EFC677;
+       border-radius: 3px;
+     }
+   }
+   .red {
+     color: #FFA6A4;
+     padding: 2px;
+     &:hover {
+       color: white;
+       background-color: #FFA6A4;
+       border-radius: 3px;
+     }
    }
  }
 

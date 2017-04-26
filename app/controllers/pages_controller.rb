@@ -111,6 +111,30 @@ class PagesController < ApplicationController
         @past_events << ["<a href=\"\/events\/#{attendance.event_id}\">#{Event.find(attendance.event_id).event_name}<\/a>", Event.find(attendance.event_id).event_date.to_s]
       end
     end
+
+    if current_user.role == "administrator"
+      Event.all.pending.future.each do |event|
+        @pending_events << ["<a href=\"\/events\/#{event.id}\">#{event.event_name}<\/a>", event.event_date.to_s]
+      end
+      Event.all.approved.future.each do |event|
+        @future_events << ["<a href=\"\/events\/#{event.id}\">#{event.event_name}<\/a>", event.event_date.to_s]
+      end
+      Event.all.approved.past.each do |event|
+        @past_events << ["<a href=\"\/events\/#{event.id}\">#{event.event_name}<\/a>", event.event_date.to_s]
+      end
+    end
+
+    if current_user.role == "organiser"
+      Event.where(user_id:current_user.id).pending.future.each do |event|
+        @pending_events << ["<a href=\"\/events\/#{event.id}\">#{event.event_name}<\/a>", event.event_date.to_s]
+      end
+      Event.where(user_id:current_user.id).approved.future.each do |event|
+        @future_events << ["<a href=\"\/events\/#{event.id}\">#{event.event_name}<\/a>", event.event_date.to_s]
+      end
+      Event.where(user_id:current_user.id).approved.past.each do |event|
+        @past_events << ["<a href=\"\/events\/#{event.id}\">#{event.event_name}<\/a>", event.event_date.to_s]
+      end
+    end
   end
 
   def set_locations
@@ -119,10 +143,27 @@ class PagesController < ApplicationController
       current_user.attendances.attended.each do |attendance|
         @locations << [Event.find(attendance.event_id).latitude, Event.find(attendance.event_id).longitude, Event.find(attendance.event_id).event_icon]
       end
+    elsif current_user.role == "parent"
+      @children_loc = User.where(parent_id:current_user.id)
+      @children_loc.each do |child|
+        child.attendances.attended.each do |attendance|
+          @locations << [Event.find(attendance.event_id).latitude, Event.find(attendance.event_id).longitude, Event.find(attendance.event_id).event_icon]
+        end
+      end
+    elsif current_user.role == "administrator"
+      @map_events = Event.future.approved
+      @map_events.each do |event|
+        @locations << [event.latitude, event.longitude, event.event_icon]
+      end
+    elsif current_user.role == "organiser"
+      @map_events = Event.where(user_id:current_user.id).approved
+      @map_events.each do |event|
+        @locations << [event.latitude, event.longitude, event.event_icon]
+      end
     end
   end
 
   def set_events
-    @events = Event.all.to_a
+    @events = Event.all.order(event_date: :asc)
   end
 end

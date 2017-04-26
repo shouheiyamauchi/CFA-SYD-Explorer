@@ -12,15 +12,15 @@
           <th></th>
           <th class="text-center">Event</th>
           <th class="text-center">Category</th>
-          <th class="text-center">Manage</th>
+          <th class="text-center"></th>
         </tr>
-        <% @events[0..5].each do |event| %>
+        <% @events.approved.future[0..10].each do |event| %>
         <tr>
           <td><%= event.event_date%></td>
           <td class="text-right"><%= image_tag("markers/#{event.event_icon}", class: "icons") %></td>
           <td><%= event.event_name%></td>
           <td><%= event.event_category%></td>
-          <td><i class="material-icons simple-tooltip yellow" title="View">event_note</i> <i class="material-icons simple-tooltip blue" title="Accept">event_available</i> <i class="material-icons simple-tooltip red" title="Reject">event_busy</i></td>
+          <td><a href="/events/<%= event.id %>"<i class="material-icons simple-tooltip yellow" title="View">event_note</i></a></td>
         </tr>
         <% end %>
       </table>
