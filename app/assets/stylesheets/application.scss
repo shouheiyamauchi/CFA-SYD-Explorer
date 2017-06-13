@@ -78,6 +78,14 @@ body {
   }
 }
 
+.logout {
+  a {
+    &:hover {
+      text-decoration: none;
+    }
+  }
+}
+
 // navbar styling
 .navigation {
  background-color: white;
