@@ -1,5 +1,5 @@
 # Coder Factory Academy Major Project #2
-(https://syd-explorer.herokuapp.com/)
+Deployed application: https://syd-explorer.herokuapp.com/
 
 ## Project Brief
 Design, build, deploy and present a two-way application which will impress either Barack Obama, Rupert Murdoch or Bill/Melinda Gates
