@@ -27,20 +27,23 @@ Once logged in as a newly registered user, the user will be presented with a bla
 ## Design process
 
 ### Brainstorming
-- Brainstormed the different users (parents, childrens, organisers, administrators), features, etc
+Brainstormed the different users (parents, children, organisers, administrators), features, etc.
 ![Alt Brainstorming](/readme/brainstorm.png?raw=true)
 
 ### Entity Relationship Diagram
-- Used www.draw.io for Entity Relationship Diagram
+Used www.draw.io for Entity Relationship Diagram.
 ![Alt Entity Relationship Diagram](/readme/erd.png?raw=true)
 
 ## Screenshots
 
 ### Login Page
+Users are required to login to start using the application. There are 4 different types of users which are: parents, children, organisers, administrators.
 ![Alt Login Page](/readme/login.png?raw=true)
 
 ### Signup Page
+Parents are able to sign up through this page. Once they are signed up, they are able to sign up their children via the dashboard.
 ![Alt Signup Page](/readme/signup.png?raw=true)
 
 ### Dashboard
+A summary of the important information is displayed in the dashboard. The items displayed will depend on the type of user that is logged in.
 ![Alt Dashboard](/readme/dashboard.png?raw=true)
