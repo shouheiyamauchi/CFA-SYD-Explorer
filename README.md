@@ -1,14 +1,29 @@
-# SYD Explorer
+# Coder Factory Academy Major Project #2
 
-SYD Explorer is a web application aimed at children to encourage them to participate in outdoor activities. I feel that as technology progresses and computers/smartphones becomes a bigger part of our daily lives, the day we spend outdoors gets sacrificed. Engaging in outdoor activities is not only good for our physical health, but also is beneficial for our mental health. This application gives children an incentive to participate in these type of activities by incorporating an online gaming experience when physically attending an event.
+## Project Brief
+Design, build, deploy and present a two-way application which will impress either Barack Obama, Rupert Murdoch or Bill/Melinda Gates
 
-Deployed version of the app available at: https://syd-explorer.herokuapp.com/
+## Decision
+I decided to make an application to impress Barack Obama. Michelle Obama had an initiative named “Let’s Move” which was aimed at encouraging a healthy lifestyle for children.
 
-# Aim of the application user
+## Application
+The application’s name is SYD Explorer which is a web application aimed at children to encourage them to participate in outdoor activities. I feel that as technology progresses and computers/smartphones have become a big part of our daily lives, the time we spend outdoors has significantly decreased. Engaging in outdoor activities is not only good for our physical health, but also is beneficial for our mental health. This application gives children an incentive to participate in outdoor activities by gamifying the experience of physically attending an event.
 
-An online character will be created when a child signs up to the service. The application will have a list of events which are organised by councils and any other organisations aimed at children. Each time the child attends an event, he or she will be awared points and their characters will level up. In the future, there will be additional features included such as the ability to redeem the points for real life prizes, battling other users with your character, etc.
+## Goal
+Once logged in as a newly registered user, the user will be presented with a blank map of Sydney on the dashboard. Each time the user attends an event, a pin will be dropped on the location where the event was held. The aim of the application is to get the map as filled up as possible with the pin drops.
 
-# Installation
+## Technology Stack
+- Ruby on Rails
+- Javascript
+
+Gems/Libraries/APIs
+-	Carrierwave (image uploads for event thumbnails)
+-	Geocoder (for calculation of latitude/longitude
+-	Scrollbar Rails (styling of scroll bar)
+-	Angular Bootstrap Calendar
+-	Google Maps API
+
+## Installation
 ```
 git clone https://github.com/shouheiyamauchi/CFA-SYD-Explorer.git
 ```
@@ -25,7 +40,7 @@ rails db:migrate
 rails s
 ```
 
-# Design process
+## Design process
 
 ![Imgur](http://i.imgur.com/18E177D.png)
 
