@@ -25,13 +25,13 @@ Once logged in as a newly registered user, the user will be presented with a bla
 
 ## Design process
 
-- Used www.draw.io for Entity Relationship Diagram
+### Brainstorming
 - Brainstormed the different users (parents, childrens, organisers, administrators), features, etc
-
 ![Alt Brainstorming](/readme/brainstorm.png?raw=true)
+
+### Entity Relationship Diagram
+- Used www.draw.io for Entity Relationship Diagram
 ![Alt Entity Relationship Diagram](/readme/erd.png?raw=true)
-![Imgur](http://i.imgur.com/18E177D.png)
-![Imgur](http://i.imgur.com/yANPoI9.png)
 
 ## Screenshots
 
