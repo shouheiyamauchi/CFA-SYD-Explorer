@@ -1,4 +1,4 @@
-# Coder Factory Academy Major Project #2
+# Coder Factory Academy Major Project #2 (https://syd-explorer.herokuapp.com/)
 
 ## Project Brief
 Design, build, deploy and present a two-way application which will impress either Barack Obama, Rupert Murdoch or Bill/Melinda Gates
@@ -16,40 +16,30 @@ Once logged in as a newly registered user, the user will be presented with a bla
 - Ruby on Rails
 - Javascript
 
-Gems/Libraries/APIs
+## Gems/Libraries/APIs
 -	Carrierwave (image uploads for event thumbnails)
 -	Geocoder (for calculation of latitude/longitude
 -	Scrollbar Rails (styling of scroll bar)
 -	Angular Bootstrap Calendar
 -	Google Maps API
 
-## Installation
-```
-git clone https://github.com/shouheiyamauchi/CFA-SYD-Explorer.git
-```
-```
-cd CFA-SYD-Explorer
-```
-```
-rails db:create
-```
-```
-rails db:migrate
-```
-```
-rails s
-```
-
 ## Design process
 
-![Imgur](http://i.imgur.com/18E177D.png)
+- Used www.draw.io for Entity Relationship Diagram
+- Brainstormed the different users (parents, childrens, organisers, administrators), features, etc
 
+![Alt Brainstorming](/readme/brainstorm.png?raw=true)
+![Alt Entity Relationship Diagram](/readme/erd.png?raw=true)
+![Imgur](http://i.imgur.com/18E177D.png)
 ![Imgur](http://i.imgur.com/yANPoI9.png)
 
-![Imgur](http://i.imgur.com/jwVTU4o.jpg)
+## Screenshots
 
-![Imgur](http://i.imgur.com/zc2y4Cm.jpg)
+### Login Page
+![Alt Login Page](/readme/login.png?raw=true)
 
-![Imgur](http://i.imgur.com/yks2gNh.jpg)
+### Signup Page
+![Alt Signup Page](/readme/signup.png?raw=true)
 
-![Imgur](http://i.imgur.com/m2WOIXr.jpg)
+### Dashboard
+![Alt Dashboard](/readme/dashboard.png?raw=true)
